@@ -6,7 +6,7 @@
 #    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/04/16 19:25:22 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/04/19 20:46:06 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,17 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
 
-HDR			=
+HDR			= ./src/cub3d.h										\
+			  ./src/parse_input/parse_input.h
 
-SRC			=
+SRC			= ./src/cub3d.c										\
+			  ./src/parse_input/parse_input.c					\
+			  ./src/parse_input/parse_input_argc.c				\
+			  ./src/parse_input/parse_input_file_extension.c	\
+			  ./src/parse_input/parse_input_valid_file.c		\
+			  ./src/parse_input/parse_input_line.c		\
+			  ./src/parse_input/parse_input_orientation.c		\
+			  ./src/parse_input/parse_input_color.c
 
 OBJ			= $(SRC:.c=.o)
 
