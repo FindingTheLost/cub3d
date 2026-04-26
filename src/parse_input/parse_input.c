@@ -6,34 +6,44 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 20:05:43 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/19 20:45:51 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/26 23:08:28 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_input.h"
 
-static int	open_file(char **argv)
-{
-	int		fd;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		write(STDOUT_FILENO, "\033[91mError\n\033[0m", 6);
-		write(STDOUT_FILENO, "Failed opening file!\n", 21);
-	}
-	return (fd);
-}
-
 static int	parse_input_map(char **argv)
 {
+	size_t	width;
+	size_t	height;
+
 	if (!parse_input_line(open_file(argv), true))
 		return (false);
+	if (!parse_input_map_found(open_file(argv)))
+		return (false);
+	if (!parse_input_map_whole(open_file(argv)))
+		return (false);
+	if (!parse_input_map_player(open_file(argv)))
+		return (false);
+	width = parse_input_map_width(open_file(argv));
+	height = parse_input_map_height(open_file(argv));
+	printf("width: %lu | height: %lu\n", width, height);
 	return (true);
 }
 
-static int	parse_input_elements(char **argv)
+/* Series of checks that verify whether the passed ".cub" file is valid before
+ * passing the "file" struct variable onto the "t_cub" struct builder function.
+ */
+int	parse_input(int argc, char **argv)
 {
+	if (!parse_input_argc(argc))
+		return (false);
+	if (!parse_input_file_extension(argv))
+		return (false);
+	if (!parse_input_valid_file(argv))
+		return (false);
+	if (!parse_input_line(open_file(argv), false))
+		return (false);
 	if (!parse_input_orientation(open_file(argv), "NO"))
 		return (false);
 	if (!parse_input_orientation(open_file(argv), "SO"))
@@ -45,28 +55,6 @@ static int	parse_input_elements(char **argv)
 	if (!parse_input_color(open_file(argv), "F"))
 		return (false);
 	if (!parse_input_color(open_file(argv), "C"))
-		return (false);
-	return (true);
-}
-
-static int	parse_input_file(int argc, char **argv)
-{
-	if (!parse_input_argc(argc))
-		return (false);
-	if (!parse_input_file_extension(argv))
-		return (false);
-	if (!parse_input_valid_file(argv))
-		return (false);
-	if (!parse_input_line(open_file(argv), false))
-		return (false);
-	return (true);
-}
-
-int	parse_input(int argc, char **argv)
-{
-	if (!parse_input_file(argc, argv))
-		return (false);
-	if (!parse_input_elements(argv))
 		return (false);
 	if (!parse_input_map(argv))
 		return (false);

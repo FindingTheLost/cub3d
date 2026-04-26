@@ -6,11 +6,27 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 19:37:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/19 20:48:46 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/26 21:10:32 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_input.h"
+
+static void	output_error(int code)
+{
+	write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
+	if (code == 0)
+		write(STDOUT_FILENO, "File element syntax error!\n", 27);
+	else if (code == 1)
+		write(STDOUT_FILENO, "Wrong character found!\n", 23);
+	else if (code == 2)
+	{
+		write(STDOUT_FILENO, "Map characters are not", 22);
+		write(STDOUT_FILENO, " under its file elements!\n", 26);
+	}
+	else
+		write(STDOUT_FILENO, "Something went wrong!\n", 22);
+}
 
 static int	check_map_line(int map_mode, char *line, int *elements)
 {
@@ -22,11 +38,17 @@ static int	check_map_line(int map_mode, char *line, int *elements)
 		if (line[index] != ' ' && line[index] != '0' && line[index] != '1'
 			&& line[index] != 'N' && line[index] != 'S' && line[index] != 'W'
 			&& line[index] != 'E' && line[index] != '\n')
+		{
+			output_error(1);
 			return (false);
+		}
 		index++;
 	}
 	if (map_mode && *elements < 6)
+	{
+		output_error(2);
 		return (false);
+	}
 	return (true);
 }
 
@@ -50,12 +72,14 @@ static int	check_line(int map_mode, char *line, int *elements)
 	}
 	if (line[0] == 'F' || line[0] == 'C' || line[0] == '\n' || line[0] == '\0')
 		return (true);
+	if (check_map_line(map_mode, line, elements))
+		return (true);
 	return (false);
 }
 
 /* The "map_mode" variable can be set to either "true" or "false" to distinguish
- * whether the function will attempt to identify if parts of the map are
- * inputted before all of the elements.
+ * whether the function will attempt to identify "if parts of the map are
+ * inputted before all of the elements are set".
  * When "false", the default behaviour of the function is used instead which is
  * to identify if there are any illegal lines, not taking into account whether
  * the map is fractured or if it's drawn before all of the other elements of
@@ -77,15 +101,8 @@ int	parse_input_line(int fd, int map_mode)
 	{
 		if (!check_line(map_mode, line, &elements))
 		{
-			write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-			if (!map_mode)
-				write(STDOUT_FILENO, "File structure syntax error!\n", 29);
-			else
-			{
-				write(STDOUT_FILENO, "Map is either fractured or not", 30);
-				write(STDOUT_FILENO, " under its elements!\n", 21);
-			}
-			return (free(line), false);
+			free(line);
+			return (false);
 		}
 		free(line);
 		line = get_next_line(fd);

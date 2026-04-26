@@ -6,7 +6,7 @@
 #    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/04/19 20:46:06 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/04/26 22:44:24 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,15 @@ SRC			= ./src/cub3d.c										\
 			  ./src/parse_input/parse_input_argc.c				\
 			  ./src/parse_input/parse_input_file_extension.c	\
 			  ./src/parse_input/parse_input_valid_file.c		\
-			  ./src/parse_input/parse_input_line.c		\
+			  ./src/parse_input/parse_input_line.c				\
 			  ./src/parse_input/parse_input_orientation.c		\
-			  ./src/parse_input/parse_input_color.c
+			  ./src/parse_input/parse_input_color.c				\
+			  ./src/parse_input/parse_input_map_found.c			\
+			  ./src/parse_input/parse_input_map_whole.c			\
+			  ./src/parse_input/parse_input_map_player.c		\
+			  ./src/parse_input/parse_input_map_width.c			\
+			  ./src/parse_input/parse_input_map_height.c		\
+			  ./src/parse_input/parse_input_utils.c
 
 OBJ			= $(SRC:.c=.o)
 

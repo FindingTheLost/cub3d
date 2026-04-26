@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 19:16:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/19 20:12:12 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/26 21:18:37 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	check_symbol(char *element, char *line, int *found)
 		return (true);
 	}
 	if (line[0] == element[0] && line[1] == element[1]
-		&& (line[2] == '\n' || line[2] == '\0'))
+		&& (line[2] == '\n' || line[2] == '\0' || line[2] != ' '))
 	{
 		if (*found)
 			output_error(element, 1);
