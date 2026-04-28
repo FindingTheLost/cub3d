@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 19:16:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/26 21:18:37 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/27 18:09:49 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ int	parse_input_orientation(int fd, char *element)
 		if (!check_symbol(element, line, &found))
 		{
 			free(line);
-			return (false);
+			return (close(fd), false);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (found)
-		return (true);
+		return (close(fd), true);
 	output_error(element, 0);
-	return (false);
+	return (close(fd), false);
 }

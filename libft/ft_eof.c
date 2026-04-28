@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input_map_height.c                           :+:      :+:    :+:   */
+/*   ft_eof.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/26 22:34:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/26 23:00:16 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/04/28 00:40:07 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/04/28 00:44:01 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_input.h"
+#include "libft.h"
 
-size_t	parse_input_map_height(int fd)
+/* Function that forces "get_next_line" to reach the end of a file descriptor
+ * (EOF) to clear any remains of the contents of the file pointed to by "fd"
+ * from "get_next_line"'s static buffer.
+ */
+void	ft_eof(int fd)
 {
 	char	*line;
-	int		elements;
-	size_t	height;
 
-	if (fd == -1)
-		return (false);
 	line = get_next_line(fd);
-	elements = 0;
-	while (elements < 6)
-	{
-		elements += check_if_element(line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	height = 0;
 	while (line)
 	{
-		if (line[0] != '\n' && line[0] != '\0')
-			height++;
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (height);
 }

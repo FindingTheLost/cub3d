@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 19:37:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/26 21:10:32 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/27 18:08:49 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ int	parse_input_line(int fd, int map_mode)
 		if (!check_line(map_mode, line, &elements))
 		{
 			free(line);
-			return (false);
+			return (close(fd), false);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (true);
+	return (close(fd), true);
 }

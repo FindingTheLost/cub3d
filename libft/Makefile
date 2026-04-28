@@ -6,7 +6,7 @@
 #    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 19:18:32 by pde-alme          #+#    #+#              #
-#    Updated: 2026/04/16 19:18:31 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/04/28 00:52:26 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC		= ft_atoi.c				\
 		  ft_atol.c				\
 		  ft_bzero.c			\
 		  ft_calloc.c			\
+		  ft_eof.c				\
 		  ft_fbool.c			\
 		  ft_gnl.c				\
 		  ft_gnl_utils.c		\

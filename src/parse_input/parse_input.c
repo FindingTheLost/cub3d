@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 20:05:43 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/26 23:08:28 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/27 23:46:14 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 static int	parse_input_map(char **argv)
 {
-	size_t	width;
-	size_t	height;
-
 	if (!parse_input_line(open_file(argv), true))
 		return (false);
 	if (!parse_input_map_found(open_file(argv)))
@@ -25,14 +22,12 @@ static int	parse_input_map(char **argv)
 		return (false);
 	if (!parse_input_map_player(open_file(argv)))
 		return (false);
-	width = parse_input_map_width(open_file(argv));
-	height = parse_input_map_height(open_file(argv));
-	printf("width: %lu | height: %lu\n", width, height);
+	if (!parse_input_map_surroundings(argv))
+		return (false);
 	return (true);
 }
 
-/* Series of checks that verify whether the passed ".cub" file is valid before
- * passing the "file" struct variable onto the "t_cub" struct builder function.
+/* Series of checks that verify whether the passed ".cub" file is valid.
  */
 int	parse_input(int argc, char **argv)
 {

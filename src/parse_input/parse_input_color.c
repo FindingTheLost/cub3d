@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 20:10:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/26 21:24:32 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/27 18:10:24 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,13 +133,13 @@ int	parse_input_color(int fd, char *element)
 		if (!check_symbol(element, line, &found))
 		{
 			free(line);
-			return (false);
+			return (close(fd), false);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (found)
-		return (true);
+		return (close(fd), true);
 	output_error(element, 0);
-	return (false);
+	return (close(fd), false);
 }
