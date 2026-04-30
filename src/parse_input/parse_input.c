@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 20:05:43 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/27 23:46:14 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/29 23:31:39 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	parse_input_map(char **argv)
 {
-	if (!parse_input_line(open_file(argv), true))
+	if (!parse_input_line(t_cub_open_file(argv), true))
 		return (false);
-	if (!parse_input_map_found(open_file(argv)))
+	if (!parse_input_map_found(t_cub_open_file(argv)))
 		return (false);
-	if (!parse_input_map_whole(open_file(argv)))
+	if (!parse_input_map_whole(t_cub_open_file(argv)))
 		return (false);
-	if (!parse_input_map_player(open_file(argv)))
+	if (!parse_input_map_player(t_cub_open_file(argv)))
 		return (false);
 	if (!parse_input_map_surroundings(argv))
 		return (false);
@@ -37,19 +37,19 @@ int	parse_input(int argc, char **argv)
 		return (false);
 	if (!parse_input_valid_file(argv))
 		return (false);
-	if (!parse_input_line(open_file(argv), false))
+	if (!parse_input_line(t_cub_open_file(argv), false))
 		return (false);
-	if (!parse_input_orientation(open_file(argv), "NO"))
+	if (!parse_input_orientation(t_cub_open_file(argv), "NO"))
 		return (false);
-	if (!parse_input_orientation(open_file(argv), "SO"))
+	if (!parse_input_orientation(t_cub_open_file(argv), "SO"))
 		return (false);
-	if (!parse_input_orientation(open_file(argv), "WE"))
+	if (!parse_input_orientation(t_cub_open_file(argv), "WE"))
 		return (false);
-	if (!parse_input_orientation(open_file(argv), "EA"))
+	if (!parse_input_orientation(t_cub_open_file(argv), "EA"))
 		return (false);
-	if (!parse_input_color(open_file(argv), "F"))
+	if (!parse_input_color(t_cub_open_file(argv), "F"))
 		return (false);
-	if (!parse_input_color(open_file(argv), "C"))
+	if (!parse_input_color(t_cub_open_file(argv), "C"))
 		return (false);
 	if (!parse_input_map(argv))
 		return (false);

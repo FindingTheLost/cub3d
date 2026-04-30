@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   t_cub_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/16 19:41:09 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 23:16:39 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/04/29 17:50:44 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/04/29 21:15:37 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../t_cub_struct.h"
 
-int	main(int argc, char **argv)
+void	t_cub_malloc_error(void)
 {
-	t_cub	*file;
+	write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
+	write(STDOUT_FILENO, "Dynamic memory allocation failed!\n", 34);
+}
 
-	if (!parse_input(argc, argv))
-		return (1);
-	if (!t_cub_populate(argv, &file))
-		return (2);
-	t_cub_debug(file);
-	t_cub_destroy(file);
-	//init_cub3d(file);
-	return (0);
+void	t_cub_struct_error(void)
+{
+	write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
+	write(STDOUT_FILENO, "Struct building stage failed!\n", 30);
 }

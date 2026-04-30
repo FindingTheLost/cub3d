@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input_utils.c                                :+:      :+:    :+:   */
+/*   t_cub_check_if_element.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/26 20:25:24 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/27 18:03:09 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/04/29 17:52:06 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/04/29 18:20:38 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_input.h"
+#include "../t_cub_struct.h"
 
-int	check_if_element(char *line)
+int	t_cub_check_if_element(char *line)
 {
 	if (ft_strlen(line) >= 2)
 	{
@@ -28,17 +28,4 @@ int	check_if_element(char *line)
 			return (1);
 	}
 	return (0);
-}
-
-int	open_file(char **argv)
-{
-	int		fd;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		write(STDOUT_FILENO, "\033[91mError\n\033[0m", 6);
-		write(STDOUT_FILENO, "Failed opening file!\n", 21);
-	}
-	return (fd);
 }

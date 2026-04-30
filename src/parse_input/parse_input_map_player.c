@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 20:43:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/27 18:12:00 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:09:09 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	parse_input_map_player(int fd)
 	elements = 0;
 	while (elements < 6)
 	{
-		elements += check_if_element(line);
+		elements += t_cub_check_if_element(line);
 		free(line);
 		line = get_next_line(fd);
 	}

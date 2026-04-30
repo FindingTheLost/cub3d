@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   t_cub_open_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/16 19:41:09 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 23:16:39 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/04/29 18:12:24 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/04/29 18:21:30 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../t_cub_struct.h"
 
-int	main(int argc, char **argv)
+int	t_cub_open_file(char **argv)
 {
-	t_cub	*file;
+	int		fd;
 
-	if (!parse_input(argc, argv))
-		return (1);
-	if (!t_cub_populate(argv, &file))
-		return (2);
-	t_cub_debug(file);
-	t_cub_destroy(file);
-	//init_cub3d(file);
-	return (0);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		write(STDOUT_FILENO, "\033[91mError\n\033[0m", 6);
+		write(STDOUT_FILENO, "Failed opening file!\n", 21);
+	}
+	return (fd);
 }

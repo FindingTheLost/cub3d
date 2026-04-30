@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cub_struct.c                                     :+:      :+:    :+:   */
+/*   t_cub_build_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/26 23:29:49 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/27 23:39:57 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/04/29 17:55:43 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/04/29 21:18:36 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_cub_struct.h"
+#include "../t_cub_struct.h"
 
 /* Fills the map's empty space characters with the characters from their
  * respective position in the file descriptor passed as parameter.
@@ -80,7 +80,7 @@ static char	**t_cub_alloc_map(size_t width, size_t height, int fd)
 	return (t_cub_fill_map(fd, map), map);
 }
 
-char	**t_cub_create_map(size_t width, size_t height, int fd)
+char	**t_cub_build_map(size_t width, size_t height, int fd)
 {
 	char	**map;
 	char	*line;
@@ -103,57 +103,4 @@ char	**t_cub_create_map(size_t width, size_t height, int fd)
 	if (!map)
 		return (close(fd), NULL);
 	return (close(fd), map);
-}
-
-/* Destroys a memory allocated "t_cub" struct passed as parameter.
- */
-void	t_cub_destroy(t_cub *file)
-{
-	size_t	index;
-
-	if (file->no_file)
-		free(file->no_file);
-	if (file->so_file)
-		free(file->so_file);
-	if (file->ea_file)
-		free(file->ea_file);
-	if (file->we_file)
-		free(file->we_file);
-	if (file->map)
-	{
-		index = 0;
-		while (file->map[index])
-			free(file->map[index++]);
-		free(file->map);
-	}
-	free(file);
-}
-
-/* Memory allocates a new "file" variable of type "t_cub" and sets all of its
- * attributes to "NULL" before returning it.
- * Returns the "t_cub" variable or "NULL" in case of a memory allocation error.
- */
-t_cub	*t_cub_build(void)
-{
-	t_cub	*file;
-	size_t	index;
-
-	file = malloc(sizeof(t_cub));
-	if (!file)
-		return (t_cub_malloc_error(), NULL);
-	file->no_file = NULL;
-	file->so_file = NULL;
-	file->ea_file = NULL;
-	file->we_file = NULL;
-	index = 0;
-	while (index < 3)
-	{
-		file->f_color[index] = 0;
-		file->c_color[index] = 0;
-		index++;
-	}
-	file->map = NULL;
-	file->map_width = 0;
-	file->map_height = 0;
-	return (file);
 }

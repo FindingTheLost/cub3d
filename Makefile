@@ -6,7 +6,7 @@
 #    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/04/27 23:40:39 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/04/29 21:59:45 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,16 @@ HDR			= ./src/cub3d.h										\
 			  ./src/parse_input/parse_input.h
 
 SRC			= ./src/cub3d.c										\
-			  ./src/structs/t_cub_struct.c						\
-			  ./src/structs/t_cub_struct_utils.c				\
+			  ./src/structs/t_cub/t_cub_build.c					\
+			  ./src/structs/t_cub/t_cub_build_map.c				\
+			  ./src/structs/t_cub/t_cub_destroy.c				\
+			  ./src/structs/t_cub/t_cub_error.c					\
+			  ./src/structs/t_cub/t_cub_debug.c					\
+			  ./src/structs/t_cub/t_cub_get_width.c				\
+			  ./src/structs/t_cub/t_cub_get_height.c			\
+			  ./src/structs/t_cub/t_cub_check_if_element.c		\
+			  ./src/structs/t_cub/t_cub_open_file.c				\
+			  ./src/structs/t_cub/t_cub_populate.c				\
 			  ./src/parse_input/parse_input.c					\
 			  ./src/parse_input/parse_input_argc.c				\
 			  ./src/parse_input/parse_input_file_extension.c	\
@@ -35,8 +43,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/parse_input/parse_input_map_found.c			\
 			  ./src/parse_input/parse_input_map_whole.c			\
 			  ./src/parse_input/parse_input_map_player.c		\
-			  ./src/parse_input/parse_input_map_surroundings.c	\
-			  ./src/parse_input/parse_input_utils.c
+			  ./src/parse_input/parse_input_map_surroundings.c
 
 OBJ			= $(SRC:.c=.o)
 

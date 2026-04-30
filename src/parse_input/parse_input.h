@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:04:15 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/27 23:39:20 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/29 18:13:36 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,5 @@ int	parse_input_map_found(int fd);
 int	parse_input_map_whole(int fd);
 int	parse_input_map_player(int fd);
 int	parse_input_map_surroundings(char **argv);
-
-/* Utils functions */
-int	open_file(char **argv);
-int	check_if_element(char *line);
 
 #endif

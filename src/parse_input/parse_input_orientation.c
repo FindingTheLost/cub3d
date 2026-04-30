@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 19:16:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/27 18:09:49 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/04/29 23:51:58 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ static void	output_error(char *element, int code)
 		write(STDOUT_FILENO, "Something went wrong!\n", 22);
 }
 
+/* The path of the ".xpm" file in the ".cub" must be a relative path of the
+ * program's current directory. Therefore, the path to the textures must be
+ * accessible as if coming from the path where the "cub3D" executable is
+ * found.
+ */
 static int	check_path(char *element, char *line)
 {
 	size_t	index;
