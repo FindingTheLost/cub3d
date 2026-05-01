@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 23:26:17 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 23:07:11 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 03:32:47 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 typedef struct s_cub
 {
-	char	*no_file;
-	char	*so_file;
-	char	*ea_file;
-	char	*we_file;
-	char	**map;
-	size_t	map_width;
-	size_t	map_height;
+	char			*no_file;
+	char			*so_file;
+	char			*ea_file;
+	char			*we_file;
+	char			**map;
+	size_t			map_width;
+	size_t			map_height;
 	unsigned char	f_color[3];
 	unsigned char	c_color[3];
 }	t_cub;

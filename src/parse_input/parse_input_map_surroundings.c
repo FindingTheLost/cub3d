@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 00:28:30 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 01:17:36 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 03:33:41 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	check_left_right(size_t width, char **map)
 	line = 0;
 	index = width - 1;
 	while (map[line])
-	{ 
+	{
 		if (map[line][0] == '0' || ft_isalpha(map[line][0]))
 			return (false);
 		if (index != 0)
