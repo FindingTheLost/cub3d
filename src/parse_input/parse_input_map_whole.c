@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 17:47:34 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 18:08:46 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:19:44 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ static int	check_map(char *line, int *map_start, int *map_end)
 	}
 	if (*map_end)
 	{
-		write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-		write(STDOUT_FILENO, "Map content must not be separated by", 36);
-		write(STDOUT_FILENO, " empty lines!\n", 14);
+		ft_printf(RED_LIGH "Error\n" DEF);
+		ft_printf("Map content must not be separated by empty lines!\n");
 		return (false);
 	}
 	*map_start = true;
@@ -60,7 +59,7 @@ int	parse_input_map_whole(int fd)
 	while (line)
 	{
 		if (!check_map(line, &map_start, &map_end))
-			return (free(line), close(fd), false);
+			return (free(line), ft_eof(fd), close(fd), false);
 		free(line);
 		line = get_next_line(fd);
 	}

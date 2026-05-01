@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 21:31:29 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/30 20:27:02 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:43:50 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,16 @@ static void	debug_map(size_t width, size_t height, char **map)
 	char	*result;
 	size_t	line;
 
-	write(STDOUT_FILENO, "Map width: ", 11);
 	result = ft_itoa((int)width);
-	write(STDOUT_FILENO, result, ft_strlen(result));
+	ft_printf("Map width: %s\n", result);
 	free(result);
-	write(STDOUT_FILENO, "\nMap height: ", 13);
 	result = ft_itoa((int)height);
-	write(STDOUT_FILENO, result, ft_strlen(result));
+	ft_printf("Map height: %s\n", result);
 	free(result);
-	write(STDOUT_FILENO, "\nMap content:\n", 14);
+	ft_printf("Map content:\n");
 	line = 0;
 	while (map[line])
-	{
-		write(STDOUT_FILENO, map[line], ft_strlen(map[line]));
-		write(STDOUT_FILENO, "\n", 1);
-		line++;
-	}
+		ft_printf("%s\n", map[line++]);
 }
 
 static void	debug_color(unsigned char color[3], char *element)
@@ -40,35 +34,26 @@ static void	debug_color(unsigned char color[3], char *element)
 	char	*result;
 	size_t	index;
 
-	write(STDOUT_FILENO, element, ft_strlen(element));
-	write(STDOUT_FILENO, " color: ", 8);
+	ft_printf("%s color: ", element);
 	index = 0;
 	while (index < 3)
 	{
 		result = ft_itoa((int)color[index]);
-		write(STDOUT_FILENO, result, ft_strlen(result));
+		ft_printf("%s", result);
 		if (index < 2)
-			write(STDOUT_FILENO, ", ", 2);
+			ft_printf(", ");
 		free(result);
 		index++;
 	}
-	write(STDOUT_FILENO, "\n", 1);
+	ft_printf("\n");
 }
 
 static void	debug_files(t_cub *file)
 {
-	write(STDOUT_FILENO, "North file: ", 12);
-	write(STDOUT_FILENO, file->no_file, ft_strlen(file->no_file));
-	write(STDOUT_FILENO, "\n", 1);
-	write(STDOUT_FILENO, "South file: ", 12);
-	write(STDOUT_FILENO, file->so_file, ft_strlen(file->so_file));
-	write(STDOUT_FILENO, "\n", 1);
-	write(STDOUT_FILENO, "East file: ", 11);
-	write(STDOUT_FILENO, file->ea_file, ft_strlen(file->ea_file));
-	write(STDOUT_FILENO, "\n", 1);
-	write(STDOUT_FILENO, "West file: ", 11);
-	write(STDOUT_FILENO, file->we_file, ft_strlen(file->we_file));
-	write(STDOUT_FILENO, "\n", 1);
+	ft_printf("North file: %s\n", file->no_file);
+	ft_printf("South file: %s\n", file->so_file);
+	ft_printf("East file: %s\n", file->ea_file);
+	ft_printf("West file: %s\n", file->we_file);
 }
 
 void	t_cub_debug(t_cub *file)

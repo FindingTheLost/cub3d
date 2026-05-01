@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 19:16:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 23:51:58 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:24:48 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 
 static void	output_error(char *element, int code)
 {
-	write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-	write(STDOUT_FILENO, element, ft_strlen(element));
+	ft_printf(RED_LIGH "Error\n" DEF);
+	ft_printf("%s ", element);
 	if (code == 0)
-		write(STDOUT_FILENO, " element is missing from this '.cub' file!\n",
-			43);
+		ft_printf("element is missing from this '.cub' file!\n");
 	else if (code == 1)
-		write(STDOUT_FILENO, " element has two or more instances!\n", 36);
+		ft_printf("element has two or more instances!\n");
 	else if (code == 2)
-		write(STDOUT_FILENO, " element does not refer to a '.xpm' file!\n", 42);
+		ft_printf("element does not refer to a '.xpm' file!\n");
 	else if (code == 3)
-	{
-		write(STDOUT_FILENO, " element '.xpm' file does not exist or ", 39);
-		write(STDOUT_FILENO, "permission denied!\n", 19);
-	}
+		ft_printf("element '.xpm' file does not exist or permission denied!\n");
 	else if (code == 4)
-		write(STDOUT_FILENO, " element has no valid '.xpm' file!\n", 35);
+		ft_printf("element has no valid '.xpm' file!\n");
 	else
-		write(STDOUT_FILENO, "Something went wrong!\n", 22);
+		ft_printf("element has serious issues!\n");
 }
 
 /* The path of the ".xpm" file in the ".cub" must be a relative path of the
@@ -102,10 +98,7 @@ int	parse_input_orientation(int fd, char *element)
 	while (line)
 	{
 		if (!check_symbol(element, line, &found))
-		{
-			free(line);
-			return (close(fd), false);
-		}
+			return (free(line), ft_eof(fd), close(fd), false);
 		free(line);
 		line = get_next_line(fd);
 	}

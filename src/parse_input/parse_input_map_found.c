@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 20:17:54 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 18:08:33 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:10:10 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	parse_input_map_found(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-	write(STDOUT_FILENO, "Map element is missing from this '.cub' file!\n", 46);
+	ft_printf(RED_LIGH "Error\n" DEF);
+	ft_printf("Map element is missing from this '.cub' file!\n");
 	return (close(fd), false);
 }

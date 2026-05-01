@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 19:37:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/27 18:08:49 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:30:05 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 static void	output_error(int code)
 {
-	write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
+	ft_printf(RED_LIGH "Error\n" DEF);
 	if (code == 0)
-		write(STDOUT_FILENO, "File element syntax error!\n", 27);
+		ft_printf("File element syntax error!\n");
 	else if (code == 1)
-		write(STDOUT_FILENO, "Wrong character found!\n", 23);
+		ft_printf("Wrong character found!\n");
 	else if (code == 2)
-	{
-		write(STDOUT_FILENO, "Map characters are not", 22);
-		write(STDOUT_FILENO, " under its file elements!\n", 26);
-	}
+		ft_printf("Map characters are not under its file elements!\n");
 	else
-		write(STDOUT_FILENO, "Something went wrong!\n", 22);
+		ft_printf("Something went wrong!\n");
 }
 
 static int	check_map_line(int map_mode, char *line, int *elements)
@@ -100,10 +97,7 @@ int	parse_input_line(int fd, int map_mode)
 	while (line)
 	{
 		if (!check_line(map_mode, line, &elements))
-		{
-			free(line);
-			return (close(fd), false);
-		}
+			return (free(line), ft_eof(fd), close(fd), false);
 		free(line);
 		line = get_next_line(fd);
 	}

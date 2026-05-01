@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 20:05:43 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 23:31:39 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:45:57 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int	parse_input_map(char **argv)
 int	parse_input(int argc, char **argv)
 {
 	if (!parse_input_argc(argc))
+		return (false);
+	if (!parse_input_help(argv))
 		return (false);
 	if (!parse_input_file_extension(argv))
 		return (false);

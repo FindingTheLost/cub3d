@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:04:10 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/01/29 17:40:37 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 00:30:06 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  */
 int	pf_write(unsigned char letter)
 {
-	return (write(1, &letter, 1));
+	return (write(STDOUT_FILENO, &letter, 1));
 }
 
 /* Function that receives an integer as parameter, and, similarly to

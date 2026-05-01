@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:09:27 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/18 20:28:03 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:07:36 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,10 @@ int	parse_input_file_extension(char **argv)
 	char	*file_extension;
 
 	file_extension = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
-	if (!file_extension)
+	if (!file_extension || !ft_strbcmp(".cub", file_extension))
 	{
-		write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-		write(STDOUT_FILENO, "Not a '.cub' file!\n", 19);
-		return (false);
-	}
-	if (!ft_strbcmp(".cub", file_extension))
-	{
-		write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-		write(STDOUT_FILENO, "Not a '.cub' file!\n", 19);
+		ft_printf(RED_LIGH "Error\n" DEF);
+		ft_printf("Not a '.cub' file!\n");
 		return (false);
 	}
 	return (true);

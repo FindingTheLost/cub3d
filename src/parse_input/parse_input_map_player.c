@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 20:43:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 18:09:09 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:14:47 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 static void	output_error(void)
 {
-	write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-	write(STDOUT_FILENO, "Map element does not include a", 30);
-	write(STDOUT_FILENO, " player/orientation!\n", 21);
+	ft_printf(RED_LIGH "Error\n" DEF);
+	ft_printf("Map element does not include a player/orientation!\n");
 }
 
 static int	check_player(char *line, int *found)
@@ -31,9 +30,9 @@ static int	check_player(char *line, int *found)
 		{
 			if (*found)
 			{
-				write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-				write(STDOUT_FILENO, "Map player/orientation has two or", 33);
-				write(STDOUT_FILENO, " more instances!\n", 17);
+				ft_printf(RED_LIGH "Error\n" DEF);
+				ft_printf("Map player/orientation has two or more instances!");
+				ft_printf("\n");
 				return (false);
 			}
 			*found = true;
@@ -63,7 +62,7 @@ int	parse_input_map_player(int fd)
 	while (line)
 	{
 		if (!check_player(line, &found))
-			return (free(line), close(fd), false);
+			return (free(line), ft_eof(fd), close(fd), false);
 		free(line);
 		line = get_next_line(fd);
 	}

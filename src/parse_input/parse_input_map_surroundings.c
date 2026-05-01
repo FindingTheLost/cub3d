@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 00:28:30 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 18:12:05 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:17:36 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,8 @@ int	parse_input_map_surroundings(char **argv)
 	free(map);
 	if (!result)
 	{
-		write(STDOUT_FILENO, "\033[91mError\n\033[0m", 15);
-		write(STDOUT_FILENO, "Map element is not properly surrounded", 38);
-		write(STDOUT_FILENO, " by walls!\n", 11);
+		ft_printf(RED_LIGH "Error\n" DEF);
+		ft_printf("Map element is not properly surrounded by walls!\n");
 		return (false);
 	}
 	return (true);

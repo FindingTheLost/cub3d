@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:04:15 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/29 18:13:36 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 01:45:48 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 int	parse_input(int argc, char **argv);
 int	parse_input_argc(int argc);
+int	parse_input_help(char **argv);
 int	parse_input_file_extension(char **argv);
 int	parse_input_valid_file(char **argv);
 int	parse_input_line(int fd, int map_mode);

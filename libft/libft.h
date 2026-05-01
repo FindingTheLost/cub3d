@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:13:34 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/04/28 00:48:47 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 00:45:41 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,100 @@
 #  define TRUE 1
 # endif
 
-/*============================| TYPEDEFINITIONS |=============================*/
+// Default color:
+# define DEF "\033[0m"
+
+// Regular colors (also works with "\033[3Xm" [X for color number]):
+# define BLA "\033[0;30m"
+# define RED "\033[0;31m"
+# define GRE "\033[0;32m"
+# define YEL "\033[0;33m"
+# define BLU "\033[0;34m"
+# define MAG "\033[0;35m"
+# define CYA "\033[0;36m"
+# define WHI "\033[0;37m"
+
+// Light colors:
+# define BLA_LIGH "\033[90m"
+# define RED_LIGH "\033[91m"
+# define GRE_LIGH "\033[92m"
+# define YEL_LIGH "\033[93m"
+# define BLU_LIGH "\033[94m"
+# define MAG_LIGH "\033[95m"
+# define CYA_LIGH "\033[96m"
+# define WHI_LIGH "\033[97m"
+
+// Bold colors:
+# define BLA_BOLD "\033[30;1m"
+# define RED_BOLD "\033[31;1m"
+# define GRE_BOLD "\033[32;1m"
+# define YEL_BOLD "\033[33;1m"
+# define BLU_BOLD "\033[34;1m"
+# define MAG_BOLD "\033[35;1m"
+# define CYA_BOLD "\033[36;1m"
+# define WHI_BOLD "\033[37;1m"
+
+// Faint colors:
+# define BLA_FAIN "\033[30;2m"
+# define RED_FAIN "\033[31;2m"
+# define GRE_FAIN "\033[32;2m"
+# define YEL_FAIN "\033[33;2m"
+# define BLU_FAIN "\033[34;2m"
+# define MAG_FAIN "\033[35;2m"
+# define CYA_FAIN "\033[36;2m"
+# define WHI_FAIN "\033[37;2m"
+
+// Italicized text:
+# define BLA_ITAL "\033[30;3m"
+# define RED_ITAL "\033[31;3m"
+# define GRE_ITAL "\033[32;3m"
+# define YEL_ITAL "\033[33;3m"
+# define BLU_ITAL "\033[34;3m"
+# define MAG_ITAL "\033[35;3m"
+# define CYA_ITAL "\033[36;3m"
+# define WHI_ITAL "\033[37;3m"
+
+// Underlined text:
+# define BLA_LINE "\033[30;4m"
+# define RED_LINE "\033[31;4m"
+# define GRE_LINE "\033[32;4m"
+# define YEL_LINE "\033[33;4m"
+# define BLU_LINE "\033[34;4m"
+# define MAG_LINE "\033[35;4m"
+# define CYA_LINE "\033[36;4m"
+# define WHI_LINE "\033[37;4m"
+
+// Slow blinking text:
+# define BLA_SLOW "\033[30;5m"
+# define RED_SLOW "\033[31;5m"
+# define GRE_SLOW "\033[32;5m"
+# define YEL_SLOW "\033[33;5m"
+# define BLU_SLOW "\033[34;5m"
+# define MAG_SLOW "\033[35;5m"
+# define CYA_SLOW "\033[36;5m"
+# define WHI_SLOW "\033[37;5m"
+
+// Fast blinking text:
+# define BLA_FAST "\033[30;6m"
+# define RED_FAST "\033[31;6m"
+# define GRE_FAST "\033[32;6m"
+# define YEL_FAST "\033[33;6m"
+# define BLU_FAST "\033[34;6m"
+# define MAG_FAST "\033[35;6m"
+# define CYA_FAST "\033[36;6m"
+# define WHI_FAST "\033[37;6m"
+
+// Negative text:
+# define BLA_NEGA "\033[30;7m"
+# define RED_NEGA "\033[31;7m"
+# define GRE_NEGA "\033[32;7m"
+# define YEL_NEGA "\033[33;7m"
+# define BLU_NEGA "\033[34;7m"
+# define MAG_NEGA "\033[35;7m"
+# define CYA_NEGA "\033[36;7m"
+# define WHI_NEGA "\033[37;7m"
+
+/*============================| TYPE DEFINITIONS |============================*/
 
 typedef struct s_list
 {
