@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cub_error.c                                      :+:      :+:    :+:   */
+/*   t_player_build.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 17:50:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 22:18:18 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/01 21:45:52 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/02 02:05:49 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_cub_struct.h"
+#include "../t_player_struct.h"
 
-void	t_cub_malloc_error(void)
+t_player	*t_player_build(void)
 {
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Dynamic memory allocation failed for t_cub struct!\n");
-}
+	t_player	*player;
 
-void	t_cub_struct_error(void)
-{
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Struct t_cub building stage failed!\n");
+	player = malloc(sizeof(t_player));
+	if (!player)
+		return (t_player_malloc_error(), NULL);
+	player->x_pos = 0;
+	player->y_pos = 0;
+	player->rotation = 0;
+	return (player);
 }

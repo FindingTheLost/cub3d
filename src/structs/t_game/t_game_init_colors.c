@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cub_error.c                                      :+:      :+:    :+:   */
+/*   t_game_init_colors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 17:50:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 22:18:18 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/01 23:55:39 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/01 23:57:09 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_cub_struct.h"
+#include "../t_game_struct.h"
 
-void	t_cub_malloc_error(void)
+void	t_game_init_colors(t_cub *file, t_game *game)
 {
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Dynamic memory allocation failed for t_cub struct!\n");
-}
+	size_t	index;
 
-void	t_cub_struct_error(void)
-{
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Struct t_cub building stage failed!\n");
+	index = 0;
+	while (index < 3)
+	{
+		game->f_color[index] = file->f_color[index];
+		game->c_color[index] = file->c_color[index];
+		index++;
+	}
 }

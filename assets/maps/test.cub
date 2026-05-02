@@ -1,7 +1,7 @@
-NO    ./assets/textures/test.xpm
-SO   ./assets/textures/test.xpm
-WE   ./assets/textures/test.xpm
-EA   ./assets/textures/test.xpm
+NO    ./assets/textures/enemy.xpm
+SO   ./assets/textures/enemy.xpm
+WE   ./assets/textures/enemy.xpm
+EA   ./assets/textures/enemy.xpm
 F 255,255,255
 C 244,244,244
 1111

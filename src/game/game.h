@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cub_error.c                                      :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 17:50:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 22:18:18 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/01 18:22:04 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/02 01:56:13 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_cub_struct.h"
+#ifndef GAME_H
+# define GAME_H
 
-void	t_cub_malloc_error(void)
-{
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Dynamic memory allocation failed for t_cub struct!\n");
-}
+# include "../../libft/libft.h"
+# include "../structs/t_cub_struct.h"
+# include "../structs/t_game_struct.h"
+# include "../structs/t_player_struct.h"
+# include "../structs/t_map_struct.h"
 
-void	t_cub_struct_error(void)
-{
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Struct t_cub building stage failed!\n");
-}
+int	game(t_cub *file);
+int	game_init_vars(t_cub **file, t_game **game, t_player **player, t_map **map);
+
+#endif

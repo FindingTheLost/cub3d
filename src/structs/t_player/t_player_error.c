@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cub_error.c                                      :+:      :+:    :+:   */
+/*   t_player_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 17:50:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 22:18:18 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/01 21:51:23 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/02 00:38:13 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_cub_struct.h"
+#include "../t_player_struct.h"
 
-void	t_cub_malloc_error(void)
+void	t_player_malloc_error(void)
 {
 	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Dynamic memory allocation failed for t_cub struct!\n");
+	ft_printf("Dynamic memory allocation failed for t_player struct!\n");
 }
 
-void	t_cub_struct_error(void)
+void	t_player_struct_error(void)
 {
 	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Struct t_cub building stage failed!\n");
+	ft_printf("Struct t_player building stage failed!\n");
 }

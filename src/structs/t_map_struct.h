@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cub_error.c                                      :+:      :+:    :+:   */
+/*   t_map_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 17:50:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 22:18:18 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/01 20:00:50 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/02 02:01:17 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_cub_struct.h"
+#ifndef T_MAP_STRUCT_H
+# define T_MAP_STRUCT_H
 
-void	t_cub_malloc_error(void)
-{
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Dynamic memory allocation failed for t_cub struct!\n");
-}
+# include "../../libft/libft.h"
+# include "t_cub_struct.h"
 
-void	t_cub_struct_error(void)
+typedef struct s_map
 {
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Struct t_cub building stage failed!\n");
-}
+	size_t	map_width;
+	size_t	map_height;
+	char	**map;
+}	t_map;
+
+t_map	*t_map_build(void);
+void	t_map_destroy(t_map *map);
+void	t_map_malloc_error(void);
+void	t_map_struct_error(void);
+int		t_map_populate(t_cub *file, t_map **map_ref);
+
+#endif

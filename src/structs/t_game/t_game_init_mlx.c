@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cub_error.c                                      :+:      :+:    :+:   */
+/*   t_game_init_mlx.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 17:50:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 22:18:18 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/01 20:08:05 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/02 02:12:55 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_cub_struct.h"
+#include "../t_game_struct.h"
 
-void	t_cub_malloc_error(void)
+int	t_game_init_mlx(t_game *game)
 {
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Dynamic memory allocation failed for t_cub struct!\n");
-}
-
-void	t_cub_struct_error(void)
-{
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Struct t_cub building stage failed!\n");
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (t_game_mlx_error(), false);
+	game->mlx_window = mlx_new_window(game->mlx, W_WIDTH, W_HEIGHT, W_TITLE);
+	if (!game->mlx_window)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		game->mlx = NULL;
+		return (t_game_window_error(), false);
+	}
+	return (true);
 }

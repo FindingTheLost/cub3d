@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:13:34 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 00:45:41 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/02 00:47:21 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <math.h>
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stddef.h>

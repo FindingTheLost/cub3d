@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cub_error.c                                      :+:      :+:    :+:   */
+/*   t_game_populate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/29 17:50:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 22:18:18 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/01 22:26:54 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/01 23:57:19 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_cub_struct.h"
+#include "../t_game_struct.h"
 
-void	t_cub_malloc_error(void)
+int	t_game_populate(t_cub *file, t_game **game_ref)
 {
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Dynamic memory allocation failed for t_cub struct!\n");
-}
+	t_game	*game;
 
-void	t_cub_struct_error(void)
-{
-	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Struct t_cub building stage failed!\n");
+	*game_ref = t_game_build();
+	if (!*game_ref)
+		return (false);
+	game = *game_ref;
+	if (!t_game_init_mlx(game))
+		return (t_game_destroy(game), false);
+	if (!t_game_init_textures(file, game))
+		return (t_game_destroy(game), false);
+	t_game_init_colors(file, game);
+	return (true);
 }

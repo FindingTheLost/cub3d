@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 23:26:17 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 03:32:47 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/01 18:44:50 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../../libft/libft.h"
 
+/* Struct that represents and holds the values of a parsed ".cub" file.
+ */
 typedef struct s_cub
 {
 	char			*no_file;
