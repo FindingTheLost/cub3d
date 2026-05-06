@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:45:52 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/02 02:05:49 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/06 01:49:18 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_player	*t_player_build(void)
 	player = malloc(sizeof(t_player));
 	if (!player)
 		return (t_player_malloc_error(), NULL);
-	player->x_pos = 0;
-	player->y_pos = 0;
-	player->rotation = 0;
+	player->x = 0;
+	player->y = 0;
+	player->r = 0;
 	return (player);
 }

@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:00:50 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/02 02:01:17 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/05 18:04:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_map	*t_map_build(void);
 void	t_map_destroy(t_map *map);
 void	t_map_malloc_error(void);
 void	t_map_struct_error(void);
+void	t_map_debug(t_map *map);
 int		t_map_populate(t_cub *file, t_map **map_ref);
 
 #endif

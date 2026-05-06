@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 21:31:29 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 01:43:50 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/05 17:52:44 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	debug_files(t_cub *file)
 
 void	t_cub_debug(t_cub *file)
 {
+	ft_printf(RED_BOLD "T_CUB STRUCT DEBUG:\n" DEF);
 	debug_files(file);
 	debug_color(file->f_color, "Floor");
 	debug_color(file->c_color, "Ceiling");

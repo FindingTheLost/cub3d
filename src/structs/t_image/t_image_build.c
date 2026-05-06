@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   t_image_build.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/16 19:41:09 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 18:40:54 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/05 01:08:49 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/05 01:10:54 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../t_image_struct.h"
 
-int	main(int argc, char **argv)
+t_image	*t_image_build(void)
 {
-	t_cub	*file;
+	t_image	*image;
 
-	if (!parse_input(argc, argv))
-		return (1);
-	if (!t_cub_populate(argv, &file))
-		return (2);
-	if (!game(file))
-		return (3);
-	return (0);
+	image = malloc(sizeof(t_image));
+	if (!image)
+		return (t_image_malloc_error(), NULL);
+	image->image = NULL;
+	image->address = NULL;
+	image->bpp = 0;
+	image->endian = 0;
+	image->line_length = 0;
+	return (image);
 }

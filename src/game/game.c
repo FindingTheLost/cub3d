@@ -6,22 +6,24 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:26:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/02 02:20:20 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/06 01:47:12 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
+/* To debug the "file" and "game" structs and all of its contents, use the
+ * functions, respectively:
+ * 		"t_cub_debug(file)";
+ * 		"t_game_debug(game)";
+ */
 int	game(t_cub *file)
 {
 	t_game		*game;
-	t_player	*player;
-	t_map		*map;
 
-	if (!game_init_vars(&file, &game, &player, &map))
+	if (!game_init_vars(file, &game))
 		return (false);
-	t_game_destroy(game);
-	t_player_destroy(player);
-	t_map_destroy(map);
+	game_init_hooks(game);
+	mlx_loop(game->mlx);
 	return (true);
 }

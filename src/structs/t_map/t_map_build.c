@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 22:08:56 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 22:10:57 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/05 00:52:11 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ t_map	*t_map_build(void)
 	map->map = NULL;
 	return (map);
 }
-

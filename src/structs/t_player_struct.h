@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:57:35 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/02 00:52:58 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/06 01:49:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@
 
 typedef struct s_player
 {
-	float	x_pos;
-	float	y_pos;
-	float	rotation;
+	float	x;
+	float	y;
+	float	r;
 }	t_player;
 
 t_player	*t_player_build(void);
 void		t_player_destroy(t_player *player);
 void		t_player_malloc_error(void);
 void		t_player_struct_error(void);
+void		t_player_debug(t_player *player);
 int			t_player_populate(t_cub *file, t_player **player_ref);
 
 #endif

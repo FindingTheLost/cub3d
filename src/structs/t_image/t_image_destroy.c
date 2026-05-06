@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   t_image_destroy.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/16 19:41:09 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 18:40:54 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/05 01:12:41 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/05 01:46:57 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../t_image_struct.h"
 
-int	main(int argc, char **argv)
+void	t_image_destroy(void *mlx, t_image *image)
 {
-	t_cub	*file;
-
-	if (!parse_input(argc, argv))
-		return (1);
-	if (!t_cub_populate(argv, &file))
-		return (2);
-	if (!game(file))
-		return (3);
-	return (0);
+	if (image->image)
+		mlx_destroy_image(mlx, image->image);
+	free(image);
 }

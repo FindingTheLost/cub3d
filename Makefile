@@ -6,7 +6,7 @@
 #    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/02 02:11:54 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/06 01:53:34 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ HDR			= ./src/cub3d.h										\
 			  ./src/structs/t_game_struct.h						\
 			  ./src/structs/t_player_struct.h					\
 			  ./src/structs/t_map_struct.h						\
+			  ./src/structs/t_image_struct.h					\
 			  ./src/parse_input/parse_input.h					\
 			  ./src/game/game.h
 
@@ -38,20 +39,31 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_cub/t_cub_open_file.c				\
 			  ./src/structs/t_cub/t_cub_populate.c				\
 			  ./src/structs/t_game/t_game_build.c				\
+			  ./src/structs/t_game/t_game_debug.c				\
 			  ./src/structs/t_game/t_game_destroy.c				\
+			  ./src/structs/t_game/t_game_draw_pixel.c			\
+			  ./src/structs/t_game/t_game_draw_background.c		\
+			  ./src/structs/t_game/t_game_draw_minimap.c		\
 			  ./src/structs/t_game/t_game_error.c				\
 			  ./src/structs/t_game/t_game_init_colors.c			\
 			  ./src/structs/t_game/t_game_init_mlx.c			\
 			  ./src/structs/t_game/t_game_init_textures.c		\
 			  ./src/structs/t_game/t_game_populate.c			\
 			  ./src/structs/t_player/t_player_build.c			\
+			  ./src/structs/t_player/t_player_debug.c			\
 			  ./src/structs/t_player/t_player_destroy.c			\
 			  ./src/structs/t_player/t_player_error.c			\
 			  ./src/structs/t_player/t_player_populate.c		\
 			  ./src/structs/t_map/t_map_build.c					\
+			  ./src/structs/t_map/t_map_debug.c					\
 			  ./src/structs/t_map/t_map_destroy.c				\
 			  ./src/structs/t_map/t_map_error.c					\
 			  ./src/structs/t_map/t_map_populate.c				\
+			  ./src/structs/t_image/t_image_build.c				\
+			  ./src/structs/t_image/t_image_debug.c				\
+			  ./src/structs/t_image/t_image_destroy.c			\
+			  ./src/structs/t_image/t_image_error.c				\
+			  ./src/structs/t_image/t_image_populate.c			\
 			  ./src/parse_input/parse_input.c					\
 			  ./src/parse_input/parse_input_argc.c				\
 			  ./src/parse_input/parse_input_help.c				\
@@ -65,7 +77,9 @@ SRC			= ./src/cub3d.c										\
 			  ./src/parse_input/parse_input_map_player.c		\
 			  ./src/parse_input/parse_input_map_surroundings.c	\
 			  ./src/game/game.c									\
-			  ./src/game/game_init_vars.c
+			  ./src/game/game_update.c							\
+			  ./src/game/game_init_vars.c						\
+			  ./src/game/game_init_hooks.c
 
 OBJ			= $(SRC:.c=.o)
 

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   t_player_debug.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/16 19:41:09 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 18:40:54 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/05 17:52:52 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/06 01:49:33 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../t_player_struct.h"
 
-int	main(int argc, char **argv)
+/* Original "printf" function must be used to read float values.
+ */
+void	t_player_debug(t_player *player)
 {
-	t_cub	*file;
-
-	if (!parse_input(argc, argv))
-		return (1);
-	if (!t_cub_populate(argv, &file))
-		return (2);
-	if (!game(file))
-		return (3);
-	return (0);
+	ft_printf(RED_BOLD "T_PLAYER STRUCT DEBUG:\n" DEF);
+	printf("X position: %f\n", player->x);
+	printf("Y position: %f\n", player->y);
+	printf("Rotation: %f\n", player->r); 
 }

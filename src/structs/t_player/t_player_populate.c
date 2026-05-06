@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 00:07:21 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/02 00:52:04 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/06 01:50:08 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static int	set_player_values(char **map, t_player *player)
 		{
 			if (ft_isalpha(map[line][column]))
 			{
-				player->x_pos = column + 0.5f;
-				player->y_pos = line + 0.5f;
-				player->rotation = get_rotation(map[line][column]);
+				player->x = column + 0.5f;
+				player->y = line + 0.5f;
+				player->r = get_rotation(map[line][column]);
 				return (true);
 			}
 			column++;

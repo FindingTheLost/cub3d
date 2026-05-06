@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   game_update.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/16 19:41:09 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 18:40:54 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/04 23:12:16 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/06 01:53:49 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "game.h"
 
-int	main(int argc, char **argv)
+int	game_update(t_game *game)
 {
-	t_cub	*file;
-
-	if (!parse_input(argc, argv))
-		return (1);
-	if (!t_cub_populate(argv, &file))
-		return (2);
-	if (!game(file))
-		return (3);
+	t_game_draw_minimap(game);
+	mlx_put_image_to_window(game->mlx, game->mlx_window, game->image->image, 0, 0);
 	return (0);
 }
