@@ -6,7 +6,7 @@
 #    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/06 01:53:34 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/08 00:46:43 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,12 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_destroy.c				\
 			  ./src/structs/t_game/t_game_draw_pixel.c			\
 			  ./src/structs/t_game/t_game_draw_background.c		\
-			  ./src/structs/t_game/t_game_draw_minimap.c		\
+			  ./src/structs/t_game/t_game_draw_ceiling_floor.c	\
+			  ./src/structs/t_game/t_game_draw_minimap_h.c		\
+			  ./src/structs/t_game/t_game_draw_minimap_v.c		\
+			  ./src/structs/t_game/t_game_minimap_to_window_h.c	\
+			  ./src/structs/t_game/t_game_minimap_to_window_v.c	\
+			  ./src/structs/t_game/t_game_minimap_show.c		\
 			  ./src/structs/t_game/t_game_error.c				\
 			  ./src/structs/t_game/t_game_init_colors.c			\
 			  ./src/structs/t_game/t_game_init_mlx.c			\
@@ -64,6 +69,11 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_image/t_image_destroy.c			\
 			  ./src/structs/t_image/t_image_error.c				\
 			  ./src/structs/t_image/t_image_populate.c			\
+			  ./src/structs/t_key/t_key_build.c					\
+			  ./src/structs/t_key/t_key_debug.c					\
+			  ./src/structs/t_key/t_key_destroy.c				\
+			  ./src/structs/t_key/t_key_error.c					\
+			  ./src/structs/t_key/t_key_populate.c				\
 			  ./src/parse_input/parse_input.c					\
 			  ./src/parse_input/parse_input_argc.c				\
 			  ./src/parse_input/parse_input_help.c				\
@@ -77,9 +87,10 @@ SRC			= ./src/cub3d.c										\
 			  ./src/parse_input/parse_input_map_player.c		\
 			  ./src/parse_input/parse_input_map_surroundings.c	\
 			  ./src/game/game.c									\
-			  ./src/game/game_update.c							\
+			  ./src/game/game_invalid_resolution.c				\
 			  ./src/game/game_init_vars.c						\
-			  ./src/game/game_init_hooks.c
+			  ./src/game/game_init_hooks.c						\
+			  ./src/game/game_update.c
 
 OBJ			= $(SRC:.c=.o)
 
@@ -89,6 +100,8 @@ MLX			= ./minilibx-linux/libmlx_Linux.a
 
 MLXFLAGS	= -std=gnu11 -lX11 -lXext
 
+MATHLIB		= -lm
+
 
 
 all: $(NAME)
@@ -96,7 +109,7 @@ all: $(NAME)
 bonus:
 
 $(NAME): $(HDR) $(LIBFT) $(MLX) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLXFLAGS) $(MATHLIB) -o $(NAME)
 
 $(LIBFT):
 	make -C libft

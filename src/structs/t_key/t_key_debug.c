@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_game_draw_background.c                           :+:      :+:    :+:   */
+/*   t_key_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 22:17:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/07 22:22:32 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/06 20:54:39 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/06 20:55:59 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_game_struct.h"
+#include "../t_key_struct.h"
 
-void	t_game_draw_background(t_image *image, size_t w, size_t h, int color)
+void	t_key_debug(t_key *key)
 {
-	size_t	x;
-	size_t	y;
-
-	y = 0;
-	while (y < h)
-	{
-		x = 0;
-		while (x < w)
-		{
-			t_game_draw_pixel(image, x, y, color);
-			x++;
-		}
-		y++;
-	}
+	ft_printf(RED_BOLD "T_KEY STRUCT DEBUG:\n" DEF);
+	ft_printf("Key up: %i\n", key->up);
+	ft_printf("Key down: %i\n", key->down);
+	ft_printf("Key left: %i\n", key->left);
+	ft_printf("Key right: %i\n", key->right);
 }

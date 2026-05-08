@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:32:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 22:28:33 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/07 21:52:56 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ t_game	*t_game_build(void)
 	game->player = NULL;
 	game->map = NULL;
 	game->image = NULL;
+	game->minimap = NULL;
+	game->minimap_background = NULL;
+	game->key = NULL;
 	return (game);
 }

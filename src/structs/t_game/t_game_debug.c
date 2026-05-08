@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 18:09:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 22:40:31 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/07 21:52:39 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,7 @@ void	t_game_debug(t_game *game)
 	t_player_debug(game->player);
 	t_map_debug(game->map);
 	t_image_debug(game->image);
+	t_image_debug(game->minimap);
+	t_image_debug(game->minimap_background);
+	t_key_debug(game->key);
 }

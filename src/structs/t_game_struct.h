@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/06 01:45:40 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/08 00:59:25 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 # include "t_player_struct.h"
 # include "t_map_struct.h"
 # include "t_image_struct.h"
+# include "t_key_struct.h"
 
 /* Window related macros: */
 # define W_TITLE "cub3D"
-# define W_WIDTH 960
-# define W_HEIGHT 540
+# define W_WIDTH 640
+# define W_HEIGHT 360
 
 /* Texture size: */
 # define TEX_SIZE 64
@@ -38,15 +39,18 @@
 # define ON_DESTROY 17
 
 /* X11/MLX key codes: */
-# define ESC_KEY 65307
-# define UP_KEY 65362
-# define DOWN_KEY 65364
-# define LEFT_KEY 65361
-# define RIGHT_KEY 65363
-# define W_KEY 119
-# define S_KEY 115
-# define A_KEY 97
-# define D_KEY 100
+# define K_ESC 65307
+# define K_UP 65362
+# define K_DOWN 65364
+# define K_LEFT 65361
+# define K_RIGHT 65363
+# define K_W 119
+# define K_S 115
+# define K_A 97
+# define K_D 100
+
+/* Player speed per frame: */
+# define SPEED 0.025f
 
 /* Struct that stores everything minilibx related.
  */
@@ -63,6 +67,9 @@ typedef struct s_game
 	t_player		*player;
 	t_map			*map;
 	t_image			*image;
+	t_image			*minimap;
+	t_image			*minimap_background;
+	t_key			*key;
 }	t_game;
 
 t_game	*t_game_build(void);
@@ -74,8 +81,13 @@ void	t_game_texture_error(void);
 void	t_game_window_error(void);
 void	t_game_debug(t_game *game);
 void	t_game_draw_pixel(t_image *image, int x, int y, int color);
-void	t_game_draw_background(t_game *game);
-void	t_game_draw_minimap(t_game *game);
+void	t_game_draw_background(t_image *image, size_t w, size_t h, int color);
+void	t_game_draw_ceiling_floor(t_game *game);
+void	t_game_draw_minimap_h(t_game *game);
+void	t_game_draw_minimap_v(t_game *game);
+void	t_game_minimap_to_window_h(t_game *game, int *x, int *y);
+void	t_game_minimap_to_window_v(t_game *game, int *x, int *y);
+void	t_game_minimap_show(t_game *game);
 void	t_game_init_colors(t_cub *file, t_game *game);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);

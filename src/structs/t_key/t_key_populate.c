@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_game_draw_background.c                           :+:      :+:    :+:   */
+/*   t_key_populate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 22:17:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/07 22:22:32 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/06 20:57:06 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/06 20:58:47 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_game_struct.h"
+#include "../t_key_struct.h"
 
-void	t_game_draw_background(t_image *image, size_t w, size_t h, int color)
+int	t_key_populate(t_key **key_ref)
 {
-	size_t	x;
-	size_t	y;
-
-	y = 0;
-	while (y < h)
-	{
-		x = 0;
-		while (x < w)
-		{
-			t_game_draw_pixel(image, x, y, color);
-			x++;
-		}
-		y++;
-	}
+	*key_ref = t_key_build();
+	if (!*key_ref)
+		return (false);
+	return (true);
 }

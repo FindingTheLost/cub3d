@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_game_draw_background.c                           :+:      :+:    :+:   */
+/*   t_key_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 22:17:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/07 22:22:32 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/06 20:45:37 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/06 22:11:29 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_game_struct.h"
+#ifndef T_KEY_STRUCT_H
+# define T_KEY_STRUCT_H
 
-void	t_game_draw_background(t_image *image, size_t w, size_t h, int color)
+# include "../../libft/libft.h"
+
+typedef struct s_key
 {
-	size_t	x;
-	size_t	y;
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+}	t_key;
 
-	y = 0;
-	while (y < h)
-	{
-		x = 0;
-		while (x < w)
-		{
-			t_game_draw_pixel(image, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
+t_key	*t_key_build(void);
+void	t_key_debug(t_key *key);
+void	t_key_destroy(t_key *key);
+void	t_key_malloc_error(void);
+void	t_key_struct_error(void);
+int		t_key_populate(t_key **key_ref);
+
+#endif

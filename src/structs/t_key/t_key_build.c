@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_game_draw_background.c                           :+:      :+:    :+:   */
+/*   t_key_build.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 22:17:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/07 22:22:32 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/06 20:50:27 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/06 20:52:08 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_game_struct.h"
+#include "../t_key_struct.h"
 
-void	t_game_draw_background(t_image *image, size_t w, size_t h, int color)
+t_key	*t_key_build(void)
 {
-	size_t	x;
-	size_t	y;
+	t_key	*key;
 
-	y = 0;
-	while (y < h)
-	{
-		x = 0;
-		while (x < w)
-		{
-			t_game_draw_pixel(image, x, y, color);
-			x++;
-		}
-		y++;
-	}
+	key = malloc(sizeof(t_key));
+	if (!key)
+		return (t_key_malloc_error(), NULL);
+	key->up = false;
+	key->down = false;
+	key->left = false;
+	key->right = false;
+	return (key);
 }

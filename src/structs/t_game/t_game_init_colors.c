@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 23:55:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 23:05:44 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:11:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	color_array_to_int(unsigned char color[3])
 {
-	int converted;
+	int	converted;
 
 	converted = 0;
 	converted = ((converted >> 16) + color[0]) << 16;

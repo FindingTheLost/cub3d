@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/06 02:01:19 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/06 22:24:50 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ static int	on_window_close(t_game *game)
  */
 static int	on_key_release(int key_symbol, t_game *game)
 {
-	if (key_symbol == ESC_KEY)
-		on_window_close(game);
+	if (key_symbol == K_UP || key_symbol == K_W)
+		game->key->up = false;
+	else if (key_symbol == K_DOWN || key_symbol == K_S)
+		game->key->down = false;
+	else if (key_symbol == K_LEFT || key_symbol == K_A)
+		game->key->left = false;
+	else if (key_symbol == K_RIGHT || key_symbol == K_D)
+		game->key->right = false;
 	return (0);
 }
 
@@ -34,25 +40,32 @@ static int	on_key_release(int key_symbol, t_game *game)
  */
 static int	on_key_press(int key_symbol, t_game *game)
 {
-	if (key_symbol == UP_KEY)
-		game->player->y -= 0.1f;
-	if (key_symbol == DOWN_KEY)
-		game->player->y += 0.1f;
-	if (key_symbol == LEFT_KEY)
-		game->player->x -= 0.1f;
-	if (key_symbol == RIGHT_KEY)
-		game->player->x += 0.1f;
+	if (key_symbol == K_ESC)
+		on_window_close(game);
+	else if (key_symbol == K_UP || key_symbol == K_W)
+		game->key->up = true;
+	else if (key_symbol == K_DOWN || key_symbol == K_S)
+		game->key->down = true;
+	else if (key_symbol == K_LEFT || key_symbol == K_A)
+		game->key->left = true;
+	else if (key_symbol == K_RIGHT || key_symbol == K_D)
+		game->key->right = true;
 	return (0);
 }
+// !!!Replace K_LEFT and K_RIGHT with rotation modifiers!!!
 
 /* The "second" parameter in "mlx_hook" is the hooking event.
  * The "third" parameter in "mlx_hook" is the event mask.
  * The "fourth" parameter is always a pointer to a function that returns int.
+ *
+ * Since minilibx does not posess holding key behaviours, it had to be hard
+ * coded with booleans. It becomes "true" when a key is held down and back
+ * to "false" when released, for all four directions.
  */
 void	game_init_hooks(t_game *game)
 {
 	mlx_hook(game->mlx_window, ON_DESTROY, NO_EVENT, &on_window_close, game);
-	mlx_hook(game->mlx_window, ON_KEYUP, KEY_RELEASE, &on_key_release, game);
 	mlx_hook(game->mlx_window, ON_KEYDOWN, KEY_PRESS, &on_key_press, game);
+	mlx_hook(game->mlx_window, ON_KEYUP, KEY_RELEASE, &on_key_release, game);
 	mlx_loop_hook(game->mlx, &game_update, game);
 }

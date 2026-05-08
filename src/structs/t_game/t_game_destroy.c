@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:38:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 01:52:19 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/07 21:54:29 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	t_game_destroy(t_game *game)
 		t_map_destroy(game->map);
 	if (game->image)
 		t_image_destroy(game->mlx, game->image);
+	if (game->minimap)
+		t_image_destroy(game->mlx, game->minimap);
+	if (game->minimap_background)
+		t_image_destroy(game->mlx, game->minimap_background);
+	if (game->key)
+		t_key_destroy(game->key);
 	if (game->no_texture)
 		mlx_destroy_image(game->mlx, game->no_texture);
 	if (game->so_texture)
@@ -31,9 +37,6 @@ void	t_game_destroy(t_game *game)
 	if (game->mlx_window)
 		mlx_destroy_window(game->mlx, game->mlx_window);
 	if (game->mlx)
-	{
-		mlx_destroy_display(game->mlx);
-		free(game->mlx);
-	}
+		(mlx_destroy_display(game->mlx), free(game->mlx));
 	free(game);
 }

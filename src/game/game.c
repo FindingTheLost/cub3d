@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:26:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/06 01:47:12 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/08 00:47:41 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	game(t_cub *file)
 {
 	t_game		*game;
 
+	if (!game_invalid_resolution())
+		return (false);
 	if (!game_init_vars(file, &game))
 		return (false);
 	game_init_hooks(game);

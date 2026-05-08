@@ -1,0 +1,17 @@
+NO assets/textures/enemy.xpm
+SO assets/textures/enemy.xpm
+EA assets/textures/enemy.xpm
+WE assets/textures/enemy.xpm
+
+C 0, 100, 200
+F 200, 100, 0
+
+111111
+100000111111
+1000000000001111
+1000000000000001
+1110000000000001
+  10000000000001
+  1000000N000001
+   100000000001
+    1111111111
