@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/08 01:46:23 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/08 03:56:04 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@
 # define K_D 100
 
 /* Player speed per frame: */
-# define SPEED 0.025f
+# define SPEED 0.0025f
 
 /* Player rotation speed per frame (radians): */
-# define ROTATION 0.025f
+# define ROTATION 0.0025f
 
 /* Struct that stores everything minilibx related.
  */
@@ -86,8 +86,8 @@ void	t_game_debug(t_game *game);
 void	t_game_draw_pixel(t_image *image, int x, int y, int color);
 void	t_game_draw_background(t_image *image, size_t w, size_t h, int color);
 void	t_game_draw_ceiling_floor(t_game *game);
-void	t_game_draw_minimap_h(t_game *game);
-void	t_game_draw_minimap_v(t_game *game);
+void	t_game_draw_minimap_h(t_game *game, size_t tile);
+void	t_game_draw_minimap_v(t_game *game, size_t tile);
 void	t_game_minimap_to_window_h(t_game *game, int *x, int *y);
 void	t_game_minimap_to_window_v(t_game *game, int *x, int *y);
 void	t_game_minimap_show(t_game *game);
@@ -95,5 +95,6 @@ void	t_game_init_colors(t_cub *file, t_game *game);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);
 int		t_game_populate(t_cub *file, t_game **game_ref);
+void	t_game_draw_player(t_game *game, size_t tile);
 
 #endif

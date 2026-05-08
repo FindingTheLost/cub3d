@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
+#    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/08 00:46:43 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/08 03:12:29 by rogde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_init_mlx.c			\
 			  ./src/structs/t_game/t_game_init_textures.c		\
 			  ./src/structs/t_game/t_game_populate.c			\
+			  ./src/structs/t_game/t_game_draw_player.c			\
 			  ./src/structs/t_player/t_player_build.c			\
 			  ./src/structs/t_player/t_player_debug.c			\
 			  ./src/structs/t_player/t_player_destroy.c			\
