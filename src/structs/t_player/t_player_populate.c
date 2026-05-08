@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 00:07:21 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/06 01:50:08 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/08 01:44:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 static float	get_rotation(char orientation)
 {
 	if (orientation == 'N')
-		return (0);
-	else if (orientation == 'S')
-		return (M_PI);
-	else if (orientation == 'W')
 		return ((M_PI * 3) / 2);
-	else
+	else if (orientation == 'S')
 		return (M_PI_2);
+	else if (orientation == 'W')
+		return (M_PI);
+	else
+		return (0);
 }
 
 static int	set_player_values(char **map, t_player *player)

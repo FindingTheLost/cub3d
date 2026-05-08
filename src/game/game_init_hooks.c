@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/06 22:24:50 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/08 01:16:26 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,16 @@ static int	on_window_close(t_game *game)
 static int	on_key_release(int key_symbol, t_game *game)
 {
 	if (key_symbol == K_UP || key_symbol == K_W)
-		game->key->up = false;
+		game->key->w = false;
 	else if (key_symbol == K_DOWN || key_symbol == K_S)
-		game->key->down = false;
-	else if (key_symbol == K_LEFT || key_symbol == K_A)
+		game->key->s = false;
+	else if (key_symbol == K_A)
+		game->key->a = false;
+	else if (key_symbol == K_D)
+		game->key->d = false;
+	else if (key_symbol == K_LEFT)
 		game->key->left = false;
-	else if (key_symbol == K_RIGHT || key_symbol == K_D)
+	else if (key_symbol == K_RIGHT)
 		game->key->right = false;
 	return (0);
 }
@@ -43,16 +47,19 @@ static int	on_key_press(int key_symbol, t_game *game)
 	if (key_symbol == K_ESC)
 		on_window_close(game);
 	else if (key_symbol == K_UP || key_symbol == K_W)
-		game->key->up = true;
+		game->key->w = true;
 	else if (key_symbol == K_DOWN || key_symbol == K_S)
-		game->key->down = true;
-	else if (key_symbol == K_LEFT || key_symbol == K_A)
+		game->key->s = true;
+	else if (key_symbol == K_A)
+		game->key->a = true;
+	else if (key_symbol == K_D)
+		game->key->d = true;
+	else if (key_symbol == K_LEFT)
 		game->key->left = true;
-	else if (key_symbol == K_RIGHT || key_symbol == K_D)
+	else if (key_symbol == K_RIGHT)
 		game->key->right = true;
 	return (0);
 }
-// !!!Replace K_LEFT and K_RIGHT with rotation modifiers!!!
 
 /* The "second" parameter in "mlx_hook" is the hooking event.
  * The "third" parameter in "mlx_hook" is the event mask.

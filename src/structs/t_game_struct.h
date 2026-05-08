@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/08 00:59:25 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/08 01:46:23 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@
 
 /* Player speed per frame: */
 # define SPEED 0.025f
+
+/* Player rotation speed per frame (radians): */
+# define ROTATION 0.025f
 
 /* Struct that stores everything minilibx related.
  */
