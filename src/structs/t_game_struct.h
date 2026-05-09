@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/08 03:56:04 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/09 01:00:47 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 /* Window related macros: */
 # define W_TITLE "cub3D"
-# define W_WIDTH 640
-# define W_HEIGHT 360
+# define W_WIDTH 960
+# define W_HEIGHT 540
 
 /* Texture size: */
 # define TEX_SIZE 64
@@ -49,11 +49,10 @@
 # define K_A 97
 # define K_D 100
 
-/* Player speed per frame: */
-# define SPEED 0.0025f
-
-/* Player rotation speed per frame (radians): */
-# define ROTATION 0.0025f
+/* Player speed and rotation (in radians) per frame: 
+ * (in case of slower computer, increase these values)*/
+# define SPEED 0.025f
+# define ROTATION 0.025f
 
 /* Struct that stores everything minilibx related.
  */
@@ -86,8 +85,9 @@ void	t_game_debug(t_game *game);
 void	t_game_draw_pixel(t_image *image, int x, int y, int color);
 void	t_game_draw_background(t_image *image, size_t w, size_t h, int color);
 void	t_game_draw_ceiling_floor(t_game *game);
-void	t_game_draw_minimap_h(t_game *game, size_t tile);
-void	t_game_draw_minimap_v(t_game *game, size_t tile);
+void	t_game_draw_minimap_h(t_game *game);
+void	t_game_draw_minimap_v(t_game *game);
+void	t_game_draw_minimap_player(t_game *game, int orientation);
 void	t_game_minimap_to_window_h(t_game *game, int *x, int *y);
 void	t_game_minimap_to_window_v(t_game *game, int *x, int *y);
 void	t_game_minimap_show(t_game *game);
@@ -95,6 +95,5 @@ void	t_game_init_colors(t_cub *file, t_game *game);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);
 int		t_game_populate(t_cub *file, t_game **game_ref);
-void	t_game_draw_player(t_game *game, size_t tile);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 23:12:16 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/08 05:36:03 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/08 23:15:54 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,35 @@ static void	clamp_rotation(t_player *player)
 		player->r += M_PI * 2;
 }
 
-static int	check_collision(t_game *game, char *direction)
+static int	check_tile(t_map *map, int x, int y)
 {
-	char	**map;
+	if (map->map[y][x] == '1' || map->map[y][x] == ' ')
+		return (true);
+	return (false);
+}
 
-	map = game->map->map;
-	if (ft_strbcmp(direction, "w")
-		&& map[(int)(game->player->y + sinf(game->player->r)
-			* SPEED)][(int)(game->player->x
-				+ cosf(game->player->r) * SPEED)] == '1')
-		return (false);
-	else if (ft_strbcmp(direction, "s")
-		&& map[(int)(game->player->y - sinf(game->player->r)
-			* SPEED)][(int)(game->player->x
-				- cosf(game->player->r) * SPEED)] == '1')
-		return (false);
-	else if (ft_strbcmp(direction, "a")
-		&& map[(int)(game->player->y - cosf(game->player->r)
-			* SPEED)][(int)(game->player->x
-				+ sinf(game->player->r) * SPEED)] == '1')
-		return (false);
-	else if (ft_strbcmp(direction, "d")
-		&& map[(int)(game->player->y + cosf(game->player->r)
-			* SPEED)][(int)(game->player->x
-				- sinf(game->player->r) * SPEED)] == '1')
-		return (false);
+static int	check_collision(t_player *p, t_map *m, char *direction)
+{
+	if (ft_strbcmp(direction, "w"))
+	{
+		if (check_tile(m, p->x + cosf(p->r) * SPEED, p->y + sinf(p->r) * SPEED))
+			return (false);
+	}
+	else if (ft_strbcmp(direction, "s"))
+	{
+		if (check_tile(m, p->x - cosf(p->r) * SPEED, p->y - sinf(p->r) * SPEED))
+			return (false);
+	}
+	else if (ft_strbcmp(direction, "a"))
+	{
+		if (check_tile(m, p->x + sinf(p->r) * SPEED, p->y - cosf(p->r) * SPEED))
+			return (false);
+	}
+	else if (ft_strbcmp(direction, "d"))
+	{
+		if (check_tile(m, p->x - sinf(p->r) * SPEED, p->y + cosf(p->r) * SPEED))
+			return (false);
+	}
 	return (true);
 }
 
@@ -74,13 +78,13 @@ static void	player_movement_update(t_player *player, char key)
 
 static void	check_keys(t_game *game)
 {
-	if (game->key->w && check_collision(game, "w"))
+	if (game->key->w && check_collision(game->player, game->map, "w"))
 		player_movement_update(game->player, 'w');
-	if (game->key->s && check_collision(game, "s"))
+	if (game->key->s && check_collision(game->player, game->map, "s"))
 		player_movement_update(game->player, 's');
-	if (game->key->a && check_collision(game, "a"))
+	if (game->key->a && check_collision(game->player, game->map, "a"))
 		player_movement_update(game->player, 'a');
-	if (game->key->d && check_collision(game, "d"))
+	if (game->key->d && check_collision(game->player, game->map, "d"))
 		player_movement_update(game->player, 'd');
 	if (game->key->left)
 	{
