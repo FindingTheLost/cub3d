@@ -6,16 +6,21 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 20:43:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 01:14:47 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:04:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_input.h"
 
-static void	output_error(void)
+static void	output_error(int code)
 {
 	ft_printf(RED_LIGH "Error\n" DEF);
-	ft_printf("Map element does not include a player/orientation!\n");
+	if (code == 0)
+		ft_printf("Map element does not include a player/orientation!\n");
+	else if (code == 1)
+		ft_printf("Map player/orientation has two or more instances!\n");
+	else
+		ft_printf("Something went wrong!\n");
 }
 
 static int	check_player(char *line, int *found)
@@ -29,12 +34,7 @@ static int	check_player(char *line, int *found)
 			|| line[index] == 'W')
 		{
 			if (*found)
-			{
-				ft_printf(RED_LIGH "Error\n" DEF);
-				ft_printf("Map player/orientation has two or more instances!");
-				ft_printf("\n");
-				return (false);
-			}
+				return (output_error(1), false);
 			*found = true;
 		}
 		index++;
@@ -67,6 +67,6 @@ int	parse_input_map_player(int fd)
 		line = get_next_line(fd);
 	}
 	if (!found)
-		return (output_error(), close(fd), false);
+		return (output_error(0), close(fd), false);
 	return (close(fd), true);
 }

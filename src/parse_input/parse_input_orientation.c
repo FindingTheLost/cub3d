@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 19:16:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 01:24:48 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:29:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static void	output_error(char *element, int code)
 	else if (code == 4)
 		ft_printf("element has no valid '.xpm' file!\n");
 	else
-		ft_printf("element has serious issues!\n");
+		ft_printf("Something went wrong!\n");
 }
 
-/* The path of the ".xpm" file in the ".cub" must be a relative path of the
+/* The path of the ".xpm" file in the ".cub" must be a relative path to the
  * program's current directory. Therefore, the path to the textures must be
- * accessible as if coming from the path where the "cub3D" executable is
- * found.
+ * accessible and written as if coming from the path where the "cub3D"
+ * executable is launched.
  */
 static int	check_path(char *element, char *line)
 {
@@ -58,17 +58,14 @@ static int	check_path(char *element, char *line)
 	return (output_error(element, 4), false);
 }
 
-static int	check_symbol(char *element, char *line, int *found)
+static int	check_element(char *element, char *line, int *found)
 {
 	if (ft_strlen(line) < ft_strlen(element))
 		return (true);
 	if (line[0] == element[0] && line[1] == element[1] && line[2] == ' ')
 	{
 		if (*found)
-		{
-			output_error(element, 1);
-			return (false);
-		}
+			return (output_error(element, 1), false);
 		if (!check_path(element, line))
 			return (false);
 		*found = true;
@@ -86,6 +83,10 @@ static int	check_symbol(char *element, char *line, int *found)
 	return (true);
 }
 
+/* Checks whether the "element" passed as parameter is present in the ".cub"
+ * file, if it has duplicates, if it points to a real ".xpm" file and if it
+ * has the correct permissions to open it.
+ */
 int	parse_input_orientation(int fd, char *element)
 {
 	char	*line;
@@ -97,13 +98,12 @@ int	parse_input_orientation(int fd, char *element)
 	found = false;
 	while (line)
 	{
-		if (!check_symbol(element, line, &found))
+		if (!check_element(element, line, &found))
 			return (free(line), ft_eof(fd), close(fd), false);
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (found)
 		return (close(fd), true);
-	output_error(element, 0);
-	return (close(fd), false);
+	return (output_error(element, 0), close(fd), false);
 }

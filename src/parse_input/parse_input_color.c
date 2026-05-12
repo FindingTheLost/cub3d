@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 20:10:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 03:34:09 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:39:07 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ static void	output_error(char *element, int code)
 	else if (code == 6)
 		ft_printf("element color's bytes are not properly comma separated!\n");
 	else
-		ft_printf("element has serious issues!\n");
+		ft_printf("Something went wrong!\n");
 }
 
-static int	check_bytes(char *element, char *line, size_t *index, short cycle)
+/* The type "ssize_t" is the same as "size_t", only with "SIZE_T MAX - 1" range,
+ * due to also having ONE (and only one) negative number, "-1". It's range goes
+ * from "-1" to "SIZE_T MAX - 1".
+ */
+static int	check_bytes(char *element, char *line, size_t *index, ssize_t cycle)
 {
 	size_t	large;
 
@@ -73,31 +77,22 @@ static int	check_color(char *element, char *line)
 	while (line[index] == ' ')
 		index++;
 	if (!line[index])
-	{
-		output_error(element, 2);
-		return (false);
-	}
+		return (output_error(element, 2), false);
 	if (!check_bytes(element, line, &index, -1))
 		return (false);
 	if (line[index])
-	{
-		output_error(element, 3);
-		return (false);
-	}
+		return (output_error(element, 3), false);
 	return (true);
 }
 
-static int	check_symbol(char *element, char *line, int *found)
+static int	check_element(char *element, char *line, int *found)
 {
 	if (ft_strlen(line) < ft_strlen(element))
 		return (true);
 	if (line[0] == element[0] && line[1] == ' ')
 	{
 		if (*found)
-		{
-			output_error(element, 1);
-			return (false);
-		}
+			return (output_error(element, 1), false);
 		if (!check_color(element, line))
 			return (false);
 		*found = true;
@@ -126,13 +121,12 @@ int	parse_input_color(int fd, char *element)
 	found = false;
 	while (line)
 	{
-		if (!check_symbol(element, line, &found))
+		if (!check_element(element, line, &found))
 			return (free(line), ft_eof(fd), close(fd), false);
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (found)
 		return (close(fd), true);
-	output_error(element, 0);
-	return (close(fd), false);
+	return (output_error(element, 0), close(fd), false);
 }

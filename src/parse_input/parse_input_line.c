@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 19:37:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 01:30:05 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:14:45 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ static void	output_error(int code)
 {
 	ft_printf(RED_LIGH "Error\n" DEF);
 	if (code == 0)
-		ft_printf("File element syntax error!\n");
-	else if (code == 1)
 		ft_printf("Wrong character found!\n");
-	else if (code == 2)
-		ft_printf("Map characters are not under its file elements!\n");
+	else if (code == 1)
+		ft_printf("Map content is not under its file elements!\n");
 	else
 		ft_printf("Something went wrong!\n");
 }
@@ -36,14 +34,14 @@ static int	check_map_line(int map_mode, char *line, int *elements)
 			&& line[index] != 'N' && line[index] != 'S' && line[index] != 'W'
 			&& line[index] != 'E' && line[index] != '\n')
 		{
-			output_error(1);
+			output_error(0);
 			return (false);
 		}
 		index++;
 	}
 	if (map_mode && *elements < 6)
 	{
-		output_error(2);
+		output_error(1);
 		return (false);
 	}
 	return (true);
@@ -76,14 +74,16 @@ static int	check_line(int map_mode, char *line, int *elements)
 
 /* The "map_mode" variable can be set to either "true" or "false" to distinguish
  * whether the function will attempt to identify "if parts of the map are
- * inputted before all of the elements are set".
- * When "false", the default behaviour of the function is used instead which is
- * to identify if there are any illegal lines, not taking into account whether
- * the map is fractured or if it's drawn before all of the other elements of
- * the map.
+ * inputted before all of the remaining elements".
+ *
+ * When "false", the default behaviour of the function is used, which is to
+ * identify if there are any illegal characters in the map and does not take
+ * into account whether the map is fractured or written before all the other
+ * elements.
+ *
  * Behaviours:
- * 	- "true" for the former;
- * 	- "false" for the latter.
+ * 	- "false" - checks if there are any illegal characters in the map;
+ * 	- "true" - checks if the map is written before all the other elements;
  */
 int	parse_input_line(int fd, int map_mode)
 {

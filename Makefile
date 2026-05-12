@@ -6,11 +6,9 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/08 22:32:11 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/11 17:36:04 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# Add more files, fix empty variables, empty rules and hide some messages.
 
 NAME		= cub3D
 
@@ -18,16 +16,30 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror
 
+MATHLIB		= -lm
+
 HDR			= ./src/cub3d.h										\
+			  ./src/parse_input/parse_input.h					\
 			  ./src/structs/t_cub_struct.h						\
 			  ./src/structs/t_game_struct.h						\
 			  ./src/structs/t_player_struct.h					\
 			  ./src/structs/t_map_struct.h						\
 			  ./src/structs/t_image_struct.h					\
-			  ./src/parse_input/parse_input.h					\
 			  ./src/game/game.h
 
 SRC			= ./src/cub3d.c										\
+			  ./src/parse_input/parse_input.c					\
+			  ./src/parse_input/parse_input_argc.c				\
+			  ./src/parse_input/parse_input_help.c				\
+			  ./src/parse_input/parse_input_file_extension.c	\
+			  ./src/parse_input/parse_input_valid_file.c		\
+			  ./src/parse_input/parse_input_line.c				\
+			  ./src/parse_input/parse_input_orientation.c		\
+			  ./src/parse_input/parse_input_color.c				\
+			  ./src/parse_input/parse_input_map_found.c			\
+			  ./src/parse_input/parse_input_map_whole.c			\
+			  ./src/parse_input/parse_input_map_player.c		\
+			  ./src/parse_input/parse_input_map_surroundings.c	\
 			  ./src/structs/t_cub/t_cub_build.c					\
 			  ./src/structs/t_cub/t_cub_build_map.c				\
 			  ./src/structs/t_cub/t_cub_destroy.c				\
@@ -75,20 +87,8 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_key/t_key_destroy.c				\
 			  ./src/structs/t_key/t_key_error.c					\
 			  ./src/structs/t_key/t_key_populate.c				\
-			  ./src/parse_input/parse_input.c					\
-			  ./src/parse_input/parse_input_argc.c				\
-			  ./src/parse_input/parse_input_help.c				\
-			  ./src/parse_input/parse_input_file_extension.c	\
-			  ./src/parse_input/parse_input_valid_file.c		\
-			  ./src/parse_input/parse_input_line.c				\
-			  ./src/parse_input/parse_input_orientation.c		\
-			  ./src/parse_input/parse_input_color.c				\
-			  ./src/parse_input/parse_input_map_found.c			\
-			  ./src/parse_input/parse_input_map_whole.c			\
-			  ./src/parse_input/parse_input_map_player.c		\
-			  ./src/parse_input/parse_input_map_surroundings.c	\
 			  ./src/game/game.c									\
-			  ./src/game/game_invalid_resolution.c				\
+			  ./src/game/game_check_resolution.c				\
 			  ./src/game/game_init_vars.c						\
 			  ./src/game/game_init_hooks.c						\
 			  ./src/game/game_update.c
@@ -101,13 +101,9 @@ MLX			= ./minilibx-linux/libmlx_Linux.a
 
 MLXFLAGS	= -std=gnu11 -lX11 -lXext
 
-MATHLIB		= -lm
-
 
 
 all: $(NAME)
-
-bonus:
 
 $(NAME): $(HDR) $(LIBFT) $(MLX) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLXFLAGS) $(MATHLIB) -o $(NAME)
@@ -131,4 +127,4 @@ re: fclean all
 
 
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

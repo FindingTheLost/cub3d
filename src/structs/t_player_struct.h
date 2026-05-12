@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:57:35 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/06 01:49:02 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:19:40 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../../libft/libft.h"
 # include "t_cub_struct.h"
 
+/* Defines a player's current position and rotation.
+ */
 typedef struct s_player
 {
 	float	x;

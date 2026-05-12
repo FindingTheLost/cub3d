@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 17:47:34 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 01:19:44 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:59:19 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	check_map(char *line, int *map_start, int *map_end)
  * track of it, as well as if a new empty line is found (that symbolizes the
  * end of the map).
  * If, after the end of map is found, a map character line is found again,
- * the function returns ("false").
+ * the function will return "false".
  */
 int	parse_input_map_whole(int fd)
 {

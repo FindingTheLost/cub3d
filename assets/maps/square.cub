@@ -1,10 +1,10 @@
-NO assets/textures/enemy.xpm
-SO assets/textures/enemy.xpm
-EA assets/textures/enemy.xpm
-WE assets/textures/enemy.xpm
+NO assets/textures/test_valid.xpm
+SO assets/textures/test_valid.xpm
+WE assets/textures/test_valid.xpm
+EA assets/textures/test_valid.xpm
 
-C 0, 100, 200
-F 200, 100, 0
+C 0,100,200
+F 200,100,0
 
 11111111111111111111
 10000000000000000001

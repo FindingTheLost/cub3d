@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 00:47:04 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 23:47:31 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:22:11 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "../../minilibx-linux/mlx.h"
 # include "../../minilibx-linux/mlx_int.h"
 
+/* Defines an image to be displayed in a window, in accordance to Xorg and
+ * Minilibx.
+ */
 typedef struct s_image
 {
 	void	*image;

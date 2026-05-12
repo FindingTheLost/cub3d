@@ -6,13 +6,21 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 00:07:21 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/08 01:44:02 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 20:10:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_player_struct.h"
 
-/* Returns the value of the rotation in radians, not degrees.
+/* Returns the value of the rotation in radians.
+ *
+ * Normally 'N' is "M_PI_2" (PI divided by 2), 'S' is "(M_PI * 3) / 2", 'E' is
+ * 0 and 'W' is "M_PI".
+ * Since, in computers, 'y' is inverted (positive is "south"), 'N' will have the
+ * value of 'S' and 'S' the value of 'N'.
+ *
+ * The values of 'W' and 'E' remain the same, since positive 'x' is still to the
+ * right and negative to the left.
  */
 static float	get_rotation(char orientation)
 {

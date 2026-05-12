@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 00:28:30 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 03:33:41 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:10:20 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static int	check_left_right(size_t width, char **map)
 
 static int	check_top_bottom(size_t height, char **map)
 {
-	size_t	line;
 	size_t	index;
+	size_t	line;
 
 	index = 0;
 	line = height - 1;

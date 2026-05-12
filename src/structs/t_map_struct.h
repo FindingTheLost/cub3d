@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:00:50 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 18:04:02 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:20:41 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../../libft/libft.h"
 # include "t_cub_struct.h"
 
+/* Defines a map's structure as well as its width and height (in cells).
+ */
 typedef struct s_map
 {
 	size_t	map_width;

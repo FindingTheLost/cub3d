@@ -6,7 +6,7 @@
 #    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 19:18:32 by pde-alme          #+#    #+#              #
-#    Updated: 2026/04/28 00:52:26 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/11 15:47:34 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,10 @@ NAME	= libft.a
 CC		= cc
 
 CFLAGS	= -Wall -Wextra -Werror
+
+BSDLIB	= -lbsd
+
+MATHLIB	= -lm
 
 HDR		= libft.h
 

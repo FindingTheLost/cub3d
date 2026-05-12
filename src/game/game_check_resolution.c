@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_invalid_resolution.c                          :+:      :+:    :+:   */
+/*   game_check_resolution.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 00:09:01 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/08 00:47:21 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:39:23 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ static int	wrong_resolution(void)
 	return (true);
 }
 
-int	game_invalid_resolution(void)
+int	game_check_resolution(void)
 {
 	if (wrong_resolution())
 	{
 		ft_printf(RED_LIGH "Error\n" DEF);
-		ft_printf("Aspect ratio or resolution not supported!\n");
+		ft_printf("Aspect ratio or resolution not supported, please change");
+		ft_printf(" W_WIDTH and W_HEIGHT macro values and recompile!\n");
 		return (false);
 	}
 	return (true);

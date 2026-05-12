@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 20:05:43 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 01:45:57 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:40:23 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	parse_input_map(char **argv)
 }
 
 /* Series of checks that verify whether the passed ".cub" file is valid.
+ * When done, jump to "map" parsing functions.
  */
 int	parse_input(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/09 01:00:47 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 20:28:21 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,16 @@
 # define K_A 97
 # define K_D 100
 
-/* Player speed and rotation (in radians) per frame: 
- * (in case of slower computer, increase these values)*/
+/* Player speed (in float) and rotation (in radians) per frame: */
+/*     (in case of a slow computer, increase these values)      */
 # define SPEED 0.025f
 # define ROTATION 0.025f
 
-/* Struct that stores everything minilibx related.
+/* Divisor of the wall slide speed. Increase to slide slower: */
+# define SLIDE_DIVISOR 2
+
+/* Defines a complete execution instance of "cub3D", storing every crucial
+ * game struct inside, as well as Minilibx instance attributes.
  */
 typedef struct s_game
 {

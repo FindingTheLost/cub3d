@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:45:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/08 03:44:55 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:21:16 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../../libft/libft.h"
 
+/* Defines a set of keys that are pressed and held in a given frame.
+ */
 typedef struct s_key
 {
 	int	w;

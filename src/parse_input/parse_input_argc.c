@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:09:20 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/01 00:48:37 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/11 15:59:44 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,11 @@ int	parse_input_argc(int argc)
 {
 	if (argc != 2)
 	{
+		ft_printf(RED_LIGH "Error\n" DEF);
 		if (argc < 2)
-		{
-			ft_printf(RED_LIGH "Error\n" DEF);
 			ft_printf("Too few arguments were given!\n");
-		}
 		else
-		{
-			ft_printf(RED_LIGH "Error\n" DEF);
 			ft_printf("Too many arguments were given!\n");
-		}
 		return (false);
 	}
 	return (true);
