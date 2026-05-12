@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 21:27:24 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/07 21:27:45 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/12 20:49:46 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,15 @@
  * aspect ratio correct squares, depending on whether the map fits into 16:9 or
  * not, it will have blank spots inside the image unless it is a perfect 16:9
  * tiled map.
+ *
+ * A small change in the formula of 'x' is the sole reason of having two
+ * functions for different map widths.
  */
-void	t_game_minimap_to_window_v(t_game *game, int *x, int *y)
+static void	odd_map_height(t_game *game, int *y, size_t tile)
 {
-	size_t	tile;
-	float	twocent_width;
 	float	twocent_height;
 
-	tile = W_HEIGHT / game->map->map_height;
-	twocent_width = game->player->x / (float)(game->map->map_width / 2);
 	twocent_height = game->player->y / (float)(game->map->map_height / 2);
-	if (twocent_width > 1)
-		*x = -(fabs(((float)(2 - twocent_width)) - 1)
-				* ((tile * (game->map->map_width - 1)) / 2));
-	else
-		*x = fabs((float)(twocent_width - 1))
-			* ((tile * (game->map->map_width - 1)) / 2);
 	if (twocent_height > 1)
 		*y = -(fabs(((float)(2 - twocent_height)) - 1)
 				* ((tile * game->map->map_height - (W_HEIGHT
@@ -100,4 +93,65 @@ void	t_game_minimap_to_window_v(t_game *game, int *x, int *y)
 		*y = fabs((float)(twocent_height - 1))
 			* ((tile * game->map->map_height - (W_HEIGHT
 						- (tile * game->map->map_height))) / 2);
+}
+
+/* When even, 'y' does not require to compensate the small missing screen field
+ * that is lost due to dividing the screen by an odd number.
+ */
+static void even_map_height(t_game *game, int *y, size_t tile)
+{
+	float	twocent_height;
+
+	twocent_height = game->player->y / (float)(game->map->map_height / 2);
+	if (twocent_height > 1)
+		*y = -(fabs(((float)(2 - twocent_height)) - 1)
+				* ((tile * game->map->map_height) / 2));
+	else
+		*y = fabs((float)(twocent_height - 1))
+			* ((tile * game->map->map_height) / 2);
+}
+
+static void	odd_map_width(t_game *game, int *x, int *y, size_t tile)
+{
+	float	twocent_width;
+
+	twocent_width = game->player->x / (float)(game->map->map_width / 2);
+	if (twocent_width > 1)
+		*x = -(fabs(((float)(2 - twocent_width)) - 1)
+				* ((tile * (game->map->map_width - 1)) / 2));
+	else
+		*x = fabs((float)(twocent_width - 1))
+			* ((tile * (game->map->map_width - 1)) / 2);
+	if (game->map->map_height % 2 == 0)
+		even_map_height(game, y, tile);
+	else
+		odd_map_height(game, y, tile);
+}
+
+static void	even_map_width(t_game *game, int *x, int *y, size_t tile)
+{
+	float	twocent_width;
+
+	twocent_width = game->player->x / (float)(game->map->map_width / 2);
+	if (twocent_width > 1)
+		*x = -(fabs(((float)(2 - twocent_width)) - 1)
+				* ((tile * (game->map->map_width)) / 2));
+	else
+		*x = fabs((float)(twocent_width - 1))
+			* ((tile * (game->map->map_width)) / 2);
+	if (game->map->map_height % 2 == 0)
+		even_map_height(game, y, tile);
+	else
+		odd_map_height(game, y, tile);
+}
+
+void	t_game_minimap_to_window_v(t_game *game, int *x, int *y)
+{
+	size_t	tile;
+
+	tile = W_HEIGHT / game->map->map_height;
+	if (game->map->map_width % 2 == 0)
+		even_map_width(game, x, y, tile);
+	else
+		odd_map_width(game, x, y, tile);
 }

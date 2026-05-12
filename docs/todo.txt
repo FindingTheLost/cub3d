@@ -1,3 +1,4 @@
 STUFF TO DO:
 ============
 - README.md;
+- Tweak minimap camera movement to get better results.

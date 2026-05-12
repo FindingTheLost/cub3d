@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/11 20:28:21 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/12 20:59:21 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,11 @@ void	t_game_minimap_to_window_h(t_game *game, int *x, int *y);
 void	t_game_minimap_to_window_v(t_game *game, int *x, int *y);
 void	t_game_minimap_show(t_game *game);
 void	t_game_init_colors(t_cub *file, t_game *game);
+void	t_game_check_keys(t_game *game);
+void	t_game_move_player(t_player *player, char key);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);
 int		t_game_populate(t_cub *file, t_game **game_ref);
+int		t_game_check_collisions(t_game *g, t_player *p, char *direction);
 
 #endif
