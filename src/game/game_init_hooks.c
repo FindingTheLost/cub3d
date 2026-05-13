@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/08 01:16:26 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 18:50:22 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ static int	on_key_release(int key_symbol, t_game *game)
 		game->key->left = false;
 	else if (key_symbol == K_RIGHT)
 		game->key->right = false;
+	else if (key_symbol == K_SPACE)
+		game->key->space = false;
+	else if (key_symbol == K_M)
+		game->key->m = ft_fbool(game->key->m);
 	return (0);
 }
 
@@ -58,6 +62,8 @@ static int	on_key_press(int key_symbol, t_game *game)
 		game->key->left = true;
 	else if (key_symbol == K_RIGHT)
 		game->key->right = true;
+	else if (key_symbol == K_SPACE)
+		game->key->space = true;
 	return (0);
 }
 

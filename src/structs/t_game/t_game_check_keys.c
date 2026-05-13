@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 20:55:31 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/12 21:01:47 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:27:23 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,27 +109,30 @@
  * 0 being 0, and 'y' would add 1 to its value due to "sin" of 0 being 1,
  * essentially making the player move "south" even when pressing the 'A' key.
  */
-static void move_player(t_player *player, char key)
+static void	move_player(t_game *game, char key)
 {
+	t_player	*player;
+
+	player = game->player;
 	if (key == 'w')
 	{
-		player->x += cosf(player->r) * SPEED;
-		player->y += sinf(player->r) * SPEED;
+		player->x += cosf(player->r) * SPEED * t_game_delta(game);
+		player->y += sinf(player->r) * SPEED * t_game_delta(game);
 	}
 	else if (key == 's')
 	{
-		player->x -= cosf(player->r) * SPEED;
-		player->y -= sinf(player->r) * SPEED;
+		player->x -= cosf(player->r) * SPEED * t_game_delta(game);
+		player->y -= sinf(player->r) * SPEED * t_game_delta(game);
 	}
 	else if (key == 'a')
 	{
-		player->x += sinf(player->r) * SPEED;
-		player->y -= cosf(player->r) * SPEED;
+		player->x += sinf(player->r) * SPEED * t_game_delta(game);
+		player->y -= cosf(player->r) * SPEED * t_game_delta(game);
 	}
 	else if (key == 'd')
 	{
-		player->x -= sinf(player->r) * SPEED;
-		player->y += cosf(player->r) * SPEED;
+		player->x -= sinf(player->r) * SPEED * t_game_delta(game);
+		player->y += cosf(player->r) * SPEED * t_game_delta(game);
 	}
 }
 
@@ -147,19 +150,26 @@ static float	clamp_rotation(float rotation)
 
 /* Checks the "t_key" struct in "t_game" for pressed keys and acts accordingly
  * to each one.
+ * Now with "delta"!!! A function that returns the time passed in milliseconds
+ * divided by 1000 since the previous frame and the new one.
  */
 void	t_game_check_keys(t_game *game)
 {
+	float	rotation_delta;
+
+	gettimeofday(&game->new_delta, NULL);
+	rotation_delta = ROTATION * t_game_delta(game);
 	if (game->key->w && t_game_check_collisions(game, game->player, "w"))
-		move_player(game->player, 'w');
+		move_player(game, 'w');
 	if (game->key->s && t_game_check_collisions(game, game->player, "s"))
-		move_player(game->player, 's');
+		move_player(game, 's');
 	if (game->key->a && t_game_check_collisions(game, game->player, "a"))
-		move_player(game->player, 'a');
+		move_player(game, 'a');
 	if (game->key->d && t_game_check_collisions(game, game->player, "d"))
-		move_player(game->player, 'd');
+		move_player(game, 'd');
 	if (game->key->left)
-		game->player->r = clamp_rotation(game->player->r - ROTATION);
+		game->player->r = clamp_rotation(game->player->r - rotation_delta);
 	if (game->key->right)
-		game->player->r = clamp_rotation(game->player->r + ROTATION);
+		game->player->r = clamp_rotation(game->player->r + rotation_delta);
+	game->delta = game->new_delta;
 }

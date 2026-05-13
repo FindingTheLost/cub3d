@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 03:09:51 by rogde-so          #+#    #+#             */
-/*   Updated: 2026/05/08 22:49:42 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:26:35 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static	void	draw_inner_circle(t_game *game, size_t tile, int rd, int color)
 	}
 }
 
-void    t_game_draw_minimap_player(t_game *game, int orientation)
+void	t_game_draw_minimap_player(t_game *game, int orientation)
 {
 	size_t	tile;
 
@@ -76,11 +76,11 @@ void    t_game_draw_minimap_player(t_game *game, int orientation)
 		tile = W_WIDTH / game->map->map_width;
 	else
 		tile = W_HEIGHT / game->map->map_height;
-	draw_inner_circle(game, tile, 1, 0x00FFFF00);
-	draw_inner_circle(game, tile, 2, 0x0000F5FF);
-	draw_inner_circle(game, tile, 3, 0x0000C5CD);
-	draw_inner_circle(game, tile, 4, 0x0000868B);
-	draw_inner_circle(game, tile, 5, 0x0000868B);
-	draw_inner_circle(game, tile, 6, 0x0000F5FF);
-	draw_player_nose(game, tile, 0x00FFFF00);
+	draw_inner_circle(game, tile, 1, YELLOW);
+	draw_inner_circle(game, tile, 2, RED1);
+	draw_inner_circle(game, tile, 3, RED2);
+	draw_inner_circle(game, tile, 4, RED3);
+	draw_inner_circle(game, tile, 5, RED4);
+	draw_inner_circle(game, tile, 6, RED5);
+	draw_player_nose(game, tile, YELLOW);
 }

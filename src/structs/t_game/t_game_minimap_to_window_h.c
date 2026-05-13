@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 21:26:30 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/12 20:45:59 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:32:58 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ static void	odd_map_width(t_game *game, int *x, int *y, size_t tile)
 	if (twocent_width > 1)
 		*x = -(fabs(((float)(2 - twocent_width)) - 1)
 				* ((tile * game->map->map_width - (W_WIDTH
-							- (tile * game->map->map_width - tile))) / 2)) + (tile / 2);
+							- (tile * game->map->map_width - tile))) / 2))
+			+ (tile / 2);
 	else
 		*x = fabs((float)(twocent_width - 1))
 			* ((tile * game->map->map_width - (W_WIDTH
-						- (tile * game->map->map_width - tile))) / 2) + (tile / 2);
+						- (tile * game->map->map_width - tile))) / 2)
+			+ (tile / 2);
 	if (game->map->map_height % 2 == 0)
 		even_map_height(game, y, tile);
 	else

@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 20:52:45 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/12 20:54:09 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:31:44 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,36 @@
  * chosen (no more space to make a third option due to norminette, although a
  * sensible decision would be to not make the player move as well).
  */
+static float	slide_speed(t_game *game)
+{
+	return ((float)(SPEED * t_game_delta(game) / SLIDE_DIVISOR));
+}
+
 static void	slide_tile(t_game *game, int x, int y, char *direction)
 {
 	if (game->map->map[y][(int)game->player->x] != '1'
 		&& game->map->map[y][(int)game->player->x] != ' ')
 	{
 		if (ft_strbcmp(direction, "w"))
-			game->player->y += sinf(game->player->r) * SPEED / SLIDE_DIVISOR;
+			game->player->y += sinf(game->player->r) * slide_speed(game);
 		else if (ft_strbcmp(direction, "s"))
-			game->player->y -= sinf(game->player->r) * SPEED / SLIDE_DIVISOR;
+			game->player->y -= sinf(game->player->r) * slide_speed(game);
 		else if (ft_strbcmp(direction, "a"))
-			game->player->y -= cosf(game->player->r) * SPEED / SLIDE_DIVISOR;
+			game->player->y -= cosf(game->player->r) * slide_speed(game);
 		else if (ft_strbcmp(direction, "d"))
-			game->player->y += cosf(game->player->r) * SPEED / SLIDE_DIVISOR;
+			game->player->y += cosf(game->player->r) * slide_speed(game);
 	}
 	if (game->map->map[(int)game->player->y][x] != '1'
 		&& game->map->map[(int)game->player->y][x] != ' ')
 	{
 		if (ft_strbcmp(direction, "w"))
-			game->player->x += cosf(game->player->r) * SPEED / SLIDE_DIVISOR;
+			game->player->x += cosf(game->player->r) * slide_speed(game);
 		else if (ft_strbcmp(direction, "s"))
-			game->player->x -= cosf(game->player->r) * SPEED / SLIDE_DIVISOR;
+			game->player->x -= cosf(game->player->r) * slide_speed(game);
 		else if (ft_strbcmp(direction, "a"))
-			game->player->x += sinf(game->player->r) * SPEED / SLIDE_DIVISOR;
+			game->player->x += sinf(game->player->r) * slide_speed(game);
 		else if (ft_strbcmp(direction, "d"))
-			game->player->x -= sinf(game->player->r) * SPEED / SLIDE_DIVISOR;
+			game->player->x -= sinf(game->player->r) * slide_speed(game);
 	}
 }
 
@@ -118,26 +123,26 @@ int	t_game_check_collisions(t_game *g, t_player *p, char *direction)
 {
 	if (ft_strbcmp(direction, "w"))
 	{
-		if (!good_tile(g, p->x + cosf(p->r) * SPEED,
-			p->y + sinf(p->r) * SPEED, direction))
+		if (!good_tile(g, p->x + cosf(p->r) * SPEED * t_game_delta(g),
+				p->y + sinf(p->r) * SPEED * t_game_delta(g), direction))
 			return (false);
 	}
 	else if (ft_strbcmp(direction, "s"))
 	{
-		if (!good_tile(g, p->x - cosf(p->r) * SPEED,
-			p->y - sinf(p->r) * SPEED, direction))
+		if (!good_tile(g, p->x - cosf(p->r) * SPEED * t_game_delta(g),
+				p->y - sinf(p->r) * SPEED * t_game_delta(g), direction))
 			return (false);
 	}
 	else if (ft_strbcmp(direction, "a"))
 	{
-		if (!good_tile(g, p->x + sinf(p->r) * SPEED,
-			p->y - cosf(p->r) * SPEED, direction))
+		if (!good_tile(g, p->x + sinf(p->r) * SPEED * t_game_delta(g),
+				p->y - cosf(p->r) * SPEED * t_game_delta(g), direction))
 			return (false);
 	}
 	else if (ft_strbcmp(direction, "d"))
 	{
-		if (!good_tile(g, p->x - sinf(p->r) * SPEED,
-			p->y + cosf(p->r) * SPEED, direction))
+		if (!good_tile(g, p->x - sinf(p->r) * SPEED * t_game_delta(g),
+				p->y + cosf(p->r) * SPEED * t_game_delta(g), direction))
 			return (false);
 	}
 	return (true);

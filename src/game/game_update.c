@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 19:17:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/12 21:11:55 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 18:53:36 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 int	game_update(t_game *game)
 {
 	t_game_check_keys(game);
-	t_game_minimap_show(game);
+	if (game->key->m)
+		t_game_minimap_show(game);
+	else
+		mlx_put_image_to_window(game->mlx, game->mlx_window,
+			game->minimap_background->image, 0, 0);
 	return (0);
 }

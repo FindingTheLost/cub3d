@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 21:27:24 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/12 20:49:46 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 19:28:19 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void	odd_map_height(t_game *game, int *y, size_t tile)
 /* When even, 'y' does not require to compensate the small missing screen field
  * that is lost due to dividing the screen by an odd number.
  */
-static void even_map_height(t_game *game, int *y, size_t tile)
+static void	even_map_height(t_game *game, int *y, size_t tile)
 {
 	float	twocent_height;
 

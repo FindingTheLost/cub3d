@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:45:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/11 17:21:16 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 18:47:34 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ typedef struct s_key
 	int	s;
 	int	a;
 	int	d;
+	int	m;
 	int	left;
 	int	right;
+	int	space;
 }	t_key;
 
 t_key	*t_key_build(void);
