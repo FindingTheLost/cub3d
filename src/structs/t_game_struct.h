@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/13 19:19:21 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/14 02:44:07 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # include "t_image_struct.h"
 # include "t_key_struct.h"
 
+/* Redefinition for misidentification of libmath */
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
+
 /* Window related macros: */
 # define W_TITLE "cub3D"
 # define W_WIDTH 960
@@ -33,11 +38,13 @@
 # define NO_EVENT 0
 # define KEY_PRESS 1
 # define KEY_RELEASE 2
+# define MOUSE_MOTION 64
 
 /* X11/MLX events: */
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
 # define ON_DESTROY 17
+# define MOUSE_MOVE 6
 
 /* X11/MLX key codes: */
 # define K_ESC 65307
@@ -60,11 +67,15 @@
 /* Divisor of the wall slide speed. Increase to slide slower: */
 # define SLIDE_DIVISOR 2
 
+/* Multiplier of the mouse rotation speed. Increase to rotate faster: */
+# define MOUSE_MULTIPLIER 16
+
 /* Definition of minimap cell colors: */
 # define BLACK 0
 # define LIME 0x00A2CD5A
 # define GREEN 0x00426F42
-# define SWAMP 0x002F4F4F
+# define SWAMP 0x00548B54
+# define OLIVE 0x002F4F2F
 
 /* Definition of minimap player colors: */
 # define YELLOW 0x00FFFF00
@@ -116,6 +127,7 @@ void	t_game_minimap_to_window_v(t_game *game, int *x, int *y);
 void	t_game_minimap_show(t_game *game);
 void	t_game_init_colors(t_cub *file, t_game *game);
 void	t_game_check_keys(t_game *game);
+void	t_game_check_mouse(t_game *game);
 void	t_game_move_player(t_player *player, char key);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);

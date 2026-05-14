@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_check_keys.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 20:55:31 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/13 19:27:23 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/14 02:14:43 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ void	t_game_check_keys(t_game *game)
 {
 	float	rotation_delta;
 
-	gettimeofday(&game->new_delta, NULL);
 	rotation_delta = ROTATION * t_game_delta(game);
 	if (game->key->w && t_game_check_collisions(game, game->player, "w"))
 		move_player(game, 'w');
@@ -171,5 +170,4 @@ void	t_game_check_keys(t_game *game)
 		game->player->r = clamp_rotation(game->player->r - rotation_delta);
 	if (game->key->right)
 		game->player->r = clamp_rotation(game->player->r + rotation_delta);
-	game->delta = game->new_delta;
 }

@@ -1,0 +1,4 @@
+-I.
+-Ilibft
+-I./libft
+-Wno-unused-includes

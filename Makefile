@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/13 18:10:53 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/14 01:40:26 by rogde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= cub3D
 
 CC			= cc
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -I. -Ilibft
 
 MATHLIB		= -lm
 
@@ -68,6 +68,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_init_textures.c		\
 			  ./src/structs/t_game/t_game_populate.c			\
 			  ./src/structs/t_game/t_game_check_keys.c			\
+			  ./src/structs/t_game/t_game_check_mouse.c			\
 			  ./src/structs/t_game/t_game_check_collisions.c	\
 			  ./src/structs/t_game/t_game_delta.c				\
 			  ./src/structs/t_player/t_player_build.c			\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_update.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 19:17:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/13 18:53:36 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/14 02:25:39 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	game_update(t_game *game)
 {
+	gettimeofday(&game->new_delta, NULL);
 	t_game_check_keys(game);
+	t_game_check_mouse(game);
+	game->delta = game->new_delta;
 	if (game->key->m)
 		t_game_minimap_show(game);
 	else

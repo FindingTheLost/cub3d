@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_draw_minimap_h.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 01:44:53 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/13 19:26:58 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/13 22:22:22 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
+
+static size_t	draw_tile_interior(t_game *game, int x, int y, int color)
+{
+	size_t	tile;
+	size_t	index;
+
+	tile = W_WIDTH / game->map->map_width;
+	index = 1;
+	while (index < tile - 1)
+	{
+		if (color == LIME)
+			t_game_draw_pixel(game->minimap, x + index++, y, GREEN);
+		else
+			t_game_draw_pixel(game->minimap, x + index++, y, OLIVE);
+	}
+	return (index);
+}
 
 /* Variable names changed to comply with norminette:
  * 		"g"  = "game"
@@ -38,7 +55,7 @@ static void	draw_tile_horizontal(t_game *g, int x, int y, int c)
 			if (bx == 0 || bx == t - 1)
 				t_game_draw_pixel(g->minimap, x * t + bx++, y * t + by, c);
 			else if (c != BLACK)
-				t_game_draw_pixel(g->minimap, x * t + bx++, y * t + by, GREEN);
+				bx = draw_tile_interior(g, x * t, y * t + by, c);
 			else
 				t_game_draw_pixel(g->minimap, x * t + bx++, y * t + by, BLACK);
 		}
