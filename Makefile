@@ -16,7 +16,7 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -I. -Ilibft
 
-MATHLIB		= -lm
+MATHLIB		= -lm -O3 -march=native -flto -ftree-vectorize -funroll-loops -ffast-math
 
 HDR			= ./src/cub3d.h										\
 			  ./src/parse_input/parse_input.h					\

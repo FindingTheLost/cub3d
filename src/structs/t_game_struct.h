@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/14 02:44:07 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/14 17:45:14 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 /* Window related macros: */
 # define W_TITLE "cub3D"
-# define W_WIDTH 960
-# define W_HEIGHT 540
+# define W_WIDTH 1280
+# define W_HEIGHT 720
 
 /* Texture size: */
 # define TEX_SIZE 64
