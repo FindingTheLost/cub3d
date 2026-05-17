@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   t_game_clamp_rotation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 18:22:04 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:18:37 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/17 19:23:36 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/17 19:24:46 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#include "../t_game_struct.h"
 
-# include "../../libft/libft.h"
-# include "../structs/t_cub_struct.h"
-# include "../structs/t_game_struct.h"
-
-int		game(t_cub *file);
-int		game_update(t_game *game);
-int		game_init_resolution(void);
-int		game_init_variables(t_cub *file, t_game **game);
-void	game_init_hooks(t_game *game);
-
-#endif
+/* Clamps the rotation of the player in case the "rotation" variable becomes
+ * over-increased or over-decreased by the "ROTATION" macro.
+ */
+float	t_game_clamp_rotation(float rotation)
+{
+	if (rotation >= M_PI * 2)
+		rotation -= M_PI * 2;
+	else if (rotation <= 0)
+		rotation += M_PI * 2;
+	return (rotation);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_check_keys.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 20:55:31 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/14 02:14:43 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/17 19:32:24 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,18 +136,6 @@ static void	move_player(t_game *game, char key)
 	}
 }
 
-/* Clamps the rotation of the player in case the "rotation" variable becomes
- * over-increased or over-decreased by the "ROTATION" macro.
- */
-static float	clamp_rotation(float rotation)
-{
-	if (rotation >= M_PI * 2)
-		rotation -= M_PI * 2;
-	else if (rotation <= 0)
-		rotation += M_PI * 2;
-	return (rotation);
-}
-
 /* Checks the "t_key" struct in "t_game" for pressed keys and acts accordingly
  * to each one.
  * Now with "delta"!!! A function that returns the time passed in milliseconds
@@ -155,19 +143,21 @@ static float	clamp_rotation(float rotation)
  */
 void	t_game_check_keys(t_game *game)
 {
-	float	rotation_delta;
+	t_player	*player;
+	float		rotation_delta;
 
+	player = game->player;
 	rotation_delta = ROTATION * t_game_delta(game);
-	if (game->key->w && t_game_check_collisions(game, game->player, "w"))
+	if (game->key->w && t_game_check_collisions(game, player, "w"))
 		move_player(game, 'w');
-	if (game->key->s && t_game_check_collisions(game, game->player, "s"))
+	if (game->key->s && t_game_check_collisions(game, player, "s"))
 		move_player(game, 's');
-	if (game->key->a && t_game_check_collisions(game, game->player, "a"))
+	if (game->key->a && t_game_check_collisions(game, player, "a"))
 		move_player(game, 'a');
-	if (game->key->d && t_game_check_collisions(game, game->player, "d"))
+	if (game->key->d && t_game_check_collisions(game, player, "d"))
 		move_player(game, 'd');
 	if (game->key->left)
-		game->player->r = clamp_rotation(game->player->r - rotation_delta);
+		player->r = t_game_clamp_rotation(player->r - rotation_delta);
 	if (game->key->right)
-		game->player->r = clamp_rotation(game->player->r + rotation_delta);
+		player->r = t_game_clamp_rotation(player->r + rotation_delta);
 }

@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/14 17:45:14 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/17 20:23:38 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,12 @@
 # include "t_map_struct.h"
 # include "t_image_struct.h"
 # include "t_key_struct.h"
-
-/* Redefinition for misidentification of libmath */
-# ifndef M_PI
-#  define M_PI 3.14159265358979323846
-# endif
+# include "t_mouse_struct.h"
 
 /* Window related macros: */
 # define W_TITLE "cub3D"
-# define W_WIDTH 1280
-# define W_HEIGHT 720
+# define W_WIDTH 960
+# define W_HEIGHT 540
 
 /* Texture size: */
 # define TEX_SIZE 64
@@ -38,13 +34,13 @@
 # define NO_EVENT 0
 # define KEY_PRESS 1
 # define KEY_RELEASE 2
-# define MOUSE_MOTION 64
+# define PTR_MOTION 64
 
 /* X11/MLX events: */
+# define ON_DESTROY 17
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
-# define ON_DESTROY 17
-# define MOUSE_MOVE 6
+# define ON_MOTION 6
 
 /* X11/MLX key codes: */
 # define K_ESC 65307
@@ -67,14 +63,14 @@
 /* Divisor of the wall slide speed. Increase to slide slower: */
 # define SLIDE_DIVISOR 2
 
-/* Multiplier of the mouse rotation speed. Increase to rotate faster: */
-# define MOUSE_MULTIPLIER 16
+/* Multiplier of the mouse's rotation speed. Increase to rotate faster: */
+# define MOUSE_MULTIPLIER 4
 
 /* Definition of minimap cell colors: */
 # define BLACK 0
 # define LIME 0x00A2CD5A
 # define GREEN 0x00426F42
-# define SWAMP 0x00548B54
+# define SWAMP 0x002F4F4F
 # define OLIVE 0x002F4F2F
 
 /* Definition of minimap player colors: */
@@ -85,13 +81,24 @@
 # define RED4 0x00FF0000
 # define RED5 0x00FF4500
 
+/* Definition of a camera plane's side distance size: */
+# define FOV 90
+
+/* Defines an abstract plane's direction.
+ */
+typedef struct s_plane
+{
+	float	x;
+	float	y;
+}	t_plane;
+
 /* Defines a complete execution instance of "cub3D", storing every crucial
  * game struct inside, as well as Minilibx instance attributes.
+ * 
+ * The variables "plane", "delta" and "new_delta" are not memory allocated.
  */
 typedef struct s_game
 {
-	struct timeval	delta;
-	struct timeval	new_delta;
 	void			*mlx;
 	void			*mlx_window;
 	void			*no_texture;
@@ -104,8 +111,12 @@ typedef struct s_game
 	t_map			*map;
 	t_image			*image;
 	t_image			*minimap;
-	t_image			*minimap_background;
+	t_image			*backgrd;
 	t_key			*key;
+	t_mouse			*mouse;
+	t_plane			plane;
+	struct timeval	delta;
+	struct timeval	new_delta;
 }	t_game;
 
 t_game	*t_game_build(void);
@@ -125,6 +136,7 @@ void	t_game_draw_minimap_player(t_game *game, int orientation);
 void	t_game_minimap_to_window_h(t_game *game, int *x, int *y);
 void	t_game_minimap_to_window_v(t_game *game, int *x, int *y);
 void	t_game_minimap_show(t_game *game);
+void	t_game_cube_show(t_game *game);
 void	t_game_init_colors(t_cub *file, t_game *game);
 void	t_game_check_keys(t_game *game);
 void	t_game_check_mouse(t_game *game);
@@ -133,6 +145,7 @@ int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);
 int		t_game_populate(t_cub *file, t_game **game_ref);
 int		t_game_check_collisions(t_game *g, t_player *p, char *direction);
+float	t_game_clamp_rotation(float rotation);
 float	t_game_delta(t_game *game);
 
 #endif

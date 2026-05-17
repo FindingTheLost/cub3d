@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_draw_minimap_player.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/08 03:09:51 by rogde-so          #+#    #+#             */
-/*   Updated: 2026/05/13 19:26:35 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/17 19:43:57 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/17 19:43:59 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * and "sinf" to add to the direction the player is facing. "roundf" is used
  * to make the pixels not look so wobly by rounding up.
  */
-static	void	draw_player_nose(t_game *game, size_t tile, int color)
+static void	draw_player_nose(t_game *game, size_t tile, int color)
 {
 	int	x;
 	int	y;
@@ -50,7 +50,7 @@ static	void	draw_player_nose(t_game *game, size_t tile, int color)
  * The increment 0.05f is of good quality, maximum should around 0.15f but
  * some quality can be lost.
  */
-static	void	draw_inner_circle(t_game *game, size_t tile, int rd, int color)
+static void	draw_inner_circle(t_game *game, size_t tile, int rd, int color)
 {
 	float	angle;
 	int		player_x;

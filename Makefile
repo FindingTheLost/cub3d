@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/14 01:40:26 by rogde-so         ###   ########.fr        #
+#    Updated: 2026/05/17 21:06:05 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME		= cub3D
 
 CC			= cc
 
-CFLAGS		= -Wall -Wextra -Werror -I. -Ilibft
+CFLAGS		= -Wall -Wextra -Werror
 
-MATHLIB		= -lm -O3 -march=native -flto -ftree-vectorize -funroll-loops -ffast-math
+MATHLIB		= -lm
 
 HDR			= ./src/cub3d.h										\
 			  ./src/parse_input/parse_input.h					\
@@ -62,6 +62,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_minimap_to_window_h.c	\
 			  ./src/structs/t_game/t_game_minimap_to_window_v.c	\
 			  ./src/structs/t_game/t_game_minimap_show.c		\
+			  ./src/structs/t_game/t_game_cube_show.c			\
 			  ./src/structs/t_game/t_game_error.c				\
 			  ./src/structs/t_game/t_game_init_colors.c			\
 			  ./src/structs/t_game/t_game_init_mlx.c			\
@@ -70,6 +71,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_check_keys.c			\
 			  ./src/structs/t_game/t_game_check_mouse.c			\
 			  ./src/structs/t_game/t_game_check_collisions.c	\
+			  ./src/structs/t_game/t_game_clamp_rotation.c		\
 			  ./src/structs/t_game/t_game_delta.c				\
 			  ./src/structs/t_player/t_player_build.c			\
 			  ./src/structs/t_player/t_player_debug.c			\
@@ -91,11 +93,16 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_key/t_key_destroy.c				\
 			  ./src/structs/t_key/t_key_error.c					\
 			  ./src/structs/t_key/t_key_populate.c				\
+			  ./src/structs/t_mouse/t_mouse_build.c				\
+			  ./src/structs/t_mouse/t_mouse_debug.c				\
+			  ./src/structs/t_mouse/t_mouse_destroy.c			\
+			  ./src/structs/t_mouse/t_mouse_error.c				\
+			  ./src/structs/t_mouse/t_mouse_populate.c			\
 			  ./src/game/game.c									\
-			  ./src/game/game_check_resolution.c				\
-			  ./src/game/game_init_vars.c						\
-			  ./src/game/game_init_hooks.c						\
-			  ./src/game/game_update.c
+			  ./src/game/game_update.c							\
+			  ./src/game/game_init_resolution.c					\
+			  ./src/game/game_init_variables.c					\
+			  ./src/game/game_init_hooks.c
 
 OBJ			= $(SRC:.c=.o)
 
@@ -110,7 +117,7 @@ MLXFLAGS	= -std=gnu11 -lX11 -lXext
 all: $(NAME)
 
 $(NAME): $(HDR) $(LIBFT) $(MLX) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLXFLAGS) $(MATHLIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLXFLAGS) $(MATHLIB) -o $(NAME)
 
 $(LIBFT):
 	make -C libft

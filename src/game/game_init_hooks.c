@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_init_hooks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/14 02:34:03 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/17 20:29:07 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-#include "src/structs/t_game_struct.h"
 
 static int	on_window_close(t_game *game)
 {
@@ -20,20 +19,23 @@ static int	on_window_close(t_game *game)
 	return (0);
 }
 
+/* The "ON_MOTION" (motion notify) event, always sends two ints as parameters
+ * to identify "x" and "y" mouse positions in the window.
+ */
 static int	on_mouse_move(int x, int y, t_game *game)
 {
 	(void)y;
-	if (game->key->mouse_x != -1)
+	if (game->mouse->x != -1)
 	{
-		if (x > game->key->mouse_x)
-			game->key->mouse_axis = 1;
-		else if (x < game->key->mouse_x)
-			game->key->mouse_axis = -1;
+		if (x > game->mouse->x)
+			game->mouse->x_dir = 1;
+		else if (x < game->mouse->x)
+			game->mouse->x_dir = -1;
 		else
-			game->key->mouse_axis = 0;
+			game->mouse->x_dir = 0;
 	}
-	game->key->mouse_x = x;
-	return(0);
+	game->mouse->x = x;
+	return (0);
 }
 
 /* The "ON_KEYUP" event always sends an int as parameter to identify the key
@@ -97,8 +99,7 @@ void	game_init_hooks(t_game *game)
 	mlx_hook(game->mlx_window, ON_DESTROY, NO_EVENT, &on_window_close, game);
 	mlx_hook(game->mlx_window, ON_KEYDOWN, KEY_PRESS, &on_key_press, game);
 	mlx_hook(game->mlx_window, ON_KEYUP, KEY_RELEASE, &on_key_release, game);
-	mlx_hook(game->mlx_window, ON_KEYUP, KEY_RELEASE, &on_key_release, game);
-	mlx_hook(game->mlx_window, MOUSE_MOVE, MOUSE_MOTION, &on_mouse_move, game);
+	mlx_hook(game->mlx_window, ON_MOTION, PTR_MOTION, &on_mouse_move, game);
 	mlx_loop_hook(game->mlx, &game_update, game);
 	//mlx_mouse_hide(game->mlx, game->mlx_window);
 }

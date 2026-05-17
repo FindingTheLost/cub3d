@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_init_vars.c                                   :+:      :+:    :+:   */
+/*   game_init_variables.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:20:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/11 17:34:17 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/17 20:22:56 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
  * Then paints the minimap's background image to black (0). And frees the
  * "t_cub" struct representing the ".cub" file passed as parameter.
  */
-int	game_init_vars(t_cub *file, t_game **game)
+int	game_init_variables(t_cub *file, t_game **game)
 {
 	if (!t_game_populate(file, game))
 		return (t_cub_destroy(file), false);
@@ -38,12 +38,13 @@ int	game_init_vars(t_cub *file, t_game **game)
 		return (t_game_destroy(*game), t_cub_destroy(file), false);
 	if (!t_image_populate((*game)->mlx, W_WIDTH, W_HEIGHT, &(*game)->minimap))
 		return (t_game_destroy(*game), t_cub_destroy(file), false);
-	if (!t_image_populate((*game)->mlx, W_WIDTH, W_HEIGHT,
-			&(*game)->minimap_background))
+	if (!t_image_populate((*game)->mlx, W_WIDTH, W_HEIGHT, &(*game)->backgrd))
 		return (t_game_destroy(*game), t_cub_destroy(file), false);
-	t_game_draw_background((*game)->minimap_background, W_WIDTH, W_HEIGHT, 0);
 	if (!t_key_populate(&(*game)->key))
 		return (t_game_destroy(*game), t_cub_destroy(file), false);
+	if (!t_mouse_populate(&(*game)->mouse))
+		return (t_game_destroy(*game), t_cub_destroy(file), false);
+	t_game_draw_background((*game)->backgrd, W_WIDTH, W_HEIGHT, 0);
 	t_cub_destroy(file);
 	return (true);
 }

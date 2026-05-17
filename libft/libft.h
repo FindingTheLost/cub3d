@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:13:34 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/13 23:17:03 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/17 20:50:20 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <signal.h>
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stddef.h>
@@ -36,9 +37,18 @@
 /* Include if testing libft string related original functions or specifically
  * using the math library. Also append the respective variable to the make rule
  * in the Makefile (at the end of the "ar" command).
+ *
+ * For the readline functions, make sure to install the packages "readline",
+ * "libreadline" or "libreadline-dev", depending on the linux distribution.
  */
 # include <math.h>
 //# include <bsd/string.h>
+//# include <sys/signal.h>
+//# include <sys/types.h>
+//# include <sys/time.h>
+//# include <sys/stat.h>
+//# include <readline/readline.h>
+//# include <readline/history.h>
 
 /*===========================| MACRO DEFINITIONS |============================*/
 
@@ -194,8 +204,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 /*=========================| LINKED LIST FUNCTIONS |==========================*/
 
 int		ft_lstsize(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *_new);
-void	ft_lstadd_front(t_list **lst, t_list *_new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   t_mouse_build.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 18:22:04 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:18:37 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/17 19:54:55 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/17 19:58:01 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#include "../t_mouse_struct.h"
 
-# include "../../libft/libft.h"
-# include "../structs/t_cub_struct.h"
-# include "../structs/t_game_struct.h"
+t_mouse	*t_mouse_build(void)
+{
+	t_mouse	*mouse;
 
-int		game(t_cub *file);
-int		game_update(t_game *game);
-int		game_init_resolution(void);
-int		game_init_variables(t_cub *file, t_game **game);
-void	game_init_hooks(t_game *game);
-
-#endif
+	mouse = malloc(sizeof(t_mouse));
+	if (!mouse)
+		return (t_mouse_malloc_error(), NULL);
+	mouse->x = -1;
+	mouse->y = -1;
+	mouse->x_dir = 0;
+	mouse->y_dir = 0;
+	return (mouse);
+}

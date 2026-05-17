@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_minimap_show.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/07 21:25:22 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/13 01:44:37 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/17 19:44:09 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/17 20:26:00 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static int	check_map_aspect_ratio(size_t map_width, size_t map_height)
 void	t_game_minimap_show(t_game *game)
 {
 	t_image	*minimap;
-	t_image	*bg;
+	t_image	*backgrd;
 	int		x;
 	int		y;
 
 	minimap = game->minimap;
-	bg = game->minimap_background;
+	backgrd = game->backgrd;
 	if (check_map_aspect_ratio(game->map->map_width, game->map->map_height))
 	{
 		t_game_draw_minimap_h(game);
@@ -66,6 +66,6 @@ void	t_game_minimap_show(t_game *game)
 		t_game_minimap_to_window_v(game, &x, &y);
 		add_horizontal_offset(game, &x);
 	}
-	mlx_put_image_to_window(game->mlx, game->mlx_window, bg->image, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->mlx_window, backgrd->image, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->mlx_window, minimap->image, x, y);
 }

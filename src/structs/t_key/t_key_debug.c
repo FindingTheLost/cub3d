@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_key_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:54:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/14 02:09:15 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/17 19:58:51 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,4 @@ void	t_key_debug(t_key *key)
 	ft_printf("Key LEFT: %i\n", key->left);
 	ft_printf("Key RIGHT: %i\n", key->right);
 	ft_printf("Key SPACE: %i\n", key->space);
-	ft_printf("Key MOUSE_X: %i\n", key->mouse_x);
-	ft_printf("Key MOUSE_AXIS: %i\n", key->mouse_axis);
 }

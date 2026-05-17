@@ -6,13 +6,13 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:38:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/07 21:54:29 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/17 20:27:28 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
 
-void	t_game_destroy(t_game *game)
+static void	destroy_inner_structs(t_game *game)
 {
 	if (game->player)
 		t_player_destroy(game->player);
@@ -22,10 +22,17 @@ void	t_game_destroy(t_game *game)
 		t_image_destroy(game->mlx, game->image);
 	if (game->minimap)
 		t_image_destroy(game->mlx, game->minimap);
-	if (game->minimap_background)
-		t_image_destroy(game->mlx, game->minimap_background);
+	if (game->backgrd)
+		t_image_destroy(game->mlx, game->backgrd);
 	if (game->key)
 		t_key_destroy(game->key);
+	if (game->mouse)
+		t_mouse_destroy(game->mouse);
+}
+
+void	t_game_destroy(t_game *game)
+{
+	destroy_inner_structs(game);
 	if (game->no_texture)
 		mlx_destroy_image(game->mlx, game->no_texture);
 	if (game->so_texture)

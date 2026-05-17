@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:45:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/14 02:08:33 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/17 20:15:45 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../../libft/libft.h"
 
-/* Defines a set of keys that are pressed and held in a given frame.
+/* Defines a set of keyboard keys that are pressed and held in a given frame.
  */
 typedef struct s_key
 {
@@ -27,8 +27,6 @@ typedef struct s_key
 	int	left;
 	int	right;
 	int	space;
-	int mouse_x;
-	int mouse_axis;
 }	t_key;
 
 t_key	*t_key_build(void);

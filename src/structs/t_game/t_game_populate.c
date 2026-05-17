@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 22:26:54 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/13 18:02:56 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/17 20:26:37 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	t_game_populate(t_cub *file, t_game **game_ref)
 	t_game_init_colors(file, game);
 	gettimeofday(&game->delta, NULL);
 	gettimeofday(&game->new_delta, NULL);
+	game->plane.x = 0;
+	game->plane.y = 0;
 	return (true);
 }
