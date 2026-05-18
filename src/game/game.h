@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:22:04 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:18:37 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 21:04:38 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int		game(t_cub *file);
 int		game_update(t_game *game);
-int		game_init_resolution(void);
+int		game_init_screen(void);
 int		game_init_variables(t_cub *file, t_game **game);
 void	game_init_hooks(t_game *game);
 

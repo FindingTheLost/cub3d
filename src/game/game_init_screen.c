@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_init_resolution.c                             :+:      :+:    :+:   */
+/*   game_init_screen.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 00:09:01 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:17:47 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 21:04:22 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+
+/* The number 16 represents the horizontal aspect ratio of the supported
+ * resolutions, which is 16:9.
+ */
+static int	wrong_ray_amount(void)
+{
+	if ((int)RAY_AMOUNT != (float)RAY_AMOUNT)
+		return (true);
+	if (RAY_AMOUNT <= 1)
+		return (true);
+	if (RAY_AMOUNT > W_WIDTH)
+		return (true);
+	if ((int)W_WIDTH / RAY_AMOUNT != (float)W_WIDTH / RAY_AMOUNT)
+		return (true);
+	return (false);
+}
 
 static int	wrong_resolution(void)
 {
@@ -35,13 +51,20 @@ static int	wrong_resolution(void)
 	return (true);
 }
 
-int	game_init_resolution(void)
+int	game_init_screen(void)
 {
 	if (wrong_resolution())
 	{
 		ft_printf(RED_LIGH "Error\n" DEF);
 		ft_printf("Aspect ratio or resolution not supported, please change");
 		ft_printf(" W_WIDTH and W_HEIGHT macro values and recompile!\n");
+		return (false);
+	}
+	if (wrong_ray_amount())
+	{
+		ft_printf(RED_LIGH "Error\n" DEF);
+		ft_printf("Bad number of rays were set, please change RAY_AMOUNT");
+		ft_printf(" macro value and recompile!\n");
 		return (false);
 	}
 	return (true);

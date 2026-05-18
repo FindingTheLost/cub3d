@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/17 21:06:05 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/18 21:05:02 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_mouse/t_mouse_populate.c			\
 			  ./src/game/game.c									\
 			  ./src/game/game_update.c							\
-			  ./src/game/game_init_resolution.c					\
+			  ./src/game/game_init_screen.c						\
 			  ./src/game/game_init_variables.c					\
 			  ./src/game/game_init_hooks.c
 

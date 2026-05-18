@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 17:04:03 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 20:59:50 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@
 /* Multiplier of the mouse's rotation speed. Increase to rotate faster: */
 # define MOUSE_MULTIPLIER 4
 
+/* Definition of a camera plane's side distance size: */
+# define FOV 90
+
+/* Definition of zero delta value (fine-tune this macro by trial and error): */
+# define ZERO_DELTA 0.0001f
+
+/* Defines the amount of rays in the game's player view: */
+# define RAY_AMOUNT 960
+
 /* Definition of minimap cell colors: */
 # define BLACK 0
 # define LIME 0x00A2CD5A
@@ -80,12 +89,6 @@
 # define RED3 0x00FFA500
 # define RED4 0x00FF0000
 # define RED5 0x00FF4500
-
-/* Definition of a camera plane's side distance size: */
-# define FOV 90
-
-/* Definition of zero delta value (fine-tune this macro by trial and error): */
-# define ZERO_DELTA 0.0001f
 
 /* Defines an abstract plane's direction.
  */
