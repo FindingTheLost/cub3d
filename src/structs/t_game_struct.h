@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:23:38 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:04:03 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@
 
 /* Definition of a camera plane's side distance size: */
 # define FOV 90
+
+/* Definition of zero delta value (fine-tune this macro by trial and error): */
+# define ZERO_DELTA 0.0001f
 
 /* Defines an abstract plane's direction.
  */

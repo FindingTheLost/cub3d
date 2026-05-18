@@ -1,11 +1,18 @@
 STUFF TO DO:
 ============
+
+Trivial:
+--------
 - Make README.md.
 - Add flashy compilation effects to the Makefile.
 - Add many more maps and textures.
+
+Bonus:
+------
 - Add doors that can be opened and closed to the game.
 - Add some animated sprites.
+
+Challenging:
+------------
 - Tweak minimap camera movement to get better results (use 2 * x -1).
-- Take care of pythagoras theorem for diagonal movement.
 - Fix derpy mouse movement.
-- Fix very small delta times becoming 0, resulting in no player movement.
