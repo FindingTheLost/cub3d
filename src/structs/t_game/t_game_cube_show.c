@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 22:14:58 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 20:47:46 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 21:50:07 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,15 @@
  * 	"tanf(HALF_FOV_RADIANS)";
  */
 
-/* Fun
+/* Function that sets a ray's 'x' and 'y' position based on the ratio of the
+ * current ray in the perpendicular plane, starting from -1 and ending in 1.
+ *
+ * The "camera" variable expression's "2 *" and "- 1" transforms a ratio from
+ * 0 to 1 (0 to 100) into 0 to 2 and then -1 to 1, respectively.
+ * The ratio from the first ray to the last is calculated from dividing the
+ * current index by the number of rays - 1. If "index" is 0 then it will result
+ * in the ray 0 (the first and leftmost one, which, after "2 *" and "- 1" will
+ * become -1). If the "index" is the last then it will result in the last ray.
  */
 static void	set_ray(t_game *game, size_t index, float *ray_x, float *ray_y)
 {
@@ -77,12 +85,10 @@ void	t_game_cube_show(t_game *game)
 
 	set_plane(game);
 	index = 0;
-	t_game_draw_background(game->image, W_WIDTH, W_HEIGHT, 0);
-	t_game_draw_pixel(game->image, W_WIDTH / 2, W_HEIGHT / 2, 0x00FF0000);
 	while (index < RAY_AMOUNT)
 	{
 		set_ray(game, index, &ray_x, &ray_y);
-		t_game_draw_pixel(game->image, W_WIDTH / 2 + ray_x * 100, W_HEIGHT / 2 + ray_y * 100, 0x00FFFFFF);
+		//dda_ray();
 		index++;
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->image->image, 0, 0);

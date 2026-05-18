@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:50:27 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:15:53 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 22:04:07 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_key	*t_key_build(void)
 	key->m = false;
 	key->left = false;
 	key->right = false;
+	key->ctrl = false;
 	key->space = false;
 	return (key);
 }

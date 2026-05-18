@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:29:07 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 22:06:25 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ static int	on_window_close(t_game *game)
 static int	on_mouse_move(int x, int y, t_game *game)
 {
 	(void)y;
-	if (game->mouse->x != -1)
-	{
-		if (x > game->mouse->x)
-			game->mouse->x_dir = 1;
-		else if (x < game->mouse->x)
-			game->mouse->x_dir = -1;
-		else
-			game->mouse->x_dir = 0;
-	}
 	game->mouse->x = x;
 	return (0);
 }
@@ -55,6 +46,8 @@ static int	on_key_release(int key_symbol, t_game *game)
 		game->key->left = false;
 	else if (key_symbol == K_RIGHT)
 		game->key->right = false;
+	else if (key_symbol == K_CTRL)
+		game->key->ctrl = false;
 	else if (key_symbol == K_SPACE)
 		game->key->space = false;
 	else if (key_symbol == K_M)
@@ -81,6 +74,8 @@ static int	on_key_press(int key_symbol, t_game *game)
 		game->key->left = true;
 	else if (key_symbol == K_RIGHT)
 		game->key->right = true;
+	else if (key_symbol == K_CTRL)
+		game->key->ctrl = true;
 	else if (key_symbol == K_SPACE)
 		game->key->space = true;
 	return (0);
@@ -93,6 +88,8 @@ static int	on_key_press(int key_symbol, t_game *game)
  * Since minilibx does not posess holding key behaviours, it had to be hard
  * coded with booleans. It becomes "true" when a key is held down and back
  * to "false" when released, for all four directions.
+ *
+ * The function "mlx_mouse_hide()" has leaks so it's a no-no.
  */
 void	game_init_hooks(t_game *game)
 {
@@ -101,5 +98,4 @@ void	game_init_hooks(t_game *game)
 	mlx_hook(game->mlx_window, ON_KEYUP, KEY_RELEASE, &on_key_release, game);
 	mlx_hook(game->mlx_window, ON_MOTION, PTR_MOTION, &on_mouse_move, game);
 	mlx_loop_hook(game->mlx, &game_update, game);
-	//mlx_mouse_hide(game->mlx, game->mlx_window);
 }

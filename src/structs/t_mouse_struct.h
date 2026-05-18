@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:48:22 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:05:20 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 22:06:46 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ typedef struct s_mouse
 {
 	int	x;
 	int	y;
-	int	x_dir;
-	int	y_dir;
 }	t_mouse;
 
 t_mouse	*t_mouse_build(void);

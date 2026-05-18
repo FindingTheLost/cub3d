@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:55:11 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 19:59:38 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 22:07:03 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,4 @@ void	t_mouse_debug(t_mouse *mouse)
 	ft_printf(RED_BOLD "T_MOUSE STRUCT DEBUG:\n" DEF);
 	ft_printf("Key MOUSE_X: %i\n", mouse->x);
 	ft_printf("Key MOUSE_Y: %i\n", mouse->x);
-	ft_printf("Key MOUSE_X_DIR: %i\n", mouse->x_dir);
-	ft_printf("Key MOUSE_Y_DIR: %i\n", mouse->y_dir);
 }

@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 20:59:50 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 22:03:36 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define K_DOWN 65364
 # define K_LEFT 65361
 # define K_RIGHT 65363
+# define K_CTRL 65507
 # define K_SPACE 32
 # define K_W 119
 # define K_S 115
@@ -65,6 +66,9 @@
 
 /* Multiplier of the mouse's rotation speed. Increase to rotate faster: */
 # define MOUSE_MULTIPLIER 4
+
+/* Divisor of the mouse's X position for rotation. Decrease to rotate faster: */
+# define MOUSE_DIVISOR 10
 
 /* Definition of a camera plane's side distance size: */
 # define FOV 90

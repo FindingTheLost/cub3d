@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:54:55 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 19:58:01 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 22:06:57 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ t_mouse	*t_mouse_build(void)
 		return (t_mouse_malloc_error(), NULL);
 	mouse->x = -1;
 	mouse->y = -1;
-	mouse->x_dir = 0;
-	mouse->y_dir = 0;
 	return (mouse);
 }
