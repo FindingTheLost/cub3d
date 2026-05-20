@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 22:03:36 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/19 00:49:00 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define K_LEFT 65361
 # define K_RIGHT 65363
 # define K_CTRL 65507
+# define K_SHIFT 65505
 # define K_SPACE 32
 # define K_W 119
 # define K_S 115
@@ -59,6 +60,7 @@
 /* Player speed (float in cells per second) and rotation (in radians) per frame:
  *     (in case of a slow computer, increase these values) */
 # define SPEED 2.0f
+# define SPRINT 1.0f
 # define ROTATION 4.0f
 
 /* Divisor of the wall slide speed. Increase to slide slower: */
@@ -83,7 +85,7 @@
 # define BLACK 0
 # define LIME 0x00A2CD5A
 # define GREEN 0x00426F42
-# define SWAMP 0x002F4F4F
+# define SWAMP 0x00003000
 # define OLIVE 0x002F4F2F
 
 /* Definition of minimap player colors: */
@@ -154,7 +156,7 @@ void	t_game_move_player(t_player *player, char key);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);
 int		t_game_populate(t_cub *file, t_game **game_ref);
-int		t_game_check_collisions(t_game *g, t_player *p, char *direction);
+int		t_game_check_collisions(t_game *g, t_player *p, char *dir, float speed);
 float	t_game_clamp_rotation(float rotation);
 float	t_game_delta(t_game *game);
 

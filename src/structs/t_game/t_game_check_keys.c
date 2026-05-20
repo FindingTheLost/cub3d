@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 20:55:31 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 19:32:24 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/19 00:42:23 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,30 +109,30 @@
  * 0 being 0, and 'y' would add 1 to its value due to "sin" of 0 being 1,
  * essentially making the player move "south" even when pressing the 'A' key.
  */
-static void	move_player(t_game *game, char key)
+static void	move_player(t_game *game, char key, float speed)
 {
 	t_player	*player;
 
 	player = game->player;
 	if (key == 'w')
 	{
-		player->x += cosf(player->r) * SPEED * t_game_delta(game);
-		player->y += sinf(player->r) * SPEED * t_game_delta(game);
+		player->x += cosf(player->r) * speed * t_game_delta(game);
+		player->y += sinf(player->r) * speed * t_game_delta(game);
 	}
 	else if (key == 's')
 	{
-		player->x -= cosf(player->r) * SPEED * t_game_delta(game);
-		player->y -= sinf(player->r) * SPEED * t_game_delta(game);
+		player->x -= cosf(player->r) * speed * t_game_delta(game);
+		player->y -= sinf(player->r) * speed * t_game_delta(game);
 	}
 	else if (key == 'a')
 	{
-		player->x += sinf(player->r) * SPEED * t_game_delta(game);
-		player->y -= cosf(player->r) * SPEED * t_game_delta(game);
+		player->x += sinf(player->r) * speed * t_game_delta(game);
+		player->y -= cosf(player->r) * speed * t_game_delta(game);
 	}
 	else if (key == 'd')
 	{
-		player->x -= sinf(player->r) * SPEED * t_game_delta(game);
-		player->y += cosf(player->r) * SPEED * t_game_delta(game);
+		player->x -= sinf(player->r) * speed * t_game_delta(game);
+		player->y += cosf(player->r) * speed * t_game_delta(game);
 	}
 }
 
@@ -145,17 +145,22 @@ void	t_game_check_keys(t_game *game)
 {
 	t_player	*player;
 	float		rotation_delta;
+	float		speed;
 
 	player = game->player;
 	rotation_delta = ROTATION * t_game_delta(game);
-	if (game->key->w && t_game_check_collisions(game, player, "w"))
-		move_player(game, 'w');
-	if (game->key->s && t_game_check_collisions(game, player, "s"))
-		move_player(game, 's');
-	if (game->key->a && t_game_check_collisions(game, player, "a"))
-		move_player(game, 'a');
-	if (game->key->d && t_game_check_collisions(game, player, "d"))
-		move_player(game, 'd');
+	if (game->key->shift)
+		speed = SPEED + SPRINT;
+	else
+		speed = SPEED;
+	if (game->key->w && t_game_check_collisions(game, player, "w", speed))
+		move_player(game, 'w', speed);
+	if (game->key->s && t_game_check_collisions(game, player, "s", speed))
+		move_player(game, 's', speed);
+	if (game->key->a && t_game_check_collisions(game, player, "a", speed))
+		move_player(game, 'a', speed);
+	if (game->key->d && t_game_check_collisions(game, player, "d", speed))
+		move_player(game, 'd', speed);
 	if (game->key->left)
 		player->r = t_game_clamp_rotation(player->r - rotation_delta);
 	if (game->key->right)

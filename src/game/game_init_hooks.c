@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 22:06:25 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/19 00:39:06 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static int	on_window_close(t_game *game)
 static int	on_mouse_move(int x, int y, t_game *game)
 {
 	(void)y;
-	game->mouse->x = x;
+	if (game->mouse->x == x)
+		game->mouse->x = -1;
+	else
+		game->mouse->x = x;
 	return (0);
 }
 
@@ -42,6 +45,8 @@ static int	on_key_release(int key_symbol, t_game *game)
 		game->key->a = false;
 	else if (key_symbol == K_D)
 		game->key->d = false;
+	else if (key_symbol == K_M)
+		game->key->m = ft_fbool(game->key->m);
 	else if (key_symbol == K_LEFT)
 		game->key->left = false;
 	else if (key_symbol == K_RIGHT)
@@ -50,8 +55,8 @@ static int	on_key_release(int key_symbol, t_game *game)
 		game->key->ctrl = false;
 	else if (key_symbol == K_SPACE)
 		game->key->space = false;
-	else if (key_symbol == K_M)
-		game->key->m = ft_fbool(game->key->m);
+	else if (key_symbol == K_SHIFT)
+		game->key->shift = false;
 	return (0);
 }
 
@@ -78,6 +83,8 @@ static int	on_key_press(int key_symbol, t_game *game)
 		game->key->ctrl = true;
 	else if (key_symbol == K_SPACE)
 		game->key->space = true;
+	else if (key_symbol == K_SHIFT)
+		game->key->shift = true;
 	return (0);
 }
 

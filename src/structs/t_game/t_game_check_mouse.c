@@ -6,19 +6,27 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:20:22 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 22:20:20 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/18 22:48:15 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
 
+/* In Debian, the function "mlx_mouse_move()" function does not seem to work,
+ * it does not move the mouse to the center at all.
+ *
+ * Also, to test player orientation at game start in Debian, make sure the mouse
+ * pointer does not become inside the window when booting the game, or else, it
+ * will make the player look at the rotation value of the current mouse
+ * position.
+ */
 void	t_game_check_mouse(t_game *game)
 {
 	t_player	*player;
 	float		rat_ratio;
 	float		rotation_delta;
 
-	if (game->key->ctrl)
+	if (game->mouse->x == -1 || game->key->ctrl)
 		return ;
 	player = game->player;
 	rat_ratio = (game->mouse->x - (W_WIDTH / 2)) / MOUSE_DIVISOR;

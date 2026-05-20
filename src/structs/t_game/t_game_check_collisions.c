@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 20:52:45 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/13 19:31:44 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/19 00:47:44 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@
  * and the next tile is the absolute corner of a tile, the first option will be
  * chosen (no more space to make a third option due to norminette, although a
  * sensible decision would be to not make the player move as well).
+ *
+ * The function "slide_speed" does not make the player slide sprint due to not
+ * having any more space in the function parameters.
  */
 static float	slide_speed(t_game *game)
 {
@@ -119,30 +122,30 @@ static int	good_tile(t_game *game, int x, int y, char *direction)
  * Then, if it is a wall, slide on it according to the "sin" and "cos" ratio
  * of the perpendicular axis of the wall.
  */
-int	t_game_check_collisions(t_game *g, t_player *p, char *direction)
+int	t_game_check_collisions(t_game *g, t_player *p, char *dir, float speed)
 {
-	if (ft_strbcmp(direction, "w"))
+	if (ft_strbcmp(dir, "w"))
 	{
-		if (!good_tile(g, p->x + cosf(p->r) * SPEED * t_game_delta(g),
-				p->y + sinf(p->r) * SPEED * t_game_delta(g), direction))
+		if (!good_tile(g, p->x + cosf(p->r) * speed * t_game_delta(g),
+				p->y + sinf(p->r) * speed * t_game_delta(g), dir))
 			return (false);
 	}
-	else if (ft_strbcmp(direction, "s"))
+	else if (ft_strbcmp(dir, "s"))
 	{
-		if (!good_tile(g, p->x - cosf(p->r) * SPEED * t_game_delta(g),
-				p->y - sinf(p->r) * SPEED * t_game_delta(g), direction))
+		if (!good_tile(g, p->x - cosf(p->r) * speed * t_game_delta(g),
+				p->y - sinf(p->r) * speed * t_game_delta(g), dir))
 			return (false);
 	}
-	else if (ft_strbcmp(direction, "a"))
+	else if (ft_strbcmp(dir, "a"))
 	{
-		if (!good_tile(g, p->x + sinf(p->r) * SPEED * t_game_delta(g),
-				p->y - cosf(p->r) * SPEED * t_game_delta(g), direction))
+		if (!good_tile(g, p->x + sinf(p->r) * speed * t_game_delta(g),
+				p->y - cosf(p->r) * speed * t_game_delta(g), dir))
 			return (false);
 	}
-	else if (ft_strbcmp(direction, "d"))
+	else if (ft_strbcmp(dir, "d"))
 	{
-		if (!good_tile(g, p->x - sinf(p->r) * SPEED * t_game_delta(g),
-				p->y + cosf(p->r) * SPEED * t_game_delta(g), direction))
+		if (!good_tile(g, p->x - sinf(p->r) * speed * t_game_delta(g),
+				p->y + cosf(p->r) * speed * t_game_delta(g), dir))
 			return (false);
 	}
 	return (true);
