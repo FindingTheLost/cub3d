@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init_hooks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/19 00:39:06 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/20 17:49:18 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ static int	on_key_press(int key_symbol, t_game *game)
  * coded with booleans. It becomes "true" when a key is held down and back
  * to "false" when released, for all four directions.
  *
- * The function "mlx_mouse_hide()" has leaks so it's a no-no.
+ * The function "mlx_mouse_hide()" has leaks. A mouse_hide.supp file is provided
+ * to suppress these leaks. Test without the function to check if no leaks are
+ * present.
  */
 void	game_init_hooks(t_game *game)
 {
@@ -105,4 +107,5 @@ void	game_init_hooks(t_game *game)
 	mlx_hook(game->mlx_window, ON_KEYUP, KEY_RELEASE, &on_key_release, game);
 	mlx_hook(game->mlx_window, ON_MOTION, PTR_MOTION, &on_mouse_move, game);
 	mlx_loop_hook(game->mlx, &game_update, game);
+	mlx_mouse_hide(game->mlx, game->mlx_window);
 }

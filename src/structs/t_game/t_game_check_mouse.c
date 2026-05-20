@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_check_mouse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:20:22 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 22:48:15 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/20 17:46:42 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
  * pointer does not become inside the window when booting the game, or else, it
  * will make the player look at the rotation value of the current mouse
  * position.
+ *
+ * In the "rat_ratio" expression, the divisor 100 can be changed for faster or
+ * slower mouse movement.
  */
 void	t_game_check_mouse(t_game *game)
 {
@@ -29,7 +32,7 @@ void	t_game_check_mouse(t_game *game)
 	if (game->mouse->x == -1 || game->key->ctrl)
 		return ;
 	player = game->player;
-	rat_ratio = (game->mouse->x - (W_WIDTH / 2)) / MOUSE_DIVISOR;
+	rat_ratio = (game->mouse->x - (W_WIDTH / 2)) / ((float)W_WIDTH / 100);
 	rotation_delta = ROTATION * t_game_delta(game) * MOUSE_MULTIPLIER;
 	player->r = t_game_clamp_rotation(player->r + rotation_delta * rat_ratio);
 	mlx_mouse_move(game->mlx, game->mlx_window, W_WIDTH / 2, W_HEIGHT / 2);

@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/19 00:49:00 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/20 17:45:33 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@
 # define SLIDE_DIVISOR 2
 
 /* Multiplier of the mouse's rotation speed. Increase to rotate faster: */
-# define MOUSE_MULTIPLIER 4
-
-/* Divisor of the mouse's X position for rotation. Decrease to rotate faster: */
-# define MOUSE_DIVISOR 10
+# define MOUSE_MULTIPLIER 1
 
 /* Definition of a camera plane's side distance size: */
 # define FOV 90
@@ -79,7 +76,7 @@
 # define ZERO_DELTA 0.0001f
 
 /* Defines the amount of rays in the game's player view: */
-# define RAY_AMOUNT 960
+# define RAY_AMOUNT 60
 
 /* Definition of minimap cell colors: */
 # define BLACK 0
