@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/20 17:45:33 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:24:04 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@
 # define RED3 0x00FFA500
 # define RED4 0x00FF0000
 # define RED5 0x00FF4500
+# define RED6 0x00FF7777
 
 /* Defines an abstract plane's direction.
  */

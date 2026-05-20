@@ -6,11 +6,12 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:43:57 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/20 17:45:11 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/20 18:20:58 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
+#include <stddef.h>
 
 /* This function draws a set of pixels protruding outward from the center of
  * the player's coordinates by multiplying "i" through "length", using "cosf"
@@ -19,16 +20,14 @@
  */
 static void	draw_player_nose(t_game *game, size_t tile, int color)
 {
-	int	x;
-	int	y;
-	int	i;
-	int	length;
+	int		x;
+	int		y;
+	size_t	i;
 
 	x = game->player->x * tile;
 	y = game->player->y * tile;
 	i = 0;
-	length = 10;
-	while (i <= length)
+	while (i <= (tile / 4))
 	{
 		t_game_draw_pixel(game->minimap,
 			x + (int)roundf((cosf(game->player->r) * i)),
@@ -70,17 +69,29 @@ static void	draw_inner_circle(t_game *game, size_t tile, int rd, int color)
 
 void	t_game_draw_minimap_player(t_game *game, int orientation)
 {
+	size_t	i;
 	size_t	tile;
 
 	if (orientation)
 		tile = W_WIDTH / game->map->map_width;
 	else
 		tile = W_HEIGHT / game->map->map_height;
-	draw_inner_circle(game, tile, 1, YELLOW);
-	draw_inner_circle(game, tile, 2, RED1);
-	draw_inner_circle(game, tile, 3, RED2);
-	draw_inner_circle(game, tile, 4, RED3);
-	draw_inner_circle(game, tile, 5, RED4);
-	draw_inner_circle(game, tile, 6, RED5);
-	draw_player_nose(game, tile, YELLOW);
+	i = 1;
+	while (i <= (tile / 8))
+	{
+		if (i <= ((tile / 8) / 6))
+			draw_inner_circle(game, tile, i, YELLOW);
+		else if (i <= ((tile / 8) / 6) * 2)
+			draw_inner_circle(game, tile, i, RED1);
+		else if (i <= ((tile / 8) / 6) * 3)
+			draw_inner_circle(game, tile, i, RED2);
+		else if (i <= ((tile / 8) / 6) * 4)
+			draw_inner_circle(game, tile, i, RED3);
+		else if (i <= ((tile / 8) / 6) * 5)
+			draw_inner_circle(game, tile, i, RED4);
+		else
+			draw_inner_circle(game, tile, i, RED5);
+		i++;
+	}
+	draw_player_nose(game, tile, RED6);
 }
