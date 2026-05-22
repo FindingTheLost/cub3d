@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:43:57 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/20 18:20:58 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/22 20:31:14 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	draw_player_nose(t_game *game, size_t tile, int color)
 	x = game->player->x * tile;
 	y = game->player->y * tile;
 	i = 0;
-	while (i <= (tile / 4))
+	while (i <= (tile / 2))
 	{
 		t_game_draw_pixel(game->minimap,
 			x + (int)roundf((cosf(game->player->r) * i)),
@@ -77,17 +77,17 @@ void	t_game_draw_minimap_player(t_game *game, int orientation)
 	else
 		tile = W_HEIGHT / game->map->map_height;
 	i = 1;
-	while (i <= (tile / 8))
+	while (i <= (tile / 4))
 	{
-		if (i <= ((tile / 8) / 6))
+		if (i <= ((tile / 4) / 6))
 			draw_inner_circle(game, tile, i, YELLOW);
-		else if (i <= ((tile / 8) / 6) * 2)
+		else if (i <= ((tile / 4) / 6) * 2)
 			draw_inner_circle(game, tile, i, RED1);
-		else if (i <= ((tile / 8) / 6) * 3)
+		else if (i <= ((tile / 4) / 6) * 3)
 			draw_inner_circle(game, tile, i, RED2);
-		else if (i <= ((tile / 8) / 6) * 4)
+		else if (i <= ((tile / 4) / 6) * 4)
 			draw_inner_circle(game, tile, i, RED3);
-		else if (i <= ((tile / 8) / 6) * 5)
+		else if (i <= ((tile / 4) / 6) * 5)
 			draw_inner_circle(game, tile, i, RED4);
 		else
 			draw_inner_circle(game, tile, i, RED5);
