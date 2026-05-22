@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/18 21:05:02 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/22 19:50:50 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_draw_minimap_h.c		\
 			  ./src/structs/t_game/t_game_draw_minimap_v.c		\
 			  ./src/structs/t_game/t_game_draw_minimap_player.c	\
-			  ./src/structs/t_game/t_game_minimap_to_window_h.c	\
-			  ./src/structs/t_game/t_game_minimap_to_window_v.c	\
+			  ./src/structs/t_game/t_game_minimap_to_window.c	\
 			  ./src/structs/t_game/t_game_minimap_show.c		\
 			  ./src/structs/t_game/t_game_cube_show.c			\
 			  ./src/structs/t_game/t_game_error.c				\

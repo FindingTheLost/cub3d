@@ -14,5 +14,4 @@ Bonus:
 
 Challenging:
 ------------
-- Tweak minimap camera movement to get better results (use 2 * x -1).
-- Fix derpy mouse movement.
+- Tweak minimap player scale with resolution/map.

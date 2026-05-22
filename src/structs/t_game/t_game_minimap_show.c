@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:44:09 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:26:00 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/22 19:49:08 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_map_aspect_ratio(size_t map_width, size_t map_height)
 
 	x = map_width / 16;
 	y = map_height / 9;
-	if (x >= y)
+	if (x > y)
 		return (true);
 	return (false);
 }
@@ -56,14 +56,14 @@ void	t_game_minimap_show(t_game *game)
 	{
 		t_game_draw_minimap_h(game);
 		t_game_draw_minimap_player(game, true);
-		t_game_minimap_to_window_h(game, &x, &y);
+		t_game_minimap_to_window(game, &x, &y, true);
 		add_vertical_offset(game, &y);
 	}
 	else
 	{
 		t_game_draw_minimap_v(game);
 		t_game_draw_minimap_player(game, false);
-		t_game_minimap_to_window_v(game, &x, &y);
+		t_game_minimap_to_window(game, &x, &y, false);
 		add_horizontal_offset(game, &x);
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window, backgrd->image, 0, 0);

@@ -6,14 +6,16 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:20:22 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/20 17:46:42 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/20 23:45:24 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
 
 /* In Debian, the function "mlx_mouse_move()" function does not seem to work,
- * it does not move the mouse to the center at all.
+ * it does not move the mouse to the center at all. A fix for this is to hide
+ * the mouse with "mlx_mouse_hide()" function. Trouble is, this last function
+ * leaks memory.
  *
  * Also, to test player orientation at game start in Debian, make sure the mouse
  * pointer does not become inside the window when booting the game, or else, it

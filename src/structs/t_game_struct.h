@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/20 18:24:04 by rogde-so         ###   ########.fr       */
+/*   Updated: 2026/05/22 19:48:52 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,17 @@
 # define RED5 0x00FF4500
 # define RED6 0x00FF7777
 
-/* Defines an abstract plane's direction.
+/* Defines whether a ray hit a "North/South" or "West/East" walls: */
+# define NS_WALL 0
+# define WE_WALL 1
+
+/* Defines a 2D vector direction or two distinct numbers related to 'x' or 'y'.
  */
-typedef struct s_plane
+typedef struct s_vector
 {
 	float	x;
 	float	y;
-}	t_plane;
+}	t_vector;
 
 /* Defines a complete execution instance of "cub3D", storing every crucial
  * game struct inside, as well as Minilibx instance attributes.
@@ -124,7 +128,7 @@ typedef struct s_game
 	t_image			*backgrd;
 	t_key			*key;
 	t_mouse			*mouse;
-	t_plane			plane;
+	t_vector		camera_plane;
 	struct timeval	delta;
 	struct timeval	new_delta;
 }	t_game;
@@ -143,8 +147,7 @@ void	t_game_draw_ceiling_floor(t_game *game);
 void	t_game_draw_minimap_h(t_game *game);
 void	t_game_draw_minimap_v(t_game *game);
 void	t_game_draw_minimap_player(t_game *game, int orientation);
-void	t_game_minimap_to_window_h(t_game *game, int *x, int *y);
-void	t_game_minimap_to_window_v(t_game *game, int *x, int *y);
+void	t_game_minimap_to_window(t_game *game, int *x, int *y, int orientation);
 void	t_game_minimap_show(t_game *game);
 void	t_game_cube_show(t_game *game);
 void	t_game_init_colors(t_cub *file, t_game *game);
