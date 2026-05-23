@@ -3,8 +3,8 @@ SO assets/textures/test_valid.xpm
 WE assets/textures/test_valid.xpm
 EA assets/textures/test_valid.xpm
 
-C 0,100,200
-F 200,100,0
+C 255,165,0
+F 51,36,33
 
 111111
 100000111111

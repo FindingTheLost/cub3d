@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/22 20:33:46 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/23 02:58:06 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@
 # define ZERO_DELTA 0.0001f
 
 /* Defines the amount of rays in the game's player view: */
-# define RAY_AMOUNT 60
+# define RAY_AMOUNT 960
 
 /* Definition of minimap cell colors: */
 # define BLACK 0
@@ -94,9 +94,15 @@
 # define RED5 0x00FF4500
 # define RED6 0x00FF7777
 
-/* Defines whether a ray hit a "North/South" or "West/East" walls: */
-# define NS_WALL 0
-# define WE_WALL 1
+/* Defines whether a ray hit a "North/South" "West/East" walls: */
+# define NS 0
+# define WE 1
+
+/* Definitions for wall orientation types: */
+# define N 0
+# define S 1
+# define W 2
+# define E 3
 
 /* Defines a 2D vector direction or two distinct numbers related to 'x' or 'y'.
  */

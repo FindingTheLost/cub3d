@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 22:14:58 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/22 18:56:09 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/23 03:06:36 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,26 @@
  * 	"delta" = "xy_delta";
  * 	"inter" = "xy_inter";
  * 	"steps" = "xy_steps";
+ *
+ * This function houses the very own "DDA" algorithm to calculate each ray's
+ * distance from the player/camera plane to a wall/space.
+ *
+ * It works by keeping track of the current player's position in the map (in
+ * cells) and by incrementing either "xy_inter.x" or "xy_inter.y" depending on
+ * whether "xy_inter.x" is smaller than or larger than "xy_inter.y",
+ * respectively, by accumulating the respective "xy_delta.x" and "xy_delta.y" to
+ * the total. It then also increments the current map position (not the real map
+ * player position) with the appropriate step as if the player had moved a cell
+ * in that direction so the calculations can continue.
+ *
+ * In the end, the last cycle will expose the type of wall to which the player
+ * is looking and returns it, having also modified the variables "xy_inter.x"
+ * and "xy_inter.y" (thus the pointer parameter) to keep track of the distance
+ * in other functions.
  */
 static int	calc_dda(t_game *g, t_vector delta, t_vector *inter, t_vector steps)
 {
-	int	wall_orientation;
+	int	orientation;
 	int	m_x;
 	int	m_y;
 
@@ -32,18 +48,18 @@ static int	calc_dda(t_game *g, t_vector delta, t_vector *inter, t_vector steps)
 		{
 			inter->x += delta.x;
 			m_x += steps.x;
-			wall_orientation = WE_WALL;
+			orientation = WE;
 		}
 		else
 		{
 			inter->y += delta.y;
 			m_y += steps.y;
-			wall_orientation = NS_WALL;
+			orientation = NS;
 		}
 		if (g->map->map[m_y][m_x] == '1' || g->map->map[m_y][m_x] == ' ')
 			break ;
 	}
-	return (wall_orientation);
+	return (orientation);
 }
 
 /* Function that calculates the step each cycle of the "DDA" algorithm
@@ -167,24 +183,82 @@ static void	calc_xy_delta_inter(t_vector *xy_delta, t_vector ray)
  * algorithm to check when a ray hits a wall and at what distance from the
  * player/camera plane so it can then proceed to draw the correct texture
  * column at the correct size, creating the illusion of distance.
+ *
+ * The last condition removes the last delta addition to the ray length due to
+ * the last step always finding itself inside a wall or space (where the ray
+ * stopped).
  */
-static void	dda_ray(t_game *game, t_vector ray)
+static float	dda_ray(t_game *game, t_vector ray, int *orientation)
 {
 	t_vector	xy_delta;
 	t_vector	xy_inter;
 	t_vector	xy_steps;
 	float		perp_distance;
-	int			wall_orientation;
 
 	calc_xy_delta_inter(&xy_delta, ray);
 	calc_xy_first_inter(game, &xy_inter, xy_delta, ray);
 	calc_xy_steps(&xy_steps, ray);
-	wall_orientation = calc_dda(game, xy_delta, &xy_inter, xy_steps);
-	if (wall_orientation == WE_WALL)
-		perp_distance = (xy_inter.x - xy_delta.x);
+	*orientation = calc_dda(game, xy_delta, &xy_inter, xy_steps);
+	if (*orientation == WE)
+	{
+		if (ray.x < 0)
+			*orientation = W;
+		else
+			*orientation = E;
+		perp_distance = xy_inter.x - xy_delta.x;
+	}
 	else
-		perp_distance = (xy_inter.y - xy_delta.y);
-	(void)perp_distance;
+	{
+		if (ray.y < 0)
+			*orientation = N;
+		else
+			*orientation = S;
+		perp_distance = xy_inter.y - xy_delta.y;
+	}
+	return (perp_distance);
+}
+
+//------------------------------------------------------------------------------
+
+static void	draw_column(t_game *game, int column_height, size_t column_i, int orientation)
+{
+	int	half_column;
+	int	column_top;
+	int	column_bottom;
+
+	half_column = column_height / 2;
+	if (half_column > W_HEIGHT / 2)
+		half_column = W_HEIGHT / 2;
+	column_top = W_HEIGHT / 2 - half_column;
+	column_bottom = W_HEIGHT / 2 + half_column;
+	while (column_top < column_bottom)
+	{
+		if (orientation == N)
+			t_game_draw_pixel(game->image, column_i, column_top, 0x00FF0000);
+		else if (orientation == S)
+			t_game_draw_pixel(game->image, column_i, column_top, 0x0000FF00);
+		else if (orientation == W)
+			t_game_draw_pixel(game->image, column_i, column_top, 0x000000FF);
+		else
+			t_game_draw_pixel(game->image, column_i, column_top, 0x00FFFF00);
+		column_top++;
+	}
+}
+
+static void	draw_ray(t_game *game, float distance, size_t index, int orientation)
+{
+	int	column_width;
+	int	column_height;
+	size_t	column_i;
+
+	column_width = W_WIDTH / RAY_AMOUNT;
+	column_height = W_HEIGHT / distance;
+	column_i = column_width * index;
+	while (column_i < column_width * (index + 1))
+	{
+		draw_column(game, column_height, column_i, orientation);
+		column_i++;
+	}
 }
 
 //------------------------------------------------------------------------------
@@ -198,6 +272,9 @@ static void	dda_ray(t_game *game, t_vector ray)
  * current index by the number of rays - 1. If "index" is 0 then it will result
  * in the ray 0 (the first and leftmost one, which, after "2 *" and "- 1" will
  * become -1). If the "index" is the last then it will result in the last ray.
+ *
+ * In the end, normalizes the vector (if 'x' or 'y' == 0, the opposite direction
+ * can be larger than 1, and since no vector has such values, normalize it).
  */
 static void	set_ray(t_game *game, size_t index, t_vector *ray)
 {
@@ -206,6 +283,10 @@ static void	set_ray(t_game *game, size_t index, t_vector *ray)
 	camera = (float)2 * index / (RAY_AMOUNT - 1) - 1;
 	ray->x = cos(game->player->r) + (game->camera_plane.x * camera);
 	ray->y = sin(game->player->r) + (game->camera_plane.y * camera);
+	if (ray->x == 0)
+		ray->y = 1;
+	else if (ray->y == 0)
+		ray->x = 1;
 }
 
 /* Function that sets a perpendicular plane direction to the player's
@@ -260,13 +341,18 @@ void	t_game_cube_show(t_game *game)
 {
 	size_t		index;
 	t_vector	ray;
+	int			orientation;
+	float		distance;
 
+	t_game_draw_background(game->image, W_WIDTH, W_HEIGHT, 0);
+	t_game_draw_ceiling_floor(game);
 	set_plane(game);
 	index = 0;
 	while (index < RAY_AMOUNT)
 	{
 		set_ray(game, index, &ray);
-		dda_ray(game, ray);
+		distance = dda_ray(game, ray, &orientation);
+		draw_ray(game, distance, index, orientation);
 		index++;
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window, game->image->image, 0, 0);
