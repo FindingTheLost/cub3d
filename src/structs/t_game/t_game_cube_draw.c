@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:04:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/25 18:34:54 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/26 00:05:45 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	draw_column(t_game *game, t_wall type, int col_height, size_t col_i)
 /* Function that draws pixel columns in the "image" variable of "game" based on
  * the "distance" the current ray has.
  *
- * The 0.9 is an arbutrary value ratio to make cubes look square instead of
+ * The 0.9 is an arbitrary value ratio to make cubes look square instead of
  * vertical rectangle blocks.
  */
 void	t_game_cube_draw(t_game *game, size_t index, t_wall type, float dist)

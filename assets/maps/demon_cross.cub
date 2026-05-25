@@ -3,14 +3,16 @@ SO ./assets/textures/test_valid.xpm
 WE ./assets/textures/test_valid.xpm
 EA ./assets/textures/test_valid.xpm
 
-C 128,128,128
-F 255,255,255
+C 65,0,0
+F 135,0,0
 
- 1
-1N1
- 1
- 1
- 1
- 1
- 1
- 1
+ 111
+11011
+10N01
+11011
+ 101
+ 101
+ 101
+ 101
+ 101
+ 111
