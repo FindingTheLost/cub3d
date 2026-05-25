@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/20 23:44:03 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:44:38 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	on_window_close(t_game *game)
 }
 
 /* The "ON_MOTION" (motion notify) event, always sends two ints as parameters
- * to identify "x" and "y" mouse positions in the window.
+ * to identify 'x' and 'y' mouse positions in the window.
  */
 static int	on_mouse_move(int x, int y, t_game *game)
 {
@@ -92,7 +92,7 @@ static int	on_key_press(int key_symbol, t_game *game)
  * The "third" parameter in "mlx_hook" is the event mask.
  * The "fourth" parameter is always a pointer to a function that returns int.
  *
- * Since minilibx does not posess holding key behaviours, it had to be hard
+ * Since minilibx does not possess key holding handlers, it had to be hard
  * coded with booleans. It becomes "true" when a key is held down and back
  * to "false" when released, for all four directions.
  *

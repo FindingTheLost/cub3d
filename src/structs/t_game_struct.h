@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/23 02:58:06 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/25 18:22:06 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@
 /* Defines the amount of rays in the game's player view: */
 # define RAY_AMOUNT 960
 
+/* Defines if fish-eye effect is enabled: */
+# define FISH_EYE false
+
 /* Definition of minimap cell colors: */
 # define BLACK 0
 # define LIME 0x00A2CD5A
@@ -94,15 +97,17 @@
 # define RED5 0x00FF4500
 # define RED6 0x00FF7777
 
-/* Defines whether a ray hit a "North/South" "West/East" walls: */
-# define NS 0
-# define WE 1
-
-/* Definitions for wall orientation types: */
-# define N 0
-# define S 1
-# define W 2
-# define E 3
+/* Defines a wall orientation type enumeration ("NOSO" refers to "North/South"
+ * and "WEEA" to "West/East"): */
+typedef enum e_wall
+{
+	W_NOSO = 0,
+	W_WEEA,
+	W_NO,
+	W_SO,
+	W_WE,
+	W_EA
+}	t_wall;
 
 /* Defines a 2D vector direction or two distinct numbers related to 'x' or 'y'.
  */
@@ -149,22 +154,23 @@ void	t_game_window_error(void);
 void	t_game_debug(t_game *game);
 void	t_game_draw_pixel(t_image *image, int x, int y, int color);
 void	t_game_draw_background(t_image *image, size_t w, size_t h, int color);
-void	t_game_draw_ceiling_floor(t_game *game);
-void	t_game_draw_minimap_h(t_game *game);
-void	t_game_draw_minimap_v(t_game *game);
-void	t_game_draw_minimap_player(t_game *game, int orientation);
-void	t_game_minimap_to_window(t_game *game, int *x, int *y, int orientation);
+void	t_game_draw_ceiling_floor(t_game *game, t_image *image);
 void	t_game_minimap_show(t_game *game);
+void	t_game_draw_minimap_map(t_game *game, int orientation);
+void	t_game_draw_minimap_player(t_game *game, int orientation);
+void	t_game_minimap_to_center(t_game *game, int *x, int *y, int orientation);
 void	t_game_cube_show(t_game *game);
-void	t_game_init_colors(t_cub *file, t_game *game);
+void	t_game_cube_draw(t_game *game, size_t index, t_wall type, float dist);
 void	t_game_check_keys(t_game *game);
 void	t_game_check_mouse(t_game *game);
 void	t_game_move_player(t_player *player, char key);
+void	t_game_init_colors(t_cub *file, t_game *game);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);
 int		t_game_populate(t_cub *file, t_game **game_ref);
 int		t_game_check_collisions(t_game *g, t_player *p, char *dir, float speed);
 float	t_game_clamp_rotation(float rotation);
 float	t_game_delta(t_game *game);
+float	t_game_cube_dda(t_game *game, t_vector ray, t_wall *type);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:26:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 21:07:20 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:35:31 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /* To debug the "file" and "game" structs and all of its contents, use the
  * functions below, respectively:
- *	"t_cub_debug(file)";
- * 	"t_game_debug(game)";
+ * - "t_cub_debug(file)";
+ * - "t_game_debug(game)";
  */
 int	game(t_cub *file)
 {

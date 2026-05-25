@@ -6,14 +6,15 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 00:09:01 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/18 21:04:22 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:41:46 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-/* The number 16 represents the horizontal aspect ratio of the supported
- * resolutions, which is 16:9.
+/* Function that returns "true" if the number of rays value, chosen in the
+ * "RAY_AMOUNT" macro, is not a divisor of the current resolution's "W_WIDTH".
+ * Also returns "true" if "RAY_AMOUNT" is inferior to 2.
  */
 static int	wrong_ray_amount(void)
 {
@@ -28,6 +29,9 @@ static int	wrong_ray_amount(void)
 	return (false);
 }
 
+/* Function that returns "true" if the current screen resolution "W_WIDTH" and
+ * "W_HEIGHT" macros do not correspond to any of the sequences below.
+ */
 static int	wrong_resolution(void)
 {
 	if (W_WIDTH == 640 && W_HEIGHT == 360)

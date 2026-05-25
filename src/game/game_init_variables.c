@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:20:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:22:56 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:47:05 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
  * - "t_game"	- (the game);
  * - "t_player" - (the player);
  * - "t_map"	- (the map);
- * - "t_image"	- (the raycasted viewport);
- * - "t_image"	- (the minimap);
+ * - "t_image"	- (the raycasting image);
+ * - "t_image"	- (the minimap image);
  * - "t_image"	- (the background for the minimap);
+ * - "t_key"	- (the current frame's pressed keys);
+ * - "t_mouse"	- (the current frame's mouse actions);
  *
  * Then paints the minimap's background image to black (0). And frees the
  * "t_cub" struct representing the ".cub" file passed as parameter.
@@ -44,7 +46,7 @@ int	game_init_variables(t_cub *file, t_game **game)
 		return (t_game_destroy(*game), t_cub_destroy(file), false);
 	if (!t_mouse_populate(&(*game)->mouse))
 		return (t_game_destroy(*game), t_cub_destroy(file), false);
-	t_game_draw_background((*game)->backgrd, W_WIDTH, W_HEIGHT, 0);
+	t_game_draw_background((*game)->backgrd, W_WIDTH, W_HEIGHT, BLACK);
 	t_cub_destroy(file);
 	return (true);
 }

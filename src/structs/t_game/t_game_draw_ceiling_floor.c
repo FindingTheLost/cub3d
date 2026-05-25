@@ -6,13 +6,13 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 23:48:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/07 22:17:07 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/24 21:49:17 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
 
-static void	draw_floor(t_game *game, int color)
+static void	draw_floor(t_image *image, int color)
 {
 	size_t	x;
 	size_t	y;
@@ -23,14 +23,14 @@ static void	draw_floor(t_game *game, int color)
 		x = 0;
 		while (x < W_WIDTH)
 		{
-			t_game_draw_pixel(game->image, x, y, color);
+			t_game_draw_pixel(image, x, y, color);
 			x++;
 		}
 		y++;
 	}
 }
 
-static void	draw_ceiling(t_game *game, int color)
+static void	draw_ceiling(t_image *image, int color)
 {
 	size_t	x;
 	size_t	y;
@@ -41,15 +41,15 @@ static void	draw_ceiling(t_game *game, int color)
 		x = 0;
 		while (x < W_WIDTH)
 		{
-			t_game_draw_pixel(game->image, x, y, color);
+			t_game_draw_pixel(image, x, y, color);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	t_game_draw_ceiling_floor(t_game *game)
+void	t_game_draw_ceiling_floor(t_game *game, t_image *image)
 {
-	draw_ceiling(game, game->c_color);
-	draw_floor(game, game->f_color);
+	draw_ceiling(image, game->c_color);
+	draw_floor(image, game->f_color);
 }
