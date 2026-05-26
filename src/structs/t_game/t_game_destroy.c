@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:38:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:27:28 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/26 17:41:54 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,21 @@ static void	destroy_inner_structs(t_game *game)
 		t_key_destroy(game->key);
 	if (game->mouse)
 		t_mouse_destroy(game->mouse);
+	if (game->render)
+		t_render_destroy(game->render);
 }
 
 void	t_game_destroy(t_game *game)
 {
 	destroy_inner_structs(game);
 	if (game->no_texture)
-		mlx_destroy_image(game->mlx, game->no_texture);
+		t_image_destroy(game->mlx, game->no_texture);
 	if (game->so_texture)
-		mlx_destroy_image(game->mlx, game->so_texture);
+		t_image_destroy(game->mlx, game->so_texture);
 	if (game->we_texture)
-		mlx_destroy_image(game->mlx, game->we_texture);
+		t_image_destroy(game->mlx, game->we_texture);
 	if (game->ea_texture)
-		mlx_destroy_image(game->mlx, game->ea_texture);
+		t_image_destroy(game->mlx, game->ea_texture);
 	if (game->mlx_window)
 		mlx_destroy_window(game->mlx, game->mlx_window);
 	if (game->mlx)

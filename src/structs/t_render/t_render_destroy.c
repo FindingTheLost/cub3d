@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_game_populate.c                                  :+:      :+:    :+:   */
+/*   t_render_destroy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 22:26:54 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 14:44:54 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/26 18:00:23 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/26 18:01:08 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_game_struct.h"
+#include "../t_render_struct.h"
 
-int	t_game_populate(t_cub *file, t_game **game_ref)
+void	t_render_destroy(t_render *render)
 {
-	t_game	*game;
-
-	*game_ref = t_game_build();
-	if (!*game_ref)
-		return (false);
-	game = *game_ref;
-	if (!t_game_init_mlx(game))
-		return (t_game_destroy(game), false);
-	if (!t_game_init_textures(file, game))
-		return (t_game_destroy(game), false);
-	t_game_init_colors(file, game);
-	return (true);
+	free(render);
 }

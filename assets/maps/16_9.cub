@@ -1,6 +1,6 @@
-NO assets/textures/test_valid.xpm
-SO assets/textures/test_valid.xpm
-WE assets/textures/test_valid.xpm
+NO assets/textures/test_vertical.xpm
+SO assets/textures/test_hd.xpm
+WE assets/textures/test_horizontal.xpm
 EA assets/textures/test_valid.xpm
 
 C 255,165,0

@@ -6,17 +6,43 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 22:14:58 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/25 18:34:02 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/27 00:31:45 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
 
+/* If the macro "FISH_EYE" is set to the value "false", "distance" will be
+ * multiplied by the ratio of the cosine of the ray's angle minus the player's
+ * angle which will always result in a number between 0.707(sin-) to 0 to
+ * 0.707(sin+). To calculate a direction's angle when only given the size of
+ * 'x' and 'y' sides or the ratio (sin/cos) of 'x' and 'y', calculate its
+ * arctangent (the inverse of tangent, which will result in the angle) by
+ * using the function "atan(z)" (where 'z' is a tangent) or by using the
+ * "atan2(y, x)" function (where 'y' is the 'y' ratio of a direction and 'x' is
+ * the 'x' ratio).
+ *
+ * This is so that directions whose rotation is different of 0º, 90º, 180º and
+ * 270º have their distances reduced to match the distance ratios of the
+ * previous angles.
+ */
+static void	set_fisheye(t_game *game)
+{
+	t_player	*player;
+	t_render	*render;
+
+	player = game->player;
+	render = game->render;
+	if (!FISH_EYE)
+		render->distance *= cosf(atan2f(render->ray.y, render->ray.x)
+				- player->r);
+}
+
 /* Function that sets a ray's 'x' and 'y' position based on the ratio of the
  * current ray in the perpendicular plane, starting from -1 and ending in 1.
  *
- * The "camera" variable expression's "2 *" and "- 1" transforms a ratio from
- * 0 to 1 (0 to 100) into 0 to 2 and then -1 to 1, respectively.
+ * The "camera_ratio" variable expression's "2 *" and "- 1" transforms a ratio
+ * from 0 to 1 (0 to 100) into 0 to 2 and then -1 to 1, respectively.
  * The ratio from the first ray to the last is calculated from dividing the
  * current index by the number of rays - 1. If "index" is 0 then it will result
  * in the ray 0 (the first and leftmost one, which, after "2 *" and "- 1" will
@@ -25,21 +51,26 @@
  * In the end, normalizes the vector (if 'x' or 'y' == 0, the opposite direction
  * can be larger than 1, and since no vector has such values, normalize it).
  */
-static void	set_ray(t_game *game, size_t index, t_vector *ray)
+static void	set_ray(t_game *game, size_t index)
 {
-	float	camera;
+	t_player	*player;
+	t_render	*render;
+	float		camera_ratio;
 
-	camera = (float)2 * index / (RAY_AMOUNT - 1) - 1;
-	ray->x = cos(game->player->r) + (game->camera_plane.x * camera);
-	ray->y = sin(game->player->r) + (game->camera_plane.y * camera);
-	if (ray->x == 0)
-		ray->y = 1;
-	else if (ray->y == 0)
-		ray->x = 1;
+	player = game->player;
+	render = game->render;
+	camera_ratio = (float)2 * index / (RAY_AMOUNT - 1) - 1;
+	render->ray.x = cos(player->r) + (render->camera.x * camera_ratio);
+	render->ray.y = sin(player->r) + (render->camera.y * camera_ratio);
+	if (render->ray.x == 0)
+		render->ray.y = 1;
+	else if (render->ray.y == 0)
+		render->ray.x = 1;
 }
 
 /* Function that sets a perpendicular plane direction to the player's
- * rotation in a given frame and stores it into the "camera_plane" variable.
+ * rotation in a given frame and stores it into the "camera" variable of the
+ * "render" struct.
  *
  * To get the perpendicular plane, as well as define how long it is positively
  * and negatively (half fov for each side) which will define where the first
@@ -77,13 +108,15 @@ static void	set_ray(t_game *game, size_t index, t_vector *ray)
  * of this half FOV angle using the function "tanf()":
  * 	"tanf(HALF_FOV_RADIANS)";
  */
-static void	set_plane(t_game *game)
+static void	set_camera(t_game *game)
 {
 	t_player	*player;
+	t_render	*render;
 
 	player = game->player;
-	game->camera_plane.x = -(sinf(player->r)) * tanf(FOV / 2 * M_PI / 180);
-	game->camera_plane.y = cosf(player->r) * tanf(FOV / 2 * M_PI / 180);
+	render = game->render;
+	render->camera.x = -(sinf(player->r)) * tanf(FOV / 2 * M_PI / 180);
+	render->camera.y = cosf(player->r) * tanf(FOV / 2 * M_PI / 180);
 }
 
 /* Function that draws the map in 3D to the game's "image" variable.
@@ -106,21 +139,17 @@ static void	set_plane(t_game *game)
  */
 void	t_game_cube_show(t_game *game)
 {
-	size_t		index;
-	t_vector	ray;
-	t_wall		type;
-	float		distance;
+	size_t	index;
 
 	t_game_draw_ceiling_floor(game, game->image);
-	set_plane(game);
+	set_camera(game);
 	index = 0;
 	while (index < RAY_AMOUNT)
 	{
-		set_ray(game, index, &ray);
-		distance = t_game_cube_dda(game, ray, &type);
-		if (!FISH_EYE)
-			distance *= cosf(atan2f(ray.y, ray.x) - game->player->r);
-		t_game_cube_draw(game, index, type, distance);
+		set_ray(game, index);
+		t_game_cube_dda(game);
+		set_fisheye(game);
+		t_game_cube_draw(game, index);
 		index++;
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_window,

@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/25 18:08:03 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/27 00:32:24 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ HDR			= ./src/cub3d.h										\
 			  ./src/structs/t_player_struct.h					\
 			  ./src/structs/t_map_struct.h						\
 			  ./src/structs/t_image_struct.h					\
+			  ./src/structs/t_key_struct.h						\
+			  ./src/structs/t_mouse_struct.h					\
+			  ./src/structs/t_render_struct.h					\
 			  ./src/game/game.h
 
 SRC			= ./src/cub3d.c										\
@@ -98,6 +101,11 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_mouse/t_mouse_destroy.c			\
 			  ./src/structs/t_mouse/t_mouse_error.c				\
 			  ./src/structs/t_mouse/t_mouse_populate.c			\
+			  ./src/structs/t_render/t_render_build.c			\
+			  ./src/structs/t_render/t_render_debug.c			\
+			  ./src/structs/t_render/t_render_destroy.c			\
+			  ./src/structs/t_render/t_render_error.c			\
+			  ./src/structs/t_render/t_render_populate.c		\
 			  ./src/game/game.c									\
 			  ./src/game/game_update.c							\
 			  ./src/game/game_init_screen.c						\

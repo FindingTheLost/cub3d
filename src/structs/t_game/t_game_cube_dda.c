@@ -6,14 +6,13 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 17:55:36 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/25 18:34:33 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/26 18:33:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
 
 /* Variable names changed to accomodate norminette criteria:
- *  "g"     = "game";
  * 	"delta" = "xy_delta";
  * 	"inter" = "xy_inter";
  * 	"steps" = "xy_steps";
@@ -34,30 +33,29 @@
  * and "xy_inter.y" (thus the pointer parameter) to keep track of the distance
  * in other functions.
  */
-static t_wall	dda(t_game *g, t_vector delta, t_vector *inter, t_vector steps)
+static void	dda(t_game *game, t_vector delta, t_vector *inter, t_vector steps)
 {
-	t_wall	type;
 	int		map_x;
 	int		map_y;
 
-	map_x = (int)g->player->x;
-	map_y = (int)g->player->y;
-	while (g->map->map[map_y][map_x] != '1' && g->map->map[map_y][map_x] != ' ')
+	map_x = (int)game->player->x;
+	map_y = (int)game->player->y;
+	while (game->map->map[map_y][map_x] != '1'
+			&& game->map->map[map_y][map_x] != ' ')
 	{
 		if (inter->x < inter->y)
 		{
 			inter->x += delta.x;
 			map_x += steps.x;
-			type = W_WEEA;
+			game->render->wall = W_WEEA;
 		}
 		else
 		{
 			inter->y += delta.y;
 			map_y += steps.y;
-			type = W_NOSO;
+			game->render->wall = W_NOSO;
 		}
 	}
-	return (type);
 }
 
 /* Function that calculates the step each cycle of the "DDA" algorithm
@@ -69,24 +67,21 @@ static t_wall	dda(t_game *g, t_vector delta, t_vector *inter, t_vector steps)
  * For example, if a ray's 'x' is 0 then it's not worth keeping track of it (or
  * store a signifcant number) because the steps will always be in the 'y' axis.
  */
-static void	calc_xy_steps(t_vector ray, t_vector *xy_steps)
+static void	calc_xy_steps(t_game *game, t_vector *xy_steps)
 {
-	if (ray.x >= 0)
+	if (game->render->ray.x >= 0)
 		xy_steps->x = 1;
 	else
 		xy_steps->x = -1;
-	if (ray.y >= 0)
+	if (game->render->ray.y >= 0)
 		xy_steps->y = 1;
 	else
 		xy_steps->y = -1;
 }
 
 /* Variable names changed to accomodate norminette criteria:
- * 	"g" = "game";
- * 	"r" = "ray";
- * 	"d" = "xy_delta";
- * 	"i" = "xy_inter";
- * 	(for simplicity, the names are redeclared through new variables)
+ * 	"delta" = "xy_delta";
+ * 	"inter" = "xy_inter";
  *
  * Function that calculates the first interception with the 'x' and 'y' axis
  * starting from the player's location.
@@ -107,27 +102,21 @@ static void	calc_xy_steps(t_vector ray, t_vector *xy_steps)
  * The first will result in the correct distance to the player's left, which is
  * "0.7 * dx" and the second to the player's right "0.3 * dx".
  */
-static void	calc_xy_first_inter(t_game *g, t_vector r, t_vector d, t_vector *i)
+static void	calc_xy_first_inter(t_game *game, t_vector delta, t_vector *inter)
 {
-	t_vector	ray;
-	t_vector	xy_delta;
-	t_vector	*xy_inter;
 	int			map_x;
 	int			map_y;
 
-	ray = r;
-	xy_delta = d;
-	xy_inter = i;
-	map_x = (int)g->player->x;
-	map_y = (int)g->player->y;
-	if (ray.x < 0)
-		xy_inter->x = (g->player->x - map_x) * xy_delta.x;
+	map_x = (int)game->player->x;
+	map_y = (int)game->player->y;
+	if (game->render->ray.x < 0)
+		inter->x = (game->player->x - map_x) * delta.x;
 	else
-		xy_inter->x = (map_x - g->player->x + 1) * xy_delta.x;
-	if (ray.y < 0)
-		xy_inter->y = (g->player->y - map_y) * xy_delta.y;
+		inter->x = (map_x - game->player->x + 1) * delta.x;
+	if (game->render->ray.y < 0)
+		inter->y = (game->player->y - map_y) * delta.y;
 	else
-		xy_inter->y = (map_y - g->player->y + 1) * xy_delta.y;
+		inter->y = (map_y - game->player->y + 1) * delta.y;
 }
 
 /* Function that calculates the delta distance of 'x' and 'y' from the current
@@ -165,8 +154,11 @@ static void	calc_xy_first_inter(t_game *g, t_vector r, t_vector d, t_vector *i)
  * will always be 1. The same can be said about the size of the side of a the
  * triangle that is vertical in an "y-interception".
  */
-static void	calc_xy_delta_inter(t_vector ray, t_vector *xy_delta)
+static void	calc_xy_delta_inter(t_game *game, t_vector *xy_delta)
 {
+	t_vector	ray;
+
+	ray = game->render->ray;
 	if (ray.x == 0)
 		xy_delta->x = INFINITY;
 	else
@@ -191,34 +183,34 @@ static void	calc_xy_delta_inter(t_vector ray, t_vector *xy_delta)
  * the last step always finding itself inside a wall or space (where the ray
  * stopped).
  *
- * Returns the perpendicular distance (the distance minus the last step which
+ * Sets the perpendicular distance (the distance minus the last step which
  * was found inside a wall) and sets the "type" variable to whichever set of
  * walls the ray hit ("W_NOSO"/"W_WEEA").
  */
-float	t_game_cube_dda(t_game *game, t_vector ray, t_wall *type)
+void	t_game_cube_dda(t_game *game)
 {
 	t_vector	xy_delta;
 	t_vector	xy_inter;
 	t_vector	xy_steps;
 
-	calc_xy_delta_inter(ray, &xy_delta);
-	calc_xy_first_inter(game, ray, xy_delta, &xy_inter);
-	calc_xy_steps(ray, &xy_steps);
-	*type = dda(game, xy_delta, &xy_inter, xy_steps);
-	if (*type == W_WEEA)
+	calc_xy_delta_inter(game, &xy_delta);
+	calc_xy_first_inter(game, xy_delta, &xy_inter);
+	calc_xy_steps(game, &xy_steps);
+	dda(game, xy_delta, &xy_inter, xy_steps);
+	if (game->render->wall == W_WEEA)
 	{
-		if (ray.x < 0)
-			*type = W_WE;
+		if (game->render->ray.x < 0)
+			game->render->wall = W_WE;
 		else
-			*type = W_EA;
-		return (xy_inter.x - xy_delta.x);
+			game->render->wall = W_EA;
+		game->render->distance = xy_inter.x - xy_delta.x;
 	}
 	else
 	{
-		if (ray.y < 0)
-			*type = W_NO;
+		if (game->render->ray.y < 0)
+			game->render->wall = W_NO;
 		else
-			*type = W_SO;
-		return (xy_inter.y - xy_delta.y);
+			game->render->wall = W_SO;
+		game->render->distance = xy_inter.y - xy_delta.y;
 	}
 }

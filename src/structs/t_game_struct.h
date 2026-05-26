@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/25 18:22:06 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/27 00:20:53 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@
 # include "t_image_struct.h"
 # include "t_key_struct.h"
 # include "t_mouse_struct.h"
+# include "t_render_struct.h"
 
 /* Window related macros: */
 # define W_TITLE "cub3D"
 # define W_WIDTH 960
 # define W_HEIGHT 540
-
-/* Texture size: */
-# define TEX_SIZE 64
 
 /* X11/MLX event masks: */
 # define NO_EVENT 0
@@ -97,26 +95,6 @@
 # define RED5 0x00FF4500
 # define RED6 0x00FF7777
 
-/* Defines a wall orientation type enumeration ("NOSO" refers to "North/South"
- * and "WEEA" to "West/East"): */
-typedef enum e_wall
-{
-	W_NOSO = 0,
-	W_WEEA,
-	W_NO,
-	W_SO,
-	W_WE,
-	W_EA
-}	t_wall;
-
-/* Defines a 2D vector direction or two distinct numbers related to 'x' or 'y'.
- */
-typedef struct s_vector
-{
-	float	x;
-	float	y;
-}	t_vector;
-
 /* Defines a complete execution instance of "cub3D", storing every crucial
  * game struct inside, as well as Minilibx instance attributes.
  * 
@@ -126,10 +104,10 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*mlx_window;
-	void			*no_texture;
-	void			*so_texture;
-	void			*we_texture;
-	void			*ea_texture;
+	t_image			*no_texture;
+	t_image			*so_texture;
+	t_image			*we_texture;
+	t_image			*ea_texture;
 	int				f_color;
 	int				c_color;
 	t_player		*player;
@@ -139,7 +117,7 @@ typedef struct s_game
 	t_image			*backgrd;
 	t_key			*key;
 	t_mouse			*mouse;
-	t_vector		camera_plane;
+	t_render		*render;
 	struct timeval	delta;
 	struct timeval	new_delta;
 }	t_game;
@@ -160,7 +138,8 @@ void	t_game_draw_minimap_map(t_game *game, int orientation);
 void	t_game_draw_minimap_player(t_game *game, int orientation);
 void	t_game_minimap_to_center(t_game *game, int *x, int *y, int orientation);
 void	t_game_cube_show(t_game *game);
-void	t_game_cube_draw(t_game *game, size_t index, t_wall type, float dist);
+void	t_game_cube_dda(t_game *game);
+void	t_game_cube_draw(t_game *game, size_t index);
 void	t_game_check_keys(t_game *game);
 void	t_game_check_mouse(t_game *game);
 void	t_game_move_player(t_player *player, char key);
@@ -171,6 +150,5 @@ int		t_game_populate(t_cub *file, t_game **game_ref);
 int		t_game_check_collisions(t_game *g, t_player *p, char *dir, float speed);
 float	t_game_clamp_rotation(float rotation);
 float	t_game_delta(t_game *game);
-float	t_game_cube_dda(t_game *game, t_vector ray, t_wall *type);
 
 #endif

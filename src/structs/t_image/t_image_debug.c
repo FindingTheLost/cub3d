@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 18:03:17 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 18:08:13 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/26 01:46:55 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	t_image_debug(t_image *image)
 		ft_printf("Image: not present.\n");
 	ft_printf("Address: %s\n", image->address);
 	ft_printf("Bits per pixel: %i\n", image->bpp);
-	ft_printf("Endian: %i\n", image->endian);
 	ft_printf("Line length: %i\n", image->line_length);
+	ft_printf("Endian: %i\n", image->endian);
+	ft_printf("Width: %i\n", image->width);
+	ft_printf("Height: %i\n", image->height);
 }

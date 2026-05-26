@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 00:47:04 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/11 17:22:11 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/26 01:45:36 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ typedef struct s_image
 	void	*image;
 	char	*address;
 	int		bpp;
-	int		endian;
 	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
 }	t_image;
 
 t_image	*t_image_build(void);

@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 01:08:49 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/05 01:10:54 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/26 01:45:58 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_image	*t_image_build(void)
 	image->image = NULL;
 	image->address = NULL;
 	image->bpp = 0;
-	image->endian = 0;
 	image->line_length = 0;
+	image->endian = 0;
+	image->width = 0;
+	image->height = 0;
 	return (image);
 }

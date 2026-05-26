@@ -6,30 +6,32 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 18:09:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:25:28 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/27 00:31:30 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../t_game_struct.h"
 
+static void	debug_time(t_game *game)
+{
+	ft_printf("Delta: Seconds: %i | Microseconds: %i\n", game->delta.tv_sec,
+		game->delta.tv_usec);
+	ft_printf("New delta: Seconds: %i | Microseconds: %i\n",
+		game->new_delta.tv_sec, game->new_delta.tv_usec);
+}
+
+static void	debug_colors(t_game *game)
+{
+	ft_printf("Floor color: %i\n", game->f_color);
+	ft_printf("Ceiling color: %i\n", game->c_color);
+}
+
 static void	debug_textures(t_game *game)
 {
-	if (game->no_texture)
-		ft_printf("North texture: present.\n");
-	else
-		ft_printf("North texture: not present.\n");
-	if (game->so_texture)
-		ft_printf("South texture: present.\n");
-	else
-		ft_printf("South texture: not present.\n");
-	if (game->we_texture)
-		ft_printf("West texture: present.\n");
-	else
-		ft_printf("West texture: not present.\n");
-	if (game->ea_texture)
-		ft_printf("East texture: present.\n");
-	else
-		ft_printf("East texture: not present.\n");
+	t_image_debug(game->no_texture);
+	t_image_debug(game->so_texture);
+	t_image_debug(game->we_texture);
+	t_image_debug(game->ea_texture);
 }
 
 void	t_game_debug(t_game *game)
@@ -44,8 +46,7 @@ void	t_game_debug(t_game *game)
 	else
 		ft_printf("MLX window: not present.\n");
 	debug_textures(game);
-	ft_printf("Floor color: %i\n", game->f_color);
-	ft_printf("Ceiling color: %i\n", game->c_color);
+	debug_colors(game);
 	t_player_debug(game->player);
 	t_map_debug(game->map);
 	t_image_debug(game->image);
@@ -53,4 +54,6 @@ void	t_game_debug(t_game *game)
 	t_image_debug(game->backgrd);
 	t_key_debug(game->key);
 	t_mouse_debug(game->mouse);
+	t_render_debug(game->render);
+	debug_time(game);
 }

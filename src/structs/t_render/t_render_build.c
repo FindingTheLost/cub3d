@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_game_populate.c                                  :+:      :+:    :+:   */
+/*   t_render_build.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/01 22:26:54 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 14:44:54 by pde-alme         ###   ########.fr       */
+/*   Created: 2026/05/26 17:44:56 by pde-alme          #+#    #+#             */
+/*   Updated: 2026/05/26 17:49:07 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../t_game_struct.h"
+#include "../t_render_struct.h"
 
-int	t_game_populate(t_cub *file, t_game **game_ref)
+t_render	*t_render_build(void)
 {
-	t_game	*game;
+	t_render	*render;
 
-	*game_ref = t_game_build();
-	if (!*game_ref)
-		return (false);
-	game = *game_ref;
-	if (!t_game_init_mlx(game))
-		return (t_game_destroy(game), false);
-	if (!t_game_init_textures(file, game))
-		return (t_game_destroy(game), false);
-	t_game_init_colors(file, game);
-	return (true);
+	render = malloc(sizeof(t_render));
+	if (!render)
+		return (t_render_malloc_error(), NULL);
+	render->camera.x = 0;
+	render->camera.y = 0;
+	render->ray.x = 0;
+	render->ray.y = 0;
+	render->wall = W_NULL;
+	render->distance = 0;
+	render->wall_x = 0;
+	render->tex_x = 0;
+	render->current_tex = NULL;
+	return (render);
 }

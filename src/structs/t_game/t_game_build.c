@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:32:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/17 20:23:53 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/26 17:33:04 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@ t_game	*t_game_build(void)
 	game->backgrd = NULL;
 	game->key = NULL;
 	game->mouse = NULL;
+	game->render = NULL;
+	gettimeofday(&game->delta, NULL);
+	gettimeofday(&game->new_delta, NULL);
 	return (game);
 }
