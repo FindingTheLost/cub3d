@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/27 20:06:14 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/27 21:50:10 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,7 @@ LIBFT		= ./libft/libft.a
 
 MLX			= ./minilibx-linux/libmlx_Linux.a
 
-MLXFLAGS	= -std=gnu11 -lX11 -lXext
+MLXFLAGS	= -std=gnu11 -lX11 -lXext -lXfixes
 
 
 

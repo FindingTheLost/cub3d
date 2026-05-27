@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:04:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/27 18:17:05 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/27 22:49:17 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ static int	xpm_to_pixel(t_game *game, size_t index, int col_total)
  * "col_top" to 0 (instantly jumping to a drawing chance). Then, in the
  * while loop, if "col_top" crosses the window height limit, simply stop the
  * cycle due to there not being any more pixels to draw.
+ *
+ * To simulate transparent pixels, check if the pixel color has the value
+ * 0xFF000000 and ignore it. Keep in mind that the image must have the pixel
+ * color value the same as this one.
  */
 static void	draw_column(t_game *game, int col_height, size_t col_i)
 {
@@ -129,7 +133,7 @@ static void	set_wall_tex_x(t_game *game)
 		render->wall_x = player->x + (render->distance * render->ray.x);
 	render->wall_x -= (int)render->wall_x;
 	if (game->render->wall == W_NO || game->render->wall == W_EA)
-		render->tex_x = render->wall_x * render->current_tex->width;
+		render->tex_x = render->wall_x * texture->width;
 	else
 		render->tex_x = fabs(render->wall_x * texture->width - texture->width);
 	if (render->tex_x > 0)

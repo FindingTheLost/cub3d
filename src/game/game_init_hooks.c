@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/24 22:44:38 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/27 22:00:28 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ static int	on_key_press(int key_symbol, t_game *game)
  *
  * The function "mlx_mouse_hide()" has leaks. A mouse_hide.supp file is provided
  * to suppress these leaks. Test without the function to check if no leaks are
- * present.
+ * present. A fix was found and posted in the "minilibx" github page at:
+ * "https://github.com/42paris/minilibx-linux/issues/48". It involves commenting
+ * the previous code in two function of "mlx_mouse.c" and adding "-lXfixes" to
+ * "cub3D"'s Makefile.
  */
 void	game_init_hooks(t_game *game)
 {
