@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:04:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/27 00:26:03 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/27 18:17:05 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,21 @@ static int	xpm_to_pixel(t_game *game, size_t index, int col_total)
  *
  * If within the condition and a color is obtained, the function will then
  * draw a pixel of the respective retrieved color on the game's "image" screen.
+ *
+ * The raycaster will be very slow when the player is explicitely very close to
+ * the walls (especially when diagonal to it) because the size of "col_top" and
+ * "col_bot" will be ridiculously high (-55000 to 55000 highest recorded) which,
+ * of course, is more than out of the bonds of the image buffer. This happens
+ * when the distance to a wall is so small (0.001 small) that when "col_height"
+ * is initially divided by the small number, it results in a very large one,
+ * stealing CPU time when on the cycle due to constantly increasing the "index"
+ * and "col_top" and awaiting for the drawing indexes to be reached.
+ *
+ * To mitigate this, the first condition in this function removes all of the
+ * negative indexes from "col_top" and stores them into "index" and sets
+ * "col_top" to 0 (instantly jumping to a drawing chance). Then, in the
+ * while loop, if "col_top" crosses the window height limit, simply stop the
+ * cycle due to there not being any more pixels to draw.
  */
 static void	draw_column(t_game *game, int col_height, size_t col_i)
 {
@@ -66,23 +81,28 @@ static void	draw_column(t_game *game, int col_height, size_t col_i)
 	col_top = W_HEIGHT / 2 - col_half;
 	col_bot = W_HEIGHT / 2 + col_half;
 	index = 0;
-	while (col_top < col_bot)
+	if (col_top < 0)
 	{
-		if (col_top >= 0 && col_top < W_HEIGHT)
-		{
-			color = xpm_to_pixel(game, index, col_half * 2);
-			t_game_draw_pixel(game->image, col_i, col_top, color);
-		}
+		index = abs(col_top);
+		col_top = 0;
+	}
+	while (col_top < col_bot && col_top < W_HEIGHT)
+	{
+		color = xpm_to_pixel(game, index, col_half * 2);
+		t_game_draw_pixel(game->image, col_i, col_top, color);
 		index++;
 		col_top++;
 	}
 }
 
 /* Determines the horizontal ratio where the ray hits the wall in the first
- * condition.
+ * condition. By adding the player's 'x' or 'y' position by the ratio of the
+ * distance to the ray's respective 'x' or 'y' it's possible to obtain the
+ * texture ratio of where the current ray is pointing to.
  *
  * In the second condition, determines the horizontal ratio of a texture using
- * the wall hit ratio to draw a column of said texture.
+ * the wall hit ratio to draw a column of said texture. "tex_x" will later be
+ * used with a future "tex_y" to copy the pixel color from the image texture.
  *
  * To not have textures appear flipped if the wall is "W_SO" or "W_WE", reduce
  * the ratio of the texture by the texture's width. Example:
@@ -150,11 +170,11 @@ void	t_game_cube_draw(t_game *game, size_t index)
 	int		col_height;
 	size_t	col_i;
 
+	set_current_tex(game);
+	set_wall_tex_x(game);
 	col_width = W_WIDTH / RAY_AMOUNT;
 	col_height = W_HEIGHT * 0.9f / game->render->distance;
 	col_i = col_width * index;
-	set_current_tex(game);
-	set_wall_tex_x(game);
 	while (col_i < col_width * (index + 1))
 	{
 		draw_column(game, col_height, col_i);

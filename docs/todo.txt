@@ -11,9 +11,3 @@ Bonus:
 ------
 - Add doors that can be opened and closed to the game.
 - Add some animated sprites.
-
-Extras:
--------
-- Make a function for perspective correction of different FOVs.
-- Add guards to player movement when hitting walls.
-- Find and hunt down what is it that slows the game to a crawl when hugging the wall.

@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/27 00:20:53 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/27 20:06:51 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@
 # define K_D 100
 # define K_M 109
 
-/* Player speed (float in cells per second) and rotation (in radians) per frame:
- *     (in case of a slow computer, increase these values) */
+/* Defines the player's speed in cells per second (float): */
 # define SPEED 2.0f
+
+/* Defines the player's speed multiplier when sprinting (float): */
 # define SPRINT 1.0f
+
+/* Defines the rotation per frame (radians): */
 # define ROTATION 4.0f
 
 /* Divisor of the wall slide speed. Increase to slide slower: */
