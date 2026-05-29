@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 19:37:44 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/11 16:14:45 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 19:00:26 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ static void	output_error(int code)
 		ft_printf("Something went wrong!\n");
 }
 
+/* The following characters refer to:
+ * - ' ' = An empty space tile;
+ * - '0' = A ground tile;
+ * - '1' = A wall tile;
+ * - 'N', 'S', 'W' and 'E' = A player spawning and orientation tile.
+ * - 'D' = A door tile;
+ */
 static int	check_map_line(int map_mode, char *line, int *elements)
 {
 	size_t	index;
@@ -32,7 +39,7 @@ static int	check_map_line(int map_mode, char *line, int *elements)
 	{
 		if (line[index] != ' ' && line[index] != '0' && line[index] != '1'
 			&& line[index] != 'N' && line[index] != 'S' && line[index] != 'W'
-			&& line[index] != 'E' && line[index] != '\n')
+			&& line[index] != 'E' && line[index] != 'D' && line[index] != '\n')
 		{
 			output_error(0);
 			return (false);

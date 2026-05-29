@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/27 22:00:28 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 19:20:20 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ static int	on_key_release(int key_symbol, t_game *game)
 		game->key->right = false;
 	else if (key_symbol == K_CTRL)
 		game->key->ctrl = false;
-	else if (key_symbol == K_SPACE)
-		game->key->space = false;
 	else if (key_symbol == K_SHIFT)
 		game->key->shift = false;
 	return (0);
@@ -82,7 +80,7 @@ static int	on_key_press(int key_symbol, t_game *game)
 	else if (key_symbol == K_CTRL)
 		game->key->ctrl = true;
 	else if (key_symbol == K_SPACE)
-		game->key->space = true;
+		t_game_check_door(game);
 	else if (key_symbol == K_SHIFT)
 		game->key->shift = true;
 	return (0);

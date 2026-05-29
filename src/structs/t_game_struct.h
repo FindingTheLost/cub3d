@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/27 22:53:27 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 21:36:53 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,27 @@
 # include "t_mouse_struct.h"
 # include "t_render_struct.h"
 
-/* Window related macros: */
+/* Defines window related macros: */
 # define W_TITLE "cub3D"
 # define W_WIDTH 960
 # define W_HEIGHT 540
 
-/* X11/MLX event masks: */
+/* Defines the path for the door texture: */
+# define DOOR_TEX_PATH "assets/textures/test_door.xpm"
+
+/* Defines X11/MLX event masks: */
 # define NO_EVENT 0
 # define KEY_PRESS 1
 # define KEY_RELEASE 2
 # define PTR_MOTION 64
 
-/* X11/MLX events: */
+/* Defines X11/MLX events: */
 # define ON_DESTROY 17
 # define ON_KEYDOWN 2
 # define ON_KEYUP 3
 # define ON_MOTION 6
 
-/* X11/MLX key codes: */
+/* Defines X11/MLX key codes: */
 # define K_ESC 65307
 # define K_UP 65362
 # define K_DOWN 65364
@@ -64,16 +67,16 @@
 /* Defines the rotation per frame (radians): */
 # define ROTATION 4.0f
 
-/* Divisor of the wall slide speed. Increase to slide slower: */
+/* Defines a divisor of the wall slide speed. Raise to slide slower: */
 # define SLIDE_DIVISOR 2
 
-/* Multiplier of the mouse's rotation speed. Increase to rotate faster: */
+/* Defines a multiplier of the mouse rotation speed. Raise to rotate faster: */
 # define MOUSE_MULTIPLIER 1
 
-/* Definition of a camera plane's side distance size: */
+/* Defines a camera plane's side distance size: */
 # define FOV 90
 
-/* Definition of zero delta value (fine-tune this macro by trial and error): */
+/* Defines a zero delta value (fine-tune this macro by trial and error): */
 # define ZERO_DELTA 0.0001f
 
 /* Defines the amount of rays in the game's player view: */
@@ -82,26 +85,26 @@
 /* Defines if fish-eye effect is enabled: */
 # define FISH_EYE false
 
-/* Definition of minimap cell colors: */
+/* Defines a set of minimap cell and player colors: */
 # define BLACK 0
 # define LIME 0x00A2CD5A
 # define GREEN 0x00426F42
 # define SWAMP 0x00003000
 # define OLIVE 0x002F4F2F
-
-/* Definition of minimap player colors: */
 # define YELLOW 0x00FFFF00
-# define RED1 0x00FF7F00
-# define RED2 0x00FF2400
-# define RED3 0x00FFA500
-# define RED4 0x00FF0000
-# define RED5 0x00FF4500
-# define RED6 0x00FF7777
+# define RED0 0x00FF7F00
+# define RED1 0x00FF2400
+# define RED2 0x00FFA500
+# define RED3 0x00FF0000
+# define RED4 0x00FF4500
+# define RED5 0x00FF7777
+# define RED6 0x00FF0000
+# define RED7 0x00880000
+# define BLUE0 0x000000FF
+# define BLUE1 0x00000088
 
 /* Defines a complete execution instance of "cub3D", storing every crucial
- * game struct inside, as well as Minilibx instance attributes.
- * 
- * The variables "plane", "delta" and "new_delta" are not memory allocated.
+ * game struct inside, as well as Minilibx instance attributes:
  */
 typedef struct s_game
 {
@@ -111,6 +114,7 @@ typedef struct s_game
 	t_image			*so_texture;
 	t_image			*we_texture;
 	t_image			*ea_texture;
+	t_image			*door_texture;
 	int				f_color;
 	int				c_color;
 	t_player		*player;
@@ -137,15 +141,16 @@ void	t_game_draw_pixel(t_image *image, int x, int y, int color);
 void	t_game_draw_background(t_image *image, size_t w, size_t h, int color);
 void	t_game_draw_ceiling_floor(t_game *game, t_image *image);
 void	t_game_minimap_show(t_game *game);
-void	t_game_draw_minimap_map(t_game *game, int orientation);
+void	t_game_draw_minimap_map_h(t_game *game);
+void	t_game_draw_minimap_map_v(t_game *game);
 void	t_game_draw_minimap_player(t_game *game, int orientation);
 void	t_game_minimap_to_center(t_game *game, int *x, int *y, int orientation);
 void	t_game_cube_show(t_game *game);
 void	t_game_cube_dda(t_game *game);
 void	t_game_cube_draw(t_game *game, size_t index);
+void	t_game_check_door(t_game *game);
 void	t_game_check_keys(t_game *game);
 void	t_game_check_mouse(t_game *game);
-void	t_game_move_player(t_player *player, char key);
 void	t_game_init_colors(t_cub *file, t_game *game);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);

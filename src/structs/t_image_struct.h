@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 00:47:04 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 01:45:36 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 21:28:54 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_image
 }	t_image;
 
 t_image	*t_image_build(void);
+t_image	*t_image_texture_to_image(void *texture, int width, int height);
 void	t_image_destroy(void *mlx, t_image *image);
 void	t_image_malloc_error(void);
 void	t_image_struct_error(void);

@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:04:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/27 22:49:17 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 21:04:05 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,12 +127,12 @@ static void	set_wall_tex_x(t_game *game)
 	player = game->player;
 	render = game->render;
 	texture = render->current_tex;
-	if (render->wall == W_WE || render->wall == W_EA)
+	if (render->wall == W_W || render->wall == W_E || render->wall == W_DV)
 		render->wall_x = player->y + (render->distance * render->ray.y);
 	else
 		render->wall_x = player->x + (render->distance * render->ray.x);
 	render->wall_x -= (int)render->wall_x;
-	if (game->render->wall == W_NO || game->render->wall == W_EA)
+	if (render->wall == W_N || render->wall == W_E || render->wall == W_DH)
 		render->tex_x = render->wall_x * texture->width;
 	else
 		render->tex_x = fabs(render->wall_x * texture->width - texture->width);
@@ -147,14 +147,16 @@ static void	set_current_tex(t_game *game)
 	t_render	*render;
 
 	render = game->render;
-	if (render->wall == W_NO)
+	if (render->wall == W_N)
 		render->current_tex = game->no_texture;
-	else if (render->wall == W_SO)
+	else if (render->wall == W_S)
 		render->current_tex = game->so_texture;
-	else if (render->wall == W_WE)
+	else if (render->wall == W_W)
 		render->current_tex = game->we_texture;
-	else
+	else if (render->wall == W_E)
 		render->current_tex = game->ea_texture;
+	else
+		render->current_tex = game->door_texture;
 }
 
 /* Function that draws pixel columns in the "image" variable of "game" based on

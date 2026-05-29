@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 23:29:58 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 01:57:22 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 21:28:20 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,10 @@ static void	set_image(t_game *game, t_image *image, size_t index)
 		game->so_texture = image;
 	else if (index == 2)
 		game->we_texture = image;
-	else
+	else if (index == 3)
 		game->ea_texture = image;
-}
-
-static t_image	*get_image(void *texture, int sizes[2])
-{
-	t_image	*image;
-
-	image = malloc(sizeof(t_image));
-	if (!image)
-		return (NULL);
-	image->image = texture;
-	image->address = mlx_get_data_addr(image->image, &image->bpp,
-			&image->line_length, &image->endian);
-	if (!image->address)
-		return (free(image), NULL);
-	image->width = sizes[0];
-	image->height = sizes[1];
-	return (image);
+	else
+		game->door_texture = image;
 }
 
 /* Variable names changed to accomodate Norminette:
@@ -54,8 +39,10 @@ static void	*get_texture(t_cub *file, t_game *game, size_t index, int s[2])
 		texture = mlx_xpm_file_to_image(game->mlx, file->so_file, &s[0], &s[1]);
 	else if (index == 2)
 		texture = mlx_xpm_file_to_image(game->mlx, file->we_file, &s[0], &s[1]);
-	else
+	else if (index == 3)
 		texture = mlx_xpm_file_to_image(game->mlx, file->ea_file, &s[0], &s[1]);
+	else
+		texture = mlx_xpm_file_to_image(game->mlx, DOOR_TEX_PATH, &s[0], &s[1]);
 	return (texture);
 }
 
@@ -79,12 +66,12 @@ int	t_game_init_textures(t_cub *file, t_game *game)
 	index = 0;
 	sizes[0] = 0;
 	sizes[1] = 0;
-	while (index < 4)
+	while (index < 5)
 	{
 		texture = get_texture(file, game, index, sizes);
 		if (!texture)
 			return (t_game_texture_error(), false);
-		image = get_image(texture, sizes);
+		image = t_image_texture_to_image(texture, sizes[0], sizes[1]);
 		if (!image)
 		{
 			mlx_destroy_image(game->mlx, texture);

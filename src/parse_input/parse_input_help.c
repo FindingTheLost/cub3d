@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 23:46:52 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 00:22:43 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 20:30:26 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ static void	show_help_map(void)
 {
 	ft_printf(YEL_LINE YEL_BOLD "Map content:\n" DEF);
 	ft_printf(" - A character " RED_BOLD "1" DEF " represents a wall;\n");
-	ft_printf(" - A character " RED_BOLD "0" DEF " represents a traversable");
-	ft_printf(" floor surface;\n");
+	ft_printf(" - A character " RED_BOLD "0" DEF " represents a floor");
+	ft_printf(" surface;\n");
+	ft_printf(" - A character " RED_BOLD "D" DEF " represents a door;\n");
 	ft_printf(" - The characters " RED_BOLD "N" DEF "," RED_BOLD " S" DEF);
 	ft_printf(", " RED_BOLD "W" DEF ", " RED_BOLD "E" DEF " represent ");
 	ft_printf("a player and its orientation when initializing the map.\n");

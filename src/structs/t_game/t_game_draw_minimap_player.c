@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/17 19:43:57 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/22 20:31:14 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 18:49:31 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,16 @@ void	t_game_draw_minimap_player(t_game *game, int orientation)
 		if (i <= ((tile / 4) / 6))
 			draw_inner_circle(game, tile, i, YELLOW);
 		else if (i <= ((tile / 4) / 6) * 2)
-			draw_inner_circle(game, tile, i, RED1);
+			draw_inner_circle(game, tile, i, RED0);
 		else if (i <= ((tile / 4) / 6) * 3)
-			draw_inner_circle(game, tile, i, RED2);
+			draw_inner_circle(game, tile, i, RED1);
 		else if (i <= ((tile / 4) / 6) * 4)
-			draw_inner_circle(game, tile, i, RED3);
+			draw_inner_circle(game, tile, i, RED2);
 		else if (i <= ((tile / 4) / 6) * 5)
-			draw_inner_circle(game, tile, i, RED4);
+			draw_inner_circle(game, tile, i, RED3);
 		else
-			draw_inner_circle(game, tile, i, RED5);
+			draw_inner_circle(game, tile, i, RED4);
 		i++;
 	}
-	draw_player_nose(game, tile, RED6);
+	draw_player_nose(game, tile, RED5);
 }

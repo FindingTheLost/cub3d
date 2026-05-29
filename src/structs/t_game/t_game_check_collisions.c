@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/12 20:52:45 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/19 00:47:44 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 20:23:46 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,48 +49,71 @@
  * chosen (no more space to make a third option due to norminette, although a
  * sensible decision would be to not make the player move as well).
  *
- * The function "slide_speed" does not make the player slide sprint due to not
- * having any more space in the function parameters.
+ * The function "slide_tile()" ("_h" and "_v") do not make the player slide
+ * sprint due to not having any more space in the function parameters.
  */
-static float	slide_speed(t_game *game)
+static void	slide_tile_v(t_game *game, int x, char *dir, float slide_speed)
 {
-	return ((float)(SPEED * t_game_delta(game) / SLIDE_DIVISOR));
+	if (game->map->map[(int)game->player->y][x] != '1'
+		&& game->map->map[(int)game->player->y][x] != ' '
+		&& game->map->map[(int)game->player->y][x] != 'D')
+	{
+		if (ft_strbcmp(dir, "w"))
+			game->player->x += cosf(game->player->r) * slide_speed;
+		else if (ft_strbcmp(dir, "s"))
+			game->player->x -= cosf(game->player->r) * slide_speed;
+		else if (ft_strbcmp(dir, "a"))
+			game->player->x += sinf(game->player->r) * slide_speed;
+		else if (ft_strbcmp(dir, "d"))
+			game->player->x -= sinf(game->player->r) * slide_speed;
+	}
 }
 
-static void	slide_tile(t_game *game, int x, int y, char *direction)
+/* Both functions "slide_tile_h()" and "slide_tile_v()" are part of the same
+ * function and have similar behaviour. Separated due to line limit being
+ * reached.
+ */
+static void	slide_tile_h(t_game *game, int x, int y, char *dir)
 {
+	float	slide_speed;
+
+	slide_speed = (float)SPEED * t_game_delta(game) / SLIDE_DIVISOR;
 	if (game->map->map[y][(int)game->player->x] != '1'
-		&& game->map->map[y][(int)game->player->x] != ' ')
+		&& game->map->map[y][(int)game->player->x] != ' '
+		&& game->map->map[y][(int)game->player->x] != 'D')
 	{
-		if (ft_strbcmp(direction, "w"))
-			game->player->y += sinf(game->player->r) * slide_speed(game);
-		else if (ft_strbcmp(direction, "s"))
-			game->player->y -= sinf(game->player->r) * slide_speed(game);
-		else if (ft_strbcmp(direction, "a"))
-			game->player->y -= cosf(game->player->r) * slide_speed(game);
-		else if (ft_strbcmp(direction, "d"))
-			game->player->y += cosf(game->player->r) * slide_speed(game);
+		if (ft_strbcmp(dir, "w"))
+			game->player->y += sinf(game->player->r) * slide_speed;
+		else if (ft_strbcmp(dir, "s"))
+			game->player->y -= sinf(game->player->r) * slide_speed;
+		else if (ft_strbcmp(dir, "a"))
+			game->player->y -= cosf(game->player->r) * slide_speed;
+		else if (ft_strbcmp(dir, "d"))
+			game->player->y += cosf(game->player->r) * slide_speed;
 	}
-	if (game->map->map[(int)game->player->y][x] != '1'
-		&& game->map->map[(int)game->player->y][x] != ' ')
-	{
-		if (ft_strbcmp(direction, "w"))
-			game->player->x += cosf(game->player->r) * slide_speed(game);
-		else if (ft_strbcmp(direction, "s"))
-			game->player->x -= cosf(game->player->r) * slide_speed(game);
-		else if (ft_strbcmp(direction, "a"))
-			game->player->x += sinf(game->player->r) * slide_speed(game);
-		else if (ft_strbcmp(direction, "d"))
-			game->player->x -= sinf(game->player->r) * slide_speed(game);
-	}
+	slide_tile_v(game, x, dir, slide_speed);
 }
 
 /* Checks whether the tile the player is trying to step is a good tile 
- * ground -> '0') or a not (a wall -> '1' or a space -> ' ').
+ * ground -> '0') or not (a wall -> '1' or a space -> ' ').
  *
  * If not, returns "false", where the calling function will not move the player
  * due to either hitting a wall or being in a corner between two walls, trying
  * to move diagonally (prevents clipping between corners).
+ *
+ * The first condition checks if the player is trying to step on a wall o space
+ * and will slide the player according to its rotation.
+ *
+ * The next four conditions check if the player is trying to step diagonally
+ * and if that diagonal is met with two adjacent walls. Starts by checking if
+ * the player's new position is diagonal to the previous one and then checks if
+ * the new position has a wall in both its adjacent sides. This prevents the
+ * player from clipping through corners.
+ *
+ * The top-view schemes for each of the following conditions are as follows:
+ * 	"10"	"1P"	"01"	"P1"
+ *	"P1"	"01"	"1P"	"10"
+ *	(0 refers to the new tile where the player 'P' wishes to move to)
  *
  * If the next tile is a wall or an empty space, make the player slide in one
  * of both directions the directions its facing that does not point to a wall.
@@ -98,27 +121,32 @@ static void	slide_tile(t_game *game, int x, int y, char *direction)
  * in the "slide_tile()" function, it must not be moved in the calling function,
  * which only does so if the function returns "true".
  */
-static int	good_tile(t_game *game, int x, int y, char *direction)
+static int	good_tile(t_game *game, int x, int y, char *dir)
 {
-	if (game->map->map[y][x] == '1' || game->map->map[y][x] == ' ')
-		return (slide_tile(game, x, y, direction), false);
+	if (game->map->map[y][x] == '1' || game->map->map[y][x] == ' '
+		|| game->map->map[y][x] == 'D')
+		return (slide_tile_h(game, x, y, dir), false);
 	if ((int)game->player->x == x - 1 && (int)game->player->y == y + 1
-		&& game->map->map[y][x - 1] == '1' && game->map->map[y + 1][x] == '1')
+		&& (game->map->map[y][x - 1] == '1' || game->map->map[y][x - 1] == 'D')
+		&& (game->map->map[y + 1][x] == '1' || game->map->map[y + 1][x] == 'D'))
 		return (false);
 	if ((int)game->player->x == x + 1 && (int)game->player->y == y - 1
-		&& game->map->map[y][x + 1] == '1' && game->map->map[y - 1][x] == '1')
+		&& (game->map->map[y][x + 1] == '1' || game->map->map[y][x + 1] == 'D')
+		&& (game->map->map[y - 1][x] == '1' || game->map->map[y - 1][x] == 'D'))
 		return (false);
 	if ((int)game->player->x == x + 1 && (int)game->player->y == y + 1
-		&& game->map->map[y][x + 1] == '1' && game->map->map[y + 1][x] == '1')
+		&& (game->map->map[y][x + 1] == '1' || game->map->map[y][x + 1] == 'D')
+		&& (game->map->map[y + 1][x] == '1' || game->map->map[y + 1][x] == 'D'))
 		return (false);
 	if ((int)game->player->x == x - 1 && (int)game->player->y == y - 1
-		&& game->map->map[y][x - 1] == '1' && game->map->map[y - 1][x] == '1')
+		&& (game->map->map[y][x - 1] == '1' || game->map->map[y][x - 1] == 'D')
+		&& (game->map->map[y - 1][x] == '1' || game->map->map[y - 1][x] == 'D'))
 		return (false);
 	return (true);
 }
 
 /* First checks if the next tile is ground ('0'), protecting from moving to
- * walls ('1') and blanks (' '), also impeding jumps from corners.
+ * walls ('1') and blanks (' '), also impeding jumps from corners ("good_tile").
  * Then, if it is a wall, slide on it according to the "sin" and "cos" ratio
  * of the perpendicular axis of the wall.
  */

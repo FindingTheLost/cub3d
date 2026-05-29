@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 17:55:36 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 18:33:02 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 21:15:15 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
  * is looking and returns it, having also modified the variables "xy_inter.x"
  * and "xy_inter.y" (thus the pointer parameter) to keep track of the distance
  * in other functions.
+ *
+ * If the ray last hit a door ('D'), in the end, add the value of the "W_D"
+ * enumeration (7) to the current value of "wall", turning it into either
+ * "W_DV" or "W_DH".
  */
 static void	dda(t_game *game, t_vector delta, t_vector *inter, t_vector steps)
 {
@@ -41,21 +45,24 @@ static void	dda(t_game *game, t_vector delta, t_vector *inter, t_vector steps)
 	map_x = (int)game->player->x;
 	map_y = (int)game->player->y;
 	while (game->map->map[map_y][map_x] != '1'
-			&& game->map->map[map_y][map_x] != ' ')
+			&& game->map->map[map_y][map_x] != ' '
+			&& game->map->map[map_y][map_x] != 'D')
 	{
 		if (inter->x < inter->y)
 		{
 			inter->x += delta.x;
 			map_x += steps.x;
-			game->render->wall = W_WEEA;
+			game->render->wall = W_V;
 		}
 		else
 		{
 			inter->y += delta.y;
 			map_y += steps.y;
-			game->render->wall = W_NOSO;
+			game->render->wall = W_H;
 		}
 	}
+	if (game->map->map[map_y][map_x] == 'D')
+		game->render->wall += W_D;
 }
 
 /* Function that calculates the step each cycle of the "DDA" algorithm
@@ -185,7 +192,10 @@ static void	calc_xy_delta_inter(t_game *game, t_vector *xy_delta)
  *
  * Sets the perpendicular distance (the distance minus the last step which
  * was found inside a wall) and sets the "type" variable to whichever set of
- * walls the ray hit ("W_NOSO"/"W_WEEA").
+ * walls the ray hit ("W_H" and "W_DH"/"W_V" and "W_DV").
+ *
+ * If the wall is of type "W_DV" or "W_DH", do not read the "ray.x" or "ray.y"
+ * values to not convert a door to a direction.
  */
 void	t_game_cube_dda(t_game *game)
 {
@@ -197,20 +207,20 @@ void	t_game_cube_dda(t_game *game)
 	calc_xy_first_inter(game, xy_delta, &xy_inter);
 	calc_xy_steps(game, &xy_steps);
 	dda(game, xy_delta, &xy_inter, xy_steps);
-	if (game->render->wall == W_WEEA)
+	if (game->render->wall == W_V || game->render->wall == W_DV)
 	{
-		if (game->render->ray.x < 0)
-			game->render->wall = W_WE;
-		else
-			game->render->wall = W_EA;
+		if (game->render->ray.x < 0 && game->render->wall == W_V)
+			game->render->wall = W_W;
+		else if (game->render->ray.x >= 0 && game->render->wall == W_V)
+			game->render->wall = W_E;
 		game->render->distance = xy_inter.x - xy_delta.x;
 	}
 	else
 	{
-		if (game->render->ray.y < 0)
-			game->render->wall = W_NO;
-		else
-			game->render->wall = W_SO;
+		if (game->render->ray.y < 0 && game->render->wall == W_H)
+			game->render->wall = W_N;
+		else if (game->render->ray.y >= 0 && game->render->wall == W_H)
+			game->render->wall = W_S;
 		game->render->distance = xy_inter.y - xy_delta.y;
 	}
 }

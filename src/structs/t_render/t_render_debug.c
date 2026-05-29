@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:49:27 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 19:14:09 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 21:08:42 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,24 @@ static void	debug_wall_type(t_render *render)
 {
 	if (render->wall == W_NULL)
 		ft_printf("Wall type: W_NULL\n");
-	else if (render->wall == W_NOSO)
-		ft_printf("Wall type: W_NOSO\n");
-	else if (render->wall == W_WEEA)
-		ft_printf("Wall type: W_WEEA\n");
-	else if (render->wall == W_NO)
-		ft_printf("Wall type: W_NO\n");
-	else if (render->wall == W_SO)
-		ft_printf("Wall type: W_SO\n");
-	else if (render->wall == W_WE)
-		ft_printf("Wall type: W_WE\n");
-	else if (render->wall == W_EA)
-		ft_printf("Wall type: W_EA\n");
+	else if (render->wall == W_H)
+		ft_printf("Wall type: W_H\n");
+	else if (render->wall == W_V)
+		ft_printf("Wall type: W_V\n");
+	else if (render->wall == W_N)
+		ft_printf("Wall type: W_N\n");
+	else if (render->wall == W_S)
+		ft_printf("Wall type: W_S\n");
+	else if (render->wall == W_W)
+		ft_printf("Wall type: W_W\n");
+	else if (render->wall == W_E)
+		ft_printf("Wall type: W_E\n");
+	else if (render->wall == W_D)
+		ft_printf("Wall type: W_D\n");
+	else if (render->wall == W_DH)
+		ft_printf("Wall type: W_DH\n");
+	else if (render->wall == W_DV)
+		ft_printf("Wall type: W_DV\n");
 }
 
 void	t_render_debug(t_render *render)

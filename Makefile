@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/27 21:50:10 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/28 21:29:17 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,12 +65,14 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_draw_background.c		\
 			  ./src/structs/t_game/t_game_draw_ceiling_floor.c	\
 			  ./src/structs/t_game/t_game_minimap_show.c		\
-			  ./src/structs/t_game/t_game_draw_minimap_map.c	\
+			  ./src/structs/t_game/t_game_draw_minimap_map_h.c	\
+			  ./src/structs/t_game/t_game_draw_minimap_map_v.c	\
 			  ./src/structs/t_game/t_game_draw_minimap_player.c	\
 			  ./src/structs/t_game/t_game_minimap_to_center.c	\
 			  ./src/structs/t_game/t_game_cube_show.c			\
 			  ./src/structs/t_game/t_game_cube_dda.c			\
 			  ./src/structs/t_game/t_game_cube_draw.c			\
+			  ./src/structs/t_game/t_game_check_door.c			\
 			  ./src/structs/t_game/t_game_check_keys.c			\
 			  ./src/structs/t_game/t_game_check_mouse.c			\
 			  ./src/structs/t_game/t_game_check_collisions.c	\
@@ -91,6 +93,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_image/t_image_destroy.c			\
 			  ./src/structs/t_image/t_image_error.c				\
 			  ./src/structs/t_image/t_image_populate.c			\
+			  ./src/structs/t_image/t_image_texture_to_image.c	\
 			  ./src/structs/t_key/t_key_build.c					\
 			  ./src/structs/t_key/t_key_debug.c					\
 			  ./src/structs/t_key/t_key_destroy.c				\

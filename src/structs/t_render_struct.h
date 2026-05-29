@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/26 17:27:28 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/27 00:32:13 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/28 20:53:32 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,29 @@
 # include "../../libft/libft.h"
 # include "t_image_struct.h"
 
-/* Defines a wall orientation type enumeration ("NOSO" refers to "North/South"
- * and "WEEA" to "West/East"): */
+/* Defines a wall orientation type enumeration.
+ *  - "H"	= "A horizontal line was touched (y interception)";
+ *  - "V"	= "A vertical line was touched (x interception)";
+ *  - "N"	= "North";
+ *  - "S"	= "South";
+ *  - "W"	= "West";
+ *  - "E"	= "East";
+ *  - "D"	= "Door";
+ *  - "DH"	= "Door at y interception";
+ *  - "DV"	= "Door at x interception";
+ */
 typedef enum e_wall
 {
 	W_NULL = 0,
-	W_NOSO,
-	W_WEEA,
-	W_NO,
-	W_SO,
-	W_WE,
-	W_EA
+	W_H,
+	W_V,
+	W_N,
+	W_S,
+	W_W,
+	W_E,
+	W_D,
+	W_DH,
+	W_DV
 }	t_wall;
 
 /* Defines a 2D vector direction or two distinct numbers related to 'x' or 'y'.
