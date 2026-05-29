@@ -9,18 +9,8 @@ Trivial:
 
 Bonus:
 ------
-- Add doors that can be opened and closed to the game.
 - Add some animated sprites.
 
 Extras:
 -------
-X Add door description to --help.
-X Add new map color tiles for opened door and closed door (t_game_draw_minimap_h and v separated, new color macros).
-X Add door open/close with 'space' if in adjacent blocks (switch 'D' to 'O')(hooks changed and new door file).
-X Modified t_player_populate.c.
-X Add door collision if closed ('D'). t_game_check_collisions, seprated slide_tile() to h and v, deleted slide_speed().
-X Add ray stoping in 'D' and define 'W_D' to 't_wall' struct. has W_D, W_DV and W_DH, tweaked debug and cube_draw.
-X Add door texture. hard coded in t_game_init_textures with a macro as path.
-X Add door texture loader in t_game_cube_draw's set_current_tex function.
-X Added new t_image struct member function t_image_texture_to_image.
 - Add better opening mechanics.
