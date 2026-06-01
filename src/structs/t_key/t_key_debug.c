@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_key_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:54:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/19 00:37:03 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 02:58:26 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	t_key_debug(t_key *key)
 	ft_printf("Key A: %i\n", key->a);
 	ft_printf("Key D: %i\n", key->d);
 	ft_printf("Key M: %i\n", key->m);
+	ft_printf("Key E: %i\n", key->e);
 	ft_printf("Key LEFT: %i\n", key->left);
 	ft_printf("Key RIGHT: %i\n", key->right);
 	ft_printf("Key CTRL: %i\n", key->ctrl);

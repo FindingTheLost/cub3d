@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
+#    By: rogde-so <rogde-so@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/28 21:29:17 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/31 21:58:25 by rogde-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ HDR			= ./src/cub3d.h										\
 			  ./src/structs/t_key_struct.h						\
 			  ./src/structs/t_mouse_struct.h					\
 			  ./src/structs/t_render_struct.h					\
+			  ./src/structs/t_anim_struct.h						\
 			  ./src/game/game.h
 
 SRC			= ./src/cub3d.c										\
@@ -78,6 +79,8 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_check_collisions.c	\
 			  ./src/structs/t_game/t_game_clamp_rotation.c		\
 			  ./src/structs/t_game/t_game_delta.c				\
+			  ./src/structs/t_game/t_game_animate.c				\
+			  ./src/structs/t_game/t_game_draw_transparency.c	\
 			  ./src/structs/t_player/t_player_build.c			\
 			  ./src/structs/t_player/t_player_debug.c			\
 			  ./src/structs/t_player/t_player_destroy.c			\
@@ -108,7 +111,14 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_render/t_render_debug.c			\
 			  ./src/structs/t_render/t_render_destroy.c			\
 			  ./src/structs/t_render/t_render_error.c			\
-			  ./src/structs/t_render/t_render_populate.c		\
+			  ./src/structs/t_render/t_render_populate.c			\
+			  ./src/structs/t_anim/t_anim_build.c				\
+			  ./src/structs/t_anim/t_anim_debug.c				\
+			  ./src/structs/t_anim/t_anim_destroy.c				\
+			  ./src/structs/t_anim/t_anim_error.c				\
+			  ./src/structs/t_anim/t_anim_init_resolution.c		\
+			  ./src/structs/t_anim/t_anim_texture_build.c		\
+			  ./src/structs/t_anim/t_anim_populate.c			\
 			  ./src/game/game.c									\
 			  ./src/game/game_update.c							\
 			  ./src/game/game_init_screen.c						\
@@ -121,7 +131,7 @@ LIBFT		= ./libft/libft.a
 
 MLX			= ./minilibx-linux/libmlx_Linux.a
 
-MLXFLAGS	= -std=gnu11 -lX11 -lXext -lXfixes
+MLXFLAGS	= -std=gnu11 -lX11 -lXext #-lXfixes
 
 
 

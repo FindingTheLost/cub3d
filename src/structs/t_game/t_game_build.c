@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_build.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:32:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 17:33:04 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/31 23:09:18 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_game	*t_game_build(void)
 	game->ea_texture = NULL;
 	game->f_color = 0;
 	game->c_color = 0;
+	game->fish_eye = false;
 	game->player = NULL;
 	game->map = NULL;
 	game->image = NULL;

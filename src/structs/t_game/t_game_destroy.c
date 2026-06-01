@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_destroy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:38:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 17:41:54 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 02:59:44 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	destroy_inner_structs(t_game *game)
 		t_mouse_destroy(game->mouse);
 	if (game->render)
 		t_render_destroy(game->render);
+	if (game->helmet_anim)
+		t_anim_destroy(game->mlx, game->helmet_anim);
 }
 
 void	t_game_destroy(t_game *game)

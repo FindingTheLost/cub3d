@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_key_build.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:50:27 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/19 00:36:48 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 02:58:07 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_key	*t_key_build(void)
 	key->a = false;
 	key->d = false;
 	key->m = false;
+	key->e = false;
 	key->left = false;
 	key->right = false;
 	key->ctrl = false;

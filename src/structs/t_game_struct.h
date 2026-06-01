@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/28 21:36:53 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/01 01:22:42 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "t_key_struct.h"
 # include "t_mouse_struct.h"
 # include "t_render_struct.h"
+# include "t_anim_struct.h"
 
 /* Defines window related macros: */
 # define W_TITLE "cub3D"
@@ -29,7 +30,7 @@
 # define W_HEIGHT 540
 
 /* Defines the path for the door texture: */
-# define DOOR_TEX_PATH "assets/textures/test_door.xpm"
+# define DOOR_TEX_PATH "assets/textures/DOOR.xpm"
 
 /* Defines X11/MLX event masks: */
 # define NO_EVENT 0
@@ -57,6 +58,7 @@
 # define K_A 97
 # define K_D 100
 # define K_M 109
+# define K_E 101
 
 /* Defines the player's speed in cells per second (float): */
 # define SPEED 2.0f
@@ -83,7 +85,10 @@
 # define RAY_AMOUNT 960
 
 /* Defines if fish-eye effect is enabled: */
-# define FISH_EYE false
+# define FISH_EYE true
+
+/* Defines time between each animation frame. Raise to slow animation speed*/
+# define ANIMATION_SPEED 100000
 
 /* Defines a set of minimap cell and player colors: */
 # define BLACK 0
@@ -102,6 +107,7 @@
 # define RED7 0x00880000
 # define BLUE0 0x000000FF
 # define BLUE1 0x00000088
+# define TRANSPARENT 0xFF000000
 
 /* Defines a complete execution instance of "cub3D", storing every crucial
  * game struct inside, as well as Minilibx instance attributes:
@@ -117,6 +123,7 @@ typedef struct s_game
 	t_image			*door_texture;
 	int				f_color;
 	int				c_color;
+	int				fish_eye;
 	t_player		*player;
 	t_map			*map;
 	t_image			*image;
@@ -125,6 +132,7 @@ typedef struct s_game
 	t_key			*key;
 	t_mouse			*mouse;
 	t_render		*render;
+	t_anim			*helmet_anim;
 	struct timeval	delta;
 	struct timeval	new_delta;
 }	t_game;
@@ -152,6 +160,9 @@ void	t_game_check_door(t_game *game);
 void	t_game_check_keys(t_game *game);
 void	t_game_check_mouse(t_game *game);
 void	t_game_init_colors(t_cub *file, t_game *game);
+void	t_game_update_animation(t_game *game);
+void	t_game_draw_transparent(t_game *g, t_image *frame);
+int		t_game_init_animation(t_anim *anim, int key);
 int		t_game_init_textures(t_cub *file, t_game *game);
 int		t_game_init_mlx(t_game *game);
 int		t_game_populate(t_cub *file, t_game **game_ref);

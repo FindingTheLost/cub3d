@@ -1,7 +1,7 @@
-NO ./assets/textures/test_valid.xpm
-SO ./assets/textures/test_valid.xpm
-WE ./assets/textures/test_valid.xpm
-EA ./assets/textures/test_valid.xpm
+NO ./assets/textures/TRIP1.xpm
+SO ./assets/textures/TRIP2.xpm
+WE ./assets/textures/TRIP3.xpm
+EA ./assets/textures/TRIP4.xpm
 
 C 65,0,0
 F 135,0,0

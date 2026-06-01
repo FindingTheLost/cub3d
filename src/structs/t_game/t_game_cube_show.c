@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_cube_show.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 22:14:58 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/28 21:40:52 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/31 23:08:09 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	set_fisheye(t_game *game)
 
 	player = game->player;
 	render = game->render;
-	if (!FISH_EYE)
+	if (!game->fish_eye)
 		render->distance *= cosf(atan2f(render->ray.y, render->ray.x)
 				- player->r);
 }

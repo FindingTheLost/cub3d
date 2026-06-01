@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init_variables.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:20:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 17:43:51 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 02:56:25 by rogde-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	game_init_variables(t_cub *file, t_game **game)
 	if (!t_mouse_populate(&(*game)->mouse))
 		return (t_game_destroy(*game), t_cub_destroy(file), false);
 	if (!t_render_populate(&(*game)->render))
+		return (t_game_destroy(*game), t_cub_destroy(file), false);
+	if (!t_anim_populate(&(*game)->helmet_anim, W_WIDTH, W_HEIGHT, (*game)->mlx))
 		return (t_game_destroy(*game), t_cub_destroy(file), false);
 	t_game_draw_background((*game)->backgrd, W_WIDTH, W_HEIGHT, BLACK);
 	t_cub_destroy(file);
