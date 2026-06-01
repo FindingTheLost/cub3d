@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:38:26 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/29 20:25:17 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/01 22:51:31 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	destroy_inner_structs(t_game *game)
 		t_mouse_destroy(game->mouse);
 	if (game->render)
 		t_render_destroy(game->render);
+	if (game->helmet)
+		t_anim_destroy(game->mlx, game->helmet);
 }
 
 void	t_game_destroy(t_game *game)

@@ -1,10 +1,10 @@
-NO ./assets/textures/test_valid.xpm
-SO ./assets/textures/test_valid.xpm
-WE ./assets/textures/test_valid.xpm
-EA ./assets/textures/test_valid.xpm
+NO ./assets/textures/debug/debug_north.xpm
+SO ./assets/textures/debug/debug_south.xpm
+WE ./assets/textures/debug/debug_west.xpm
+EA ./assets/textures/debug/debug_east.xpm
 
-C 128,128,128
-F 255,255,255
+C 93,76,59
+F 64,172,69
 
 1111111111
 1S10D00001

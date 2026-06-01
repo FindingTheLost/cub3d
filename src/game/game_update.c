@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 19:17:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/24 22:53:11 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/01 23:49:51 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,18 @@
  * minimap mode, draws the minimap window, if not, draws the player's raycasted
  * field of view.
  */
-static void	draw(t_game *game)
+static void	draw(t_game *game, t_anim *helmet)
 {
-	if (game->key->m)
+	if (game->key->m && (helmet->current_frame == helmet->frame_count - 1))
 		t_game_minimap_show(game);
 	else
+	{
 		t_game_cube_show(game);
+		if ((helmet->is_playing || helmet->mask_on)
+			&& helmet->current_frame <= helmet->frame_count - 1
+			&& helmet->current_frame >= 0)
+			t_game_draw_animation(game, helmet->frames[helmet->current_frame]);
+	}
 }
 
 /* Updates the game's logic in a given frame. Starts by updating the time of
@@ -35,6 +41,7 @@ static void	update(t_game *game)
 	gettimeofday(&game->new_delta, NULL);
 	t_game_check_keys(game);
 	t_game_check_mouse(game);
+	t_anim_update(game->helmet, game->new_delta);
 	game->delta = game->new_delta;
 }
 
@@ -46,6 +53,6 @@ static void	update(t_game *game)
 int	game_update(t_game *game)
 {
 	update(game);
-	draw(game);
+	draw(game, game->helmet);
 	return (0);
 }

@@ -1,8 +1,0 @@
-STUFF TO DO:
-============
-
-Trivial:
---------
-- Make README.md.
-- Add flashy compilation effects to the Makefile.
-- Add many more maps and textures.

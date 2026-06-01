@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 17:55:36 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/28 21:15:15 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/02 00:17:52 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,12 @@ static void	calc_xy_delta_inter(t_game *game, t_vector *xy_delta)
  *
  * If the wall is of type "W_DV" or "W_DH", do not read the "ray.x" or "ray.y"
  * values to not convert a door to a direction.
+ *
+ * If the player is looking north, then the wall should display a south texture,
+ * due to be facing south.
+ * To revert this, simply flip all "W_N" and "W_S" or "W_W" and "W_E" enum value
+ * attributions to make a wall display the texture of where the player is
+ * facing.
  */
 void	t_game_cube_dda(t_game *game)
 {
@@ -210,17 +216,17 @@ void	t_game_cube_dda(t_game *game)
 	if (game->render->wall == W_V || game->render->wall == W_DV)
 	{
 		if (game->render->ray.x < 0 && game->render->wall == W_V)
-			game->render->wall = W_W;
-		else if (game->render->ray.x >= 0 && game->render->wall == W_V)
 			game->render->wall = W_E;
+		else if (game->render->ray.x >= 0 && game->render->wall == W_V)
+			game->render->wall = W_W;
 		game->render->distance = xy_inter.x - xy_delta.x;
 	}
 	else
 	{
 		if (game->render->ray.y < 0 && game->render->wall == W_H)
-			game->render->wall = W_N;
-		else if (game->render->ray.y >= 0 && game->render->wall == W_H)
 			game->render->wall = W_S;
+		else if (game->render->ray.y >= 0 && game->render->wall == W_H)
+			game->render->wall = W_N;
 		game->render->distance = xy_inter.y - xy_delta.y;
 	}
 }

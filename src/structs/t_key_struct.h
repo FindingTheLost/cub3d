@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_key_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 20:45:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/19 00:36:33 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/02 00:37:20 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_key
 	int	a;
 	int	d;
 	int	m;
+	int	e;
 	int	left;
 	int	right;
 	int	ctrl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_game_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/29 20:13:11 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/02 00:39:04 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "t_key_struct.h"
 # include "t_mouse_struct.h"
 # include "t_render_struct.h"
+# include "t_anim_struct.h"
 
 /* Defines window related macros: */
 # define W_TITLE "cub3D"
@@ -54,9 +55,10 @@
 # define K_A 97
 # define K_D 100
 # define K_M 109
+# define K_E 101
 
 /* Defines the path for the door texture (relative path to cub3D): */
-# define DOOR_TEX_PATH "assets/textures/test_door.xpm"
+# define DOOR_TEX_PATH "assets/textures/debug/debug_door.xpm"
 
 /* Defines the distance to which doors can be opened (float): */
 # define DOOR_OPEN_DIST 1.2f
@@ -79,6 +81,9 @@
 /* Defines a camera plane's side distance size: */
 # define FOV 90
 
+/* Defines a column's height ratio. Highly depends on FOV for results: */
+# define FOV_COLUMN_RATIO 0.9f
+
 /* Defines a zero delta value (fine-tune this macro by trial and error): */
 # define ZERO_DELTA 0.0001f
 
@@ -87,6 +92,9 @@
 
 /* Defines if fish-eye effect is enabled: */
 # define FISH_EYE false
+
+/* Defines the time between each animation frame. Raise to slow down: */
+# define ANIMATION_SPEED 100000
 
 /* Defines a set of minimap cell and player colors: */
 # define BLACK 0
@@ -105,6 +113,7 @@
 # define RED7 0x00880000
 # define BLUE0 0x000000FF
 # define BLUE1 0x00000088
+# define ALPHA 0xFF000000
 
 /* Defines a complete execution instance of "cub3D", storing every crucial
  * game struct inside, as well as Minilibx instance attributes:
@@ -128,6 +137,7 @@ typedef struct s_game
 	t_key			*key;
 	t_mouse			*mouse;
 	t_render		*render;
+	t_anim			*helmet;
 	struct timeval	delta;
 	struct timeval	new_delta;
 }	t_game;
@@ -143,6 +153,7 @@ void	t_game_debug(t_game *game);
 void	t_game_draw_pixel(t_image *image, int x, int y, int color);
 void	t_game_draw_background(t_image *image, size_t w, size_t h, int color);
 void	t_game_draw_ceiling_floor(t_game *game, t_image *image);
+void	t_game_draw_animation(t_game *game, t_image *frame);
 void	t_game_minimap_show(t_game *game);
 void	t_game_draw_minimap_map_h(t_game *game);
 void	t_game_draw_minimap_map_v(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 18:04:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/28 21:04:05 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/02 00:23:02 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ static void	draw_column(t_game *game, int col_height, size_t col_i)
  * If "W_SO" or "W_WE" and texture size is 64, 25% of 64 == 16 but due to the
  * direction of the ray it should be 48. Therefore, abs(16 - 64) = 48 and it
  * will draw at column 48.
+ *
+ * Due to the wall textures being attributed to where the walls face, if one
+ * wishes to revert this, must also change the texture flipping from "W_S" to
+ * "W_N" and "W_W" to "W_E" in the second "if" condition.
  */
 static void	set_wall_tex_x(t_game *game)
 {
@@ -132,7 +136,7 @@ static void	set_wall_tex_x(t_game *game)
 	else
 		render->wall_x = player->x + (render->distance * render->ray.x);
 	render->wall_x -= (int)render->wall_x;
-	if (render->wall == W_N || render->wall == W_E || render->wall == W_DH)
+	if (render->wall == W_S || render->wall == W_W || render->wall == W_DH)
 		render->tex_x = render->wall_x * texture->width;
 	else
 		render->tex_x = fabs(render->wall_x * texture->width - texture->width);
@@ -179,7 +183,7 @@ void	t_game_cube_draw(t_game *game, size_t index)
 	set_current_tex(game);
 	set_wall_tex_x(game);
 	col_width = W_WIDTH / RAY_AMOUNT;
-	col_height = W_HEIGHT * 0.9f / game->render->distance;
+	col_height = W_HEIGHT * FOV_COLUMN_RATIO / game->render->distance;
 	col_i = col_width * index;
 	while (col_i < col_width * (index + 1))
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init_hooks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rogde-so <rogde-so@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/29 20:33:49 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/02 00:35:41 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static int	on_key_release(int key_symbol, t_game *game)
 		game->key->ctrl = false;
 	else if (key_symbol == K_SHIFT)
 		game->key->shift = false;
+	else if (key_symbol == K_E && !game->helmet->is_playing)
+		game->key->e = t_anim_start(game->helmet, game->key->e);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 22:14:58 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/28 21:40:52 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/01 20:26:54 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ static void	set_fisheye(t_game *game)
  * in the ray 0 (the first and leftmost one, which, after "2 *" and "- 1" will
  * become -1). If the "index" is the last then it will result in the last ray.
  *
- * In the end, normalizes the vector (if 'x' or 'y' == 0, the opposite direction
- * can be larger than 1, and since no vector has such values, normalize it).
+ * Rays are not normalized.
+ *
+ * In the end, maximizes the vector (if 'x' or 'y' == 0, the opposite direction
+ * can be larger than 1, and since no vector has such values, maximize it).
  */
 static void	set_ray(t_game *game, size_t index)
 {

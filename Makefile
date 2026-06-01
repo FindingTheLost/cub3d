@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/29 20:21:58 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/06/01 23:37:19 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ HDR			= ./src/cub3d.h										\
 			  ./src/structs/t_key_struct.h						\
 			  ./src/structs/t_mouse_struct.h					\
 			  ./src/structs/t_render_struct.h					\
+			  ./src/structs/t_anim_struct.h						\
 			  ./src/game/game.h
 
 SRC			= ./src/cub3d.c										\
@@ -64,6 +65,7 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_draw_pixel.c			\
 			  ./src/structs/t_game/t_game_draw_background.c		\
 			  ./src/structs/t_game/t_game_draw_ceiling_floor.c	\
+			  ./src/structs/t_game/t_game_draw_animation.c		\
 			  ./src/structs/t_game/t_game_minimap_show.c		\
 			  ./src/structs/t_game/t_game_draw_minimap_map_h.c	\
 			  ./src/structs/t_game/t_game_draw_minimap_map_v.c	\
@@ -110,6 +112,15 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_render/t_render_destroy.c			\
 			  ./src/structs/t_render/t_render_error.c			\
 			  ./src/structs/t_render/t_render_populate.c		\
+			  ./src/structs/t_anim/t_anim_build.c				\
+			  ./src/structs/t_anim/t_anim_debug.c				\
+			  ./src/structs/t_anim/t_anim_destroy.c				\
+			  ./src/structs/t_anim/t_anim_error.c				\
+			  ./src/structs/t_anim/t_anim_populate.c			\
+			  ./src/structs/t_anim/t_anim_init_resolution.c		\
+			  ./src/structs/t_anim/t_anim_init_textures.c		\
+			  ./src/structs/t_anim/t_anim_start.c				\
+			  ./src/structs/t_anim/t_anim_update.c				\
 			  ./src/game/game.c									\
 			  ./src/game/game_update.c							\
 			  ./src/game/game_init_screen.c						\

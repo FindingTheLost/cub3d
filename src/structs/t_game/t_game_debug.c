@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 18:09:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/29 20:26:45 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/01 23:19:55 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void	t_game_debug(t_game *game)
 	t_key_debug(game->key);
 	t_mouse_debug(game->mouse);
 	t_render_debug(game->render);
+	t_anim_debug(game->helmet);
 	debug_time(game);
 }
