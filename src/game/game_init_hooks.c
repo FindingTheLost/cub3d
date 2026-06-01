@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 19:37:37 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/28 19:20:20 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 20:33:49 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	on_key_press(int key_symbol, t_game *game)
 	else if (key_symbol == K_CTRL)
 		game->key->ctrl = true;
 	else if (key_symbol == K_SPACE)
-		t_game_check_door(game);
+		t_game_door_dda(game);
 	else if (key_symbol == K_SHIFT)
 		game->key->shift = true;
 	return (0);
@@ -95,11 +95,17 @@ static int	on_key_press(int key_symbol, t_game *game)
  * to "false" when released, for all four directions.
  *
  * The function "mlx_mouse_hide()" has leaks. A mouse_hide.supp file is provided
- * to suppress these leaks. Test without the function to check if no leaks are
- * present. A fix was found and posted in the "minilibx" github page at:
- * "https://github.com/42paris/minilibx-linux/issues/48". It involves commenting
- * the previous code in two function of "mlx_mouse.c" and adding "-lXfixes" to
- * "cub3D"'s Makefile.
+ * to suppress them. Test without the function to check if no leaks are
+ * present.
+ *
+ * A fix was found and posted in the "minilibx" github page at:
+ * "https://github.com/42paris/minilibx-linux/issues/48".
+ * It involves commenting the previous code in two function of "mlx_mouse.c" and
+ * adding "-lXfixes" to "cub3D"'s Makefile. Although fixed, the mouse becomes
+ * hidden even when pressing the unhide mouse key of this project ("CTRL").
+ * 
+ * These minilibx changes were not applied to this project. Although the fix's
+ * code lines are present but commented, for possible future use.
  */
 void	game_init_hooks(t_game *game)
 {

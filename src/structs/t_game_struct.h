@@ -6,7 +6,7 @@
 /*   By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/28 21:36:53 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 20:13:11 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 # define W_TITLE "cub3D"
 # define W_WIDTH 960
 # define W_HEIGHT 540
-
-/* Defines the path for the door texture: */
-# define DOOR_TEX_PATH "assets/textures/test_door.xpm"
 
 /* Defines X11/MLX event masks: */
 # define NO_EVENT 0
@@ -57,6 +54,12 @@
 # define K_A 97
 # define K_D 100
 # define K_M 109
+
+/* Defines the path for the door texture (relative path to cub3D): */
+# define DOOR_TEX_PATH "assets/textures/test_door.xpm"
+
+/* Defines the distance to which doors can be opened (float): */
+# define DOOR_OPEN_DIST 1.2f
 
 /* Defines the player's speed in cells per second (float): */
 # define SPEED 2.0f
@@ -148,7 +151,8 @@ void	t_game_minimap_to_center(t_game *game, int *x, int *y, int orientation);
 void	t_game_cube_show(t_game *game);
 void	t_game_cube_dda(t_game *game);
 void	t_game_cube_draw(t_game *game, size_t index);
-void	t_game_check_door(t_game *game);
+void	t_game_door_dda(t_game *game);
+void	t_game_door_interact(t_game *game, int map_x, int map_y, float dist);
 void	t_game_check_keys(t_game *game);
 void	t_game_check_mouse(t_game *game);
 void	t_game_init_colors(t_cub *file, t_game *game);

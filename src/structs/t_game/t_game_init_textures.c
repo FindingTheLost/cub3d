@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 23:29:58 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/28 21:28:20 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 20:26:27 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	t_game_init_textures(t_cub *file, t_game *game)
 		if (!image)
 		{
 			mlx_destroy_image(game->mlx, texture);
-			return (t_game_texture_error(), false);
+			return (false);
 		}
 		set_image(game, image, index);
 		index++;

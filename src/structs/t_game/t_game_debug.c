@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 18:09:39 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/27 00:31:30 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 20:26:45 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	debug_textures(t_game *game)
 	t_image_debug(game->so_texture);
 	t_image_debug(game->we_texture);
 	t_image_debug(game->ea_texture);
+	t_image_debug(game->door_texture);
 }
 
 void	t_game_debug(t_game *game)

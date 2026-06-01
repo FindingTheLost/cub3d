@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/28 21:29:17 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/05/29 20:21:58 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,8 @@ SRC			= ./src/cub3d.c										\
 			  ./src/structs/t_game/t_game_cube_show.c			\
 			  ./src/structs/t_game/t_game_cube_dda.c			\
 			  ./src/structs/t_game/t_game_cube_draw.c			\
-			  ./src/structs/t_game/t_game_check_door.c			\
+			  ./src/structs/t_game/t_game_door_dda.c			\
+			  ./src/structs/t_game/t_game_door_interact.c		\
 			  ./src/structs/t_game/t_game_check_keys.c			\
 			  ./src/structs/t_game/t_game_check_mouse.c			\
 			  ./src/structs/t_game/t_game_check_collisions.c	\
@@ -121,7 +122,7 @@ LIBFT		= ./libft/libft.a
 
 MLX			= ./minilibx-linux/libmlx_Linux.a
 
-MLXFLAGS	= -std=gnu11 -lX11 -lXext -lXfixes
+MLXFLAGS	= -std=gnu11 -lX11 -lXext
 
 
 

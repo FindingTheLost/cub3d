@@ -1,0 +1,19 @@
+NO ./assets/textures/test_valid.xpm
+SO ./assets/textures/test_valid.xpm
+WE ./assets/textures/test_valid.xpm
+EA ./assets/textures/test_valid.xpm
+
+C 128,128,128
+F 255,255,255
+
+1111111111
+1S10D00001
+1010101101
+10D0D01001
+1011111101
+10D0000D01
+1011001101
+1001001001
+1111001111
+1  1DD1  1
+1111111111

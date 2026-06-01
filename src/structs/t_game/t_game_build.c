@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 20:32:18 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/05/26 17:33:04 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/05/29 20:25:42 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_game	*t_game_build(void)
 	game->so_texture = NULL;
 	game->we_texture = NULL;
 	game->ea_texture = NULL;
+	game->door_texture = NULL;
 	game->f_color = 0;
 	game->c_color = 0;
 	game->player = NULL;
