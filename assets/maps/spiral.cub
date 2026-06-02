@@ -1,7 +1,7 @@
-NO ./assets/textures/WALL1.xpm
-SO ./assets/textures/WALL2.xpm
-WE ./assets/textures/WALL3.xpm
-EA ./assets/textures/WALL4.xpm
+NO ./assets/textures/wall/wall1.xpm
+SO ./assets/textures/wall/wall2.xpm
+WE ./assets/textures/wall/wall3.xpm
+EA ./assets/textures/wall/wall4.xpm
 
 C 0,0,0
 F 90,94,68

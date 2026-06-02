@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/06/02 00:39:04 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/02 19:41:55 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,8 @@
 /* Defines a column's height ratio. Highly depends on FOV for results: */
 # define FOV_COLUMN_RATIO 0.9f
 
-/* Defines a zero delta value (fine-tune this macro by trial and error): */
-# define ZERO_DELTA 0.0001f
-
 /* Defines the amount of rays in the game's player view: */
 # define RAY_AMOUNT 960
-
-/* Defines if fish-eye effect is enabled: */
-# define FISH_EYE false
 
 /* Defines the time between each animation frame. Raise to slow down: */
 # define ANIMATION_SPEED 100000
@@ -114,6 +108,9 @@
 # define BLUE0 0x000000FF
 # define BLUE1 0x00000088
 # define ALPHA 0xFF000000
+
+/* Defines if fish-eye effect is enabled (can cause segfault, debug only!): */
+# define FISH_EYE false
 
 /* Defines a complete execution instance of "cub3D", storing every crucial
  * game struct inside, as well as Minilibx instance attributes:

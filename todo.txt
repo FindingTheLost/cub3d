@@ -1,7 +1,0 @@
-STUFF TO DO:
-============
-- Make README.md.
-- Add flashy compilation effects to the Makefile.
-- Add many more maps and textures.
-- Find out why FISH_EYE leaks.
-- Add helmet fishe eye effect.
