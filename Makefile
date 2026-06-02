@@ -6,7 +6,7 @@
 #    By: rogde-so <rogde-so@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/16 18:44:21 by pde-alme          #+#    #+#              #
-#    Updated: 2026/06/01 23:37:19 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/06/02 22:16:06 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,21 +141,36 @@ all: $(NAME)
 
 $(NAME): $(HDR) $(LIBFT) $(MLX) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX) $(MLXFLAGS) $(MATHLIB) -o $(NAME)
+	@printf "\033[92;7m----------------------------------------------\033[0m"
+	@printf "\033[92;7m-------| CUB3D BUILT |-------\033[0m"
+	@printf "\033[92;7m-----------------------------------------------\033[0m\n"
 
 $(LIBFT):
-	make -C libft
+	@make -sC libft
+	@printf "\033[94;7m----------------------------------------------\033[0m"
+	@printf "\033[94;7m-------| LIBFT BUILT |-------\033[0m"
+	@printf "\033[94;7m-----------------------------------------------\033[0m\n"
 
 $(MLX):
-	make -C minilibx-linux
+	@make -sC minilibx-linux
+	@printf "\033[95;7m----------------------------------------------\033[0m"
+	@printf "\033[95;7m-----| MINILIBX BUILT |------\033[0m"
+	@printf "\033[95;7m-----------------------------------------------\033[0m\n"
 
 clean:
-	rm -f $(OBJ)
-	make clean -C libft
+	@rm -f $(OBJ)
+	@make clean -sC libft
+	@printf "\033[93;7m----------------------------------------------\033[0m"
+	@printf "\033[93;7m--| CUB3D OBJECTS REMOVED |--\033[0m"
+	@printf "\033[93;7m-----------------------------------------------\033[0m\n"
 
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C libft
-	make clean -C minilibx-linux
+	@rm -f $(NAME)
+	@make fclean -sC libft
+	@make clean -sC minilibx-linux
+	@printf "\033[31;7m----------------------------------------------\033[0m"
+	@printf "\033[31;7m------| CUB3D REMOVED |------\033[0m"
+	@printf "\033[31;7m-----------------------------------------------\033[0m\n"
 
 re: fclean all
 

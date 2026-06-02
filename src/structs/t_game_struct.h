@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/06/02 19:41:55 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/02 21:41:56 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 # define K_E 101
 
 /* Defines the path for the door texture (relative path to cub3D): */
-# define DOOR_TEX_PATH "assets/textures/debug/debug_door.xpm"
+# define DOOR_TEX_PATH "assets/textures/door/door.xpm"
 
 /* Defines the distance to which doors can be opened (float): */
 # define DOOR_OPEN_DIST 1.2f
@@ -81,7 +81,8 @@
 /* Defines a camera plane's side distance size: */
 # define FOV 90
 
-/* Defines a column's height ratio. Highly depends on FOV for results: */
+/* Defines a column's height ratio. Highly depends on FOV for results:
+ * (FOV 90 = 0.9f, FOV 45 = 2.0f, FOV 170 = 0.075f)*/
 # define FOV_COLUMN_RATIO 0.9f
 
 /* Defines the amount of rays in the game's player view: */

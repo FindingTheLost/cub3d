@@ -6,7 +6,7 @@
 #    By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/23 19:18:32 by pde-alme          #+#    #+#              #
-#    Updated: 2026/05/08 18:28:53 by pde-alme         ###   ########.fr        #
+#    Updated: 2026/06/02 22:02:38 by pde-alme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,15 +86,12 @@ all: $(HDR) $(NAME)
 
 $(NAME): $(OBJ)
 	@ar $(AR) $(NAME) $(OBJ)
-	@printf "\033[34;7m=======================| LIBFT SUCCESSFULY ARCHIVED |=======================\033[0m\n"
 
 clean:
 	@rm -f $(OBJ)
-	@printf "\033[33;7m====================| OBJECT FILES SUCCESSFULY REMOVED |====================\033[0m\n"
 
 fclean: clean
 	@rm -f $(NAME)
-	@printf "\033[31;7m=======================| ARCHIVE SUCCESSFULY REMOVED |======================\033[0m\n"
 
 re: fclean all
 
