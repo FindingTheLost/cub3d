@@ -33,7 +33,9 @@ The program is to use Raycasting to calculate the distance a player is from a wa
 
 With the help of the <i>miniLibX</i> graphics library, the program can render walls with different textures per cardinal direction with individual ceiling and floor colors and represent a first-person perspective in an enclosed user created map. It also allows navigation through the map using keyhooks in the form of keyboard inputs and mouse movement.
 
-Drawing in a computer canvas follows the same rules as drawing in the real world, the furthest objects from the point of view are drawn first and the closest ones are drawn on top of the ones before. Knowing this, the ceiling and floor colors are drawn first, the map's walls next, and lastly, any heads-up-displays (HUDs) or player related animations are drawn last.</pre>
+Drawing in a computer canvas follows the same rules as drawing in the real world, the furthest objects from the point of view are drawn first and the closest ones are drawn on top of the ones before. Knowing this, the ceiling and floor colors are drawn first, the map's walls next, and lastly, any heads-up-displays (HUDs) or player related animations are drawn last.
+
+The project has no creative limit, although, with more additions and functionality comes more time spent developing the project. Subject mandatory and bonus sections were 100% implemented plus some little extras.</pre>
 
 
 
