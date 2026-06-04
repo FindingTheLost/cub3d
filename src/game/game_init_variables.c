@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:20:13 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/06/01 22:17:37 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/04 02:08:29 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
  * - "t_key"	- (the current frame's pressed keys);
  * - "t_mouse"	- (the current frame's mouse actions);
  * - "t_render" - (the current frame's render variables);
+ * - "t_anim"	- (the helmet animation);
  *
  * Then paints the minimap's background image to black (0). And frees the
  * "t_cub" struct representing the ".cub" file passed as parameter.

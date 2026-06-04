@@ -6,7 +6,7 @@
 /*   By: pde-alme <pde-alme@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 18:42:47 by pde-alme          #+#    #+#             */
-/*   Updated: 2026/06/02 21:41:56 by pde-alme         ###   ########.fr       */
+/*   Updated: 2026/06/03 22:51:31 by pde-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 # define K_E 101
 
 /* Defines the path for the door texture (relative path to cub3D): */
-# define DOOR_TEX_PATH "assets/textures/door/door.xpm"
+# define DOOR_TEX_PATH "assets/textures/debug/debug_door.xpm"
 
 /* Defines the distance to which doors can be opened (float): */
 # define DOOR_OPEN_DIST 1.2f
