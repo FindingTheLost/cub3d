@@ -1,0 +1,11 @@
+NO ./assets/textures/wall/face1.xpm
+SO ./assets/textures/wall/face2.xpm
+WE ./assets/textures/wall/face3.xpm
+EA ./assets/textures/wall/face4.xpm
+
+C 0,0,0
+F 0,0,0
+
+111
+1N1
+111

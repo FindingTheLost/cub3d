@@ -1,10 +1,10 @@
-NO ./assets/textures/debug/debug_north.xpm
-SO ./assets/textures/debug/debug_south.xpm
-WE ./assets/textures/debug/debug_west.xpm
-EA ./assets/textures/debug/debug_east.xpm
+NO ./assets/textures/wall/nature1.xpm
+SO ./assets/textures/wall/nature2.xpm
+WE ./assets/textures/wall/nature3.xpm
+EA ./assets/textures/wall/nature4.xpm
 
-C 93,76,59
-F 64,172,69
+C 255,200,0
+F 0,130,200
 
 1111111111
 1S10D00001
